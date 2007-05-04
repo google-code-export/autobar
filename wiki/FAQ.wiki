@@ -1,0 +1,20 @@
+#summary Frequently Asked Questions.
+
+=== How can I get the easy & classic AutoBar back? ===
+ * On the Profile tab select the "Reset" button next to the "Single (Classic) Setup" button. This gives you a single character layer as with the Classic AutoBar but with the current defaults which have changed quite a bit.
+ * On the Slots tab, drag and drop the slots on the bottom "Character Layer" if you want to change their order. This is faster than classic AutoBar which had no way to do this.
+ * To modify a slot itself click on it to edit it on the bottom "Character Layer" of the Slots tab. This brings up the list of 16 categories or items you can have in a slot.
+  * Drag and drop to rearrange items in the list.
+  * Drag items from your bags to add custom items. This is faster than the clunky manual typing of classic AutoBar for adding custom items.
+
+How can I get the easy & classic AutoBar back? 
+How can I find out if my bug is in AutoBar or some other mod? 
+How do I self cast or auto self cast? 
+Why can AutoBar no longer shuffle items during combat? 
+Waah, I don't want popups? 
+How do I report a missing item? 
+How do I add items that are not in any existing categories? 
+I can't see my AutoBar 
+My buttons shift around when items get used up 
+Whats with the layers? 
+How do I get a cooldown count like <some mod> has?
