@@ -16,13 +16,43 @@
 === How do I self cast or auto self cast? ===
  * For targeted items right click generally self casts
  * If you want to automatically cast items / spells on yourself when your target is not valid for that spell or item:
-  # First open up the Blizzard Interface Options Panel / Basic Options.
-  # Select "Auto Self Cast" if you want to .
+  # Open up the Blizzard Interface Options Panel / Basic Options.
+  # Select "Auto Self Cast".
 
 === Why can AutoBar no longer shuffle items during combat? ===
+The whole point behind the 2.0 UI changes Blizzard made is to specifically disable automation during combat. As you go into combat, the buttons on the bar and popups are frozen. They can no longer shuffle or change. That is it, end of story. No amount of requests to change this behaviour will make AutoBar behave differently during combat.  That said, it may be possible to shuffle items around behind the scene.  I will look into that after 2.1 is out.
+
 === Waah, I don't want popups? ===
+Popups are either always shown, or only shown when shift is held down (as soon as I implement the shift part that is).
+
+The reasons are simple:
+ # Blizzard has systematically and thoroughly disabled automated choice during combat.
+ # AutoBar used to shuffle the items in a slot around based on cooldown, availability, etc.
+ # This shuffling can no longer work in combat.
+ # Therefore users need a way to in essence do this shuffling themselves, which means using the popup.
+ # Thus, the popup's availability is now mandatory.
+ # The only "hiding" of the popup will be the "Popup on Shift" key.
+ # To avoid support issues like: "I died / the raid wiped because I could not click on X potion after I ran out of Y" etc. the popup will just always be there. If you do run out of the first item there needs to be a fallback option during combat. So rather than allow users to break the mod through a "Disable Popup" option I am just not going to allow that. Popup on shift is close enough to hiding it. 
+
 === How do I report a missing item? ===
+Please use something specific like:
+Reins of the Black War Tiger
+or [Reins of the Black War Tiger] 29471
+
+The 29471 is the ItemId
+-Get it from LootLink as the "BaseId" in the tooltip.
+-Look it up on wowhead.com or allakhazam.com by searching by name & then looking at the items URL. The ItemId is at the end.
+
+I do not have the time to go search the entire game for missing items. If you miss it, give me the specific info I need to add it.
+
 === How do I add items that are not in any existing categories? ===
+ * Open the Config / Slots tab and drag the item from your bag onto a slot.  This adds the item at the end so it has priority over anything else already in the slot.
+ * You can also click on a slot to edit it, and then drag the item to any of the category slots. Drag onto an existing item to replace it.  Drop onto the end or a blank spot to set it as the highest priority item.  Drag and drop items to rearrange their priority.
+
+ * See the "How do I report a missing item?" faq to get the item into the items database.
+
+ * If you are an Ace author or have SVN access you can add the item to PeriodicTable-3.0.
+
 === I can't see my AutoBar ===
 === My buttons shift around when items get used up ===
 === Whats with the layers? ===
