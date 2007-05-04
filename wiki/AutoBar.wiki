@@ -18,33 +18,38 @@ Add your content here.  Format your content with:
  * It will always show the best bandage available.
  * In battlegrounds it will show the BG specific bandage if you have it. 
 
-*Potion slots*
-: It will show the best potion available, but use the appropriate one to heal / restore the mana you need. If you do not need mana or health, it wont use a potion and if you only need a little bit of health or mana it will use a cheaper potion if one is available. 
+*Potion Slots*
+ * It will show the best potion available
+ * A popup list lets you use cheaper potions if you have any 
 
-; Protection potions slot
-: From Arcane to Shadow & even Invulnerability and Spell reflection potions. 
+*Protection Potions Slot*
+ * From Arcane to Shadow & even Invulnerability and Spell reflection potions. 
 
-; Mount slot
-: This will show your current mount with a popup of other mounts in your bags.
-: Ahn'Qiraj mounts show up if you are in AQ40.
-: The rearrange on Use checkbox is set by default for Mounts so when you click on a mount in the popup that becomes your default mount.
+*Weapon Buff Slot*
+ * Includes Mana and Wizard Oils, Sharpening and Weight Stones, Rogue poisons.
+ * The items rearrange on use so the last used item becomes the default. 
 
-; Food slot
-: Any of dozens of foods automatically go into this slot. You can set up more slots for foods with buffs so you can eat those as appropriate. 
+*Mount Slot*
+ * This will show your current mount with a popup of other mounts in your bags.
+ * Ahn'Qiraj mounts show up if you are in AQ40.
+ * The rearrange on Use checkbox is set by default for Mounts so when you click on a mount in the popup that becomes your default mount.
 
-; Pet Food
-: You can set up a slot with pet food and enable having a right mouse button click feed the pet. 
+*Food Slot*
+ * Any of dozens of foods automatically go into this slot. You can set up more slots for foods with buffs so you can eat those as appropriate. 
 
-; Make your own slots
-: Found some kool stuff not yet supported in Autobar? Drag & drop it into your own custom slots.
+*Pet Food*
+ * You can set up a slot with pet food and enable having a right mouse button click feed the pet. 
 
-==Classic (Easy) AutoBar== 
+*Make your own Slots*
+ * Found some stuff not yet supported in Autobar? Drag & drop it into your own custom slots.
+
+= Classic (Easy) AutoBar =
 To get classic AutoBar behaviour follow these steps:
 *On the Profile tab select the "Reset" button next to the "Single (Classic) Setup" button.  This gives you a single character layer as with the Classic AutoBar but with the current defaults which have changed quite a bit.
 *On the Slots tab, drag and drop the slots on the bottom "Character Layer" if you want to change their order.  This is faster than classic AutoBar which had no way to do this.
 *To modify a slot itself click on it to edit it on the bottom "Character Layer" of the Slots tab.  This brings up the list of 16 categories or items you can have in a slot.  Drag and drop to rearrange items in the list.  Drag items from your bags to add custom items.  This is faster than the clunky manual typing of classic AutoBar for adding custom items.
 
-==Customizing== 
+= Customizing =
 *Type <tt>/atb</tt> or <tt>/autobar</tt>, set up a key binding, or right click on the drag handle to bring up the config dialog. 
 * Drag the drag handle to reposition the bar (it is the round green button at the edge of the bar). Left click on the drag handle to lock / unlock the bar. Right click on the drag handle to bring up the configuration dialog. 
 * To restore default categories, click the bar reset button. To reset the display, click the display reset button. The profile tab has some quick setup buttons as well as reset buttons for their particular defaults. 
@@ -63,7 +68,7 @@ To get classic AutoBar behaviour follow these steps:
 *If a slot has 2 or more usable items they are displayed in a popup so you can select something other than the default item. You can modify this in the config panel. 
 *If there are multiple items you can set "Rearrange Order on Use" so the default item gets set to the last one you used. This is handy for picking say FR pots while in MC, or to switch mounts and have the keybind work with whatever mount you click on to mount / dismount. 
 
-==Limitations== 
+= Limitations =
 *This mod is for using items in your bags only. NO SPELLS are supported, this includes paladin & warlock mounts. 
 *Similarly it is not for using equiped items. You can drag an item into a slot so that you can click AutoBar to equip it, however autobar will not "use" any special abilites of the item once it is equiped because at that point it is no longer in your bags. 
 *For trinkets I would recommend something like [[TrinketMenu]], for armor & weapons, [[Itemrack]] is an excellent addon. 
@@ -72,6 +77,9 @@ To get classic AutoBar behaviour follow these steps:
 == Downloads ==
 * {{WoWI|5502|WoW Interface}}
 * {{Curse|4430|Curse-gaming}}
+
+
+
 
 
 
