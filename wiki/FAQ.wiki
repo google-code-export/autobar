@@ -14,6 +14,9 @@
  # Please say what version you are running when reporting a bug, it saves me a lot of time.
 
 === How do I self cast or auto self cast? ===
+ # First open up the Blizzard Interface Options Panel / Basic Options.
+ # Select "Auto Self Cast" if you want to automatically cast items / spells on yourself when your target is not valid for that spell or item.
+
 === Why can AutoBar no longer shuffle items during combat? ===
 === Waah, I don't want popups? ===
 === How do I report a missing item? ===
