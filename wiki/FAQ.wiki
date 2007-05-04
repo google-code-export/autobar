@@ -7,14 +7,18 @@
   * Drag and drop to rearrange items in the list.
   * Drag items from your bags to add custom items. This is faster than the clunky manual typing of classic AutoBar for adding custom items.
 
-How can I get the easy & classic AutoBar back? 
-How can I find out if my bug is in AutoBar or some other mod? 
-How do I self cast or auto self cast? 
-Why can AutoBar no longer shuffle items during combat? 
-Waah, I don't want popups? 
-How do I report a missing item? 
-How do I add items that are not in any existing categories? 
-I can't see my AutoBar 
-My buttons shift around when items get used up 
-Whats with the layers? 
-How do I get a cooldown count like <some mod> has?
+=== How can I find out if my bug is in AutoBar or some other mod? ===
+ # Please make sure you are running the latest version. This will be on wowace.com/files
+ # Disable all other mods except AutoBar. If you still get the error then it is an AutoBar bug.
+ # Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
+ # Please say what version you are running when reporting a bug, it saves me a lot of time.
+
+=== How do I self cast or auto self cast? ===
+=== Why can AutoBar no longer shuffle items during combat? ===
+=== Waah, I don't want popups? ===
+=== How do I report a missing item? ===
+=== How do I add items that are not in any existing categories? ===
+=== I can't see my AutoBar ===
+=== My buttons shift around when items get used up ===
+=== Whats with the layers? ===
+=== How do I get a cooldown count like <some mod> has? ===
