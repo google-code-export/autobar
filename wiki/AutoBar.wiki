@@ -36,17 +36,20 @@ AutoBar provides a configurable set of 24 slots that automatically display items
  * You can set up a slot with pet food and enable having a right mouse button click feed the pet. 
 
 *Make your own Slots*
- * Found some stuff not yet supported in Autobar? Drag & drop it into your own custom slots.
+ * Found some stuff not yet supported in Autobar? Drag & drop it into your own custom slots.  See [Customize] for more details.
+
+= Notes =
+ * Inventory items have a green border while equipped.
+ * Spell buttons have a blue border.
 
 = Limitations =
-*This mod is for using items in your bags only. NO SPELLS are supported, this includes paladin & warlock mounts. 
-*Similarly it is not for using equiped items. You can drag an item into a slot so that you can click AutoBar to equip it, however autobar will not "use" any special abilites of the item once it is equiped because at that point it is no longer in your bags. 
-*For trinkets I would recommend something like [[TrinketMenu]], for armor & weapons, [[Itemrack]] is an excellent addon. 
-*No cooldown counter beyond the blizzard one. If you need one, please use [[OmniCC]], it works with pretty much all mods.
+ * This mod is for using items in your bags only. Some spells are supported: paladin & warlock mounts, druid & shaman travel forms, conjure food water health & mana stones. 
+ * No cooldown counter beyond the blizzard one. If you need one, please use [http://wow-en.curse-gaming.com/downloads/details/2775/omnicc/ OmniCC], it works with pretty much all mods.
 
 == Downloads ==
 * {{WoWI|5502|WoW Interface}}
 * {{Curse|4430|Curse-gaming}}
+
 
 
 
