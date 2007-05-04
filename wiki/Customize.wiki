@@ -1,4 +1,5 @@
 #summary How to customize AutoBar.
+#labels Featured
 
 = Classic (Easy) AutoBar =
 To get classic AutoBar behaviour follow these steps:
