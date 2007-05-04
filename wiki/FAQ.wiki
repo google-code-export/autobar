@@ -77,6 +77,6 @@ The layers are overlayed on top of each other, so that if a slot is not empty in
 Character > Shared > Class > Basic
 
 === How do I get a cooldown count like <some mod> has? ===
- * AutoBar provides only the standard Blizzard cooldown clock. If you would like a digital cooldown, then get the OmniCC mod.
+ * AutoBar provides only the standard Blizzard cooldown clock. If you would like a digital cooldown, then get the [http://wow-en.curse-gaming.com/downloads/details/2775/omnicc/ OmniCC] mod.
  * OmniCC provides a digital cooldown for any button that has a standard Blizzard cooldown clock. I would highly recommend it.
  * A clock will never be added to AutoBar, because all I would be doing is copying the OmniCC code which makes no sense. Better to have one OmniCC, than 50 mods with duplicate OmniCC code in them.
