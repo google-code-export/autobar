@@ -1,4 +1,4 @@
-#summary AutoBar World of Warcraft addon: Dynamic 24 button bar automatically adds potions, water, food and other items you specify into a button for use. Doesn't use up action slots.
+#summary World of Warcraft addon: Dynamic 24 button bar automatically adds potions, water, food and other items you specify into a button for use. Doesn't use up action slots.
 #labels Featured
 
 = Introduction =
@@ -52,7 +52,6 @@ Add your content here.  Format your content with:
 == Downloads ==
 * {{WoWI|5502|WoW Interface}}
 * {{Curse|4430|Curse-gaming}}
-
 
 
 
