@@ -55,7 +55,7 @@ The whole point behind the 2.0 UI changes Blizzard made is to specifically disab
 
  * See the "How do I report a missing item?" faq to get the item into the items database.
 
- * If you are an Ace author or have SVN access you can add the item to PeriodicTable-3.0.
+ * If you are an Ace author or have SVN access you can add the item to [http://www.wowace.com/wiki/PeriodicTable-3.0 PeriodicTable-3.0].
 
 
 === I can't see my AutoBar ===
