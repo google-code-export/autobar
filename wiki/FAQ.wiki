@@ -27,9 +27,9 @@ The whole point behind the 2.0 UI changes Blizzard made is to specifically disab
 
 
 === Waah, I don't want popups? ===
-Popups are either always shown, or only shown when shift is held down (as soon as I implement the shift part that is).
+ Popups are either always shown, or only shown when shift is held down (as soon as I implement the shift part that is).
 
-The reasons are simple:
+ The reasons are simple:
  # Blizzard has systematically and thoroughly disabled automated choice during combat.
  # AutoBar used to shuffle the items in a slot around based on cooldown, availability, etc.
  # This shuffling can no longer work in combat.
@@ -40,15 +40,13 @@ The reasons are simple:
 
 
 === How do I report a missing item? ===
-Please use something specific like:
-"Reins of the Black War Tiger"
-or "Reins of the Black War Tiger 29471"
+ * Please use something specific like: "Reins of the Black War Tiger" or "Reins of the Black War Tiger 29471"
 
-The 29471 is the ItemId
- * Get it from LootLink as the "BaseId" in the tooltip.
- * Look it up on wowhead.com or allakhazam.com by searching by name & then looking at the items URL. The ItemId is at the end.
+ * The 29471 is the ItemId
+  * Get it from LootLink as the "BaseId" in the tooltip.
+  * Look it up on wowhead.com or allakhazam.com by searching by name & then looking at the items URL. The ItemId is at the end.
 
-I do not have the time to go search the entire game for missing items. If you miss it, give me the specific info I need to add it.
+ I do not have the time to go search the entire game for missing items. If you miss it, give me the specific info I need to add it.
 
 
 === How do I add items that are not in any existing categories? ===
@@ -67,22 +65,22 @@ I do not have the time to go search the entire game for missing items. If you mi
 
 
 === My buttons shift around when items get used up ===
-Under Config / Buttons tab, select Show Category Icons. This will put a dimmed out placeholder button there when you run out. 
+ Under Config / Buttons tab, select Show Category Icons. This will put a dimmed out placeholder button there when you run out. 
 
 
 === Whats with the layers? ===
-The layers allow you to customize AutoBar and still make use of the defaults, as well as automatically picking up changes to any of the default slots you use whenever AutoBar is updated.
+ The layers allow you to customize AutoBar and still make use of the defaults, as well as automatically picking up changes to any of the default slots you use whenever AutoBar is updated.
 
-They are as simple as possible without losing necessary functionality.
+ They are as simple as possible without losing necessary functionality.
 
-The profiles tab lets you select a simple single user setup which is very similar to the old AutoBar setup, and squashes everything into a single layer.
+ The profiles tab lets you select a simple single user setup which is very similar to the old AutoBar setup, and squashes everything into a single layer.
 
-The shared option allows you to set up options for more than one user and have changes be instantly updated for all the users using that shared profile. This option uses both a shared layer as well as a custom layer for each individual user that can overide the shared options. This lets you set up the common items as you want them and make minor changes for each user if needed.
+ The shared option allows you to set up options for more than one user and have changes be instantly updated for all the users using that shared profile. This option uses both a shared layer as well as a custom layer for each individual user that can overide the shared options. This lets you set up the common items as you want them and make minor changes for each user if needed.
 
-The standard setup lets you customize everything.
+ The standard setup lets you customize everything.
 In addition to the shared and character layer it also gives access to the default and class default layers.
 
-The layers are overlayed on top of each other, so that if a slot is not empty in a higher layer, then it replaces anything in a lower layer. The order is:
+ The layers are overlayed on top of each other, so that if a slot is not empty in a higher layer, then it replaces anything in a lower layer. The order is:
 Character > Shared > Class > Basic
 
 
