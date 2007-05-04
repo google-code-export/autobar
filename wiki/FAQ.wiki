@@ -36,8 +36,8 @@ The reasons are simple:
 
 === How do I report a missing item? ===
 Please use something specific like:
-Reins of the Black War Tiger
-or Reins of the Black War Tiger 29471
+"Reins of the Black War Tiger"
+or "Reins of the Black War Tiger 29471"
 
 The 29471 is the ItemId
  * Get it from LootLink as the "BaseId" in the tooltip.
@@ -54,6 +54,29 @@ I do not have the time to go search the entire game for missing items. If you mi
  * If you are an Ace author or have SVN access you can add the item to PeriodicTable-3.0.
 
 === I can't see my AutoBar ===
+ * Go to Config / Profiles tab and click one of the three reset buttons. The bar should show up at 300 x 300 up and right of the bottom left corner.
+ * Try some of the docking options like say Chatframe. Once you see it drag it where you want it.
+ * In Config / Buttons make sure your alpha setting is high enough to see the bar. 
+
 === My buttons shift around when items get used up ===
+Under Config / Buttons tab, select Show Category Icons. This will put a dimmed out placeholder button there when you run out. 
+
 === Whats with the layers? ===
+The layers allow you to customize AutoBar and still make use of the defaults, as well as automatically picking up changes to any of the default slots you use whenever AutoBar is updated.
+
+They are as simple as possible without losing necessary functionality.
+
+The profiles tab lets you select a simple single user setup which is very similar to the old AutoBar setup, and squashes everything into a single layer.
+
+The shared option allows you to set up options for more than one user and have changes be instantly updated for all the users using that shared profile. This option uses both a shared layer as well as a custom layer for each individual user that can overide the shared options. This lets you set up the common items as you want them and make minor changes for each user if needed.
+
+The standard setup lets you customize everything.
+In addition to the shared and character layer it also gives access to the default and class default layers.
+
+The layers are overlayed on top of each other, so that if a slot is not empty in a higher layer, then it replaces anything in a lower layer. The order is:
+Character > Shared > Class > Basic
+
 === How do I get a cooldown count like <some mod> has? ===
+ * AutoBar provides only the standard Blizzard cooldown clock. If you would like a digital cooldown, then get the OmniCC mod.
+ * OmniCC provides a digital cooldown for any button that has a standard Blizzard cooldown clock. I would highly recommend it.
+ * A clock will never be added to AutoBar, because all I would be doing is copying the OmniCC code which makes no sense. Better to have one OmniCC, than 50 mods with duplicate OmniCC code in them.
