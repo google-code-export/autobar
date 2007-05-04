@@ -43,13 +43,12 @@ AutoBar provides a configurable set of 24 slots that automatically display items
  * Spell buttons have a blue border.
 
 = Limitations =
- * This mod is for using items in your bags only. Some spells are supported: paladin & warlock mounts, druid & shaman travel forms, conjure food water health & mana stones. 
- * No cooldown counter beyond the blizzard one. If you need one, please use [http://wow-en.curse-gaming.com/downloads/details/2775/omnicc/ OmniCC], it works with pretty much all mods.
+ * This mod is for using items in your bags and inventory only. Some spells are supported: paladin & warlock mounts, druid & shaman travel forms, conjure food water health & mana stones. 
+ * THere is no cooldown counter beyond the blizzard one. If you need one, please use [http://wow-en.curse-gaming.com/downloads/details/2775/omnicc/ OmniCC], it works with pretty much all mods.
 
 == Downloads ==
-* {{WoWI|5502|WoW Interface}}
-* {{Curse|4430|Curse-gaming}}
-
+* [http://www.wowinterface.com/downloads/fileinfo.php?id=5502 WoW Interface]
+* [http://wow-en.curse-gaming.com/downloads/details/3353/autobar-toadkiller/ Curse-gaming]
 
 
 
