@@ -44,7 +44,7 @@ The whole point behind the 2.0 UI changes Blizzard made is to specifically disab
 
  * The 29471 is the ItemId
   * Get it from LootLink as the "BaseId" in the tooltip.
-  * Look it up on wowhead.com or allakhazam.com by searching by name & then looking at the items URL. The ItemId is at the end.
+  * Look it up on [http://www.wowhead.com] or [http://www.allakhazam.com] by searching by name & then looking at the items URL. The ItemId is at the end.
 
  I do not have the time to go search the entire game for missing items. If you miss it, give me the specific info I need to add it.
 
