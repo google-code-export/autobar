@@ -1,0 +1,26 @@
+#summary How to customize AutoBar.
+
+= Classic (Easy) AutoBar =
+To get classic AutoBar behaviour follow these steps:
+ * On the Profile tab select the "Reset" button next to the "Single (Classic) Setup" button.  This gives you a single character layer as with the Classic AutoBar but with the current defaults which have changed quite a bit.
+ * On the Slots tab, drag and drop the slots on the bottom "Character Layer" if you want to change their order.  This is faster than classic AutoBar which had no way to do this.
+ * To modify a slot itself click on it to edit it on the bottom "Character Layer" of the Slots tab.  This brings up the list of 16 categories or items you can have in a slot.  Drag and drop to rearrange items in the list.  Drag items from your bags to add custom items.  This is faster than the clunky manual typing of classic AutoBar for adding custom items.
+
+= Customizing =
+ * Type <tt>/atb</tt> or <tt>/autobar</tt>, set up a key binding, or right click on the drag handle to bring up the config dialog. 
+ * Drag the drag handle to reposition the bar (it is the round green button at the edge of the bar). Left click on the drag handle to lock / unlock the bar. Right click on the drag handle to bring up the configuration dialog. 
+ * To restore default categories, click the bar reset button. To reset the display, click the display reset button. The profile tab has some quick setup buttons as well as reset buttons for their particular defaults. 
+ * To share configurations amongst multiple characters, use and make changes to a shared layer and then have the other characters use that shared layer as well. The slots of a layer are edited in the Slots tab. 
+ * You can edit class and basic default slots on the Class and Basic layers. 
+ * The layers have precedence in this order: Character > Shared > Class > Basic. So if you add an item to a slot on the Character layer it will overide anything in that slot on a lower level. 
+ * If you want to blank out something from a lower layer without editing the lower layer you can use the clear slot button on a higher layer. 
+
+ * For smart selfcast of targeted items like bandages either check the Smart Self Cast checkbox, or click on the item slot and then select the appropriate checkbox(es) on the list that comes up. 
+ * Use the column / rows sliders to choose vertical or horizontal orientation for the bar, and the align checkboxes to set the grow direction for the bar. 
+ * From the Slots tab, click on a slot to edit what it contains. 
+ * The LAST (bottom) item in your combination list has the highest priority & will show up in the slot while you have some of it in inventory. If you run out of it, the next item above it shows up etc. 
+ * When using items applied to a weapon (poisons, mana oil, sharpening stones, etc) left-click the button for main weapon, right click for offhand weapon. Using a keybinding will apply it to your main weapon. 
+ * You can drag items around to change their order for both the slots in the bar & for the categories in each slot. 
+ * You can drag items from your bags to a slots categories buttons 
+ * If a slot has 2 or more usable items they are displayed in a popup so you can select something other than the default item. You can modify this in the config panel. 
+ * If there are multiple items you can set "Rearrange Order on Use" so the default item gets set to the last one you used. This is handy for picking say FR pots while in MC, or to switch mounts and have the keybind work with whatever mount you click on to mount / dismount. 
