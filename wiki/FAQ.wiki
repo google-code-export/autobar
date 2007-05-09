@@ -9,7 +9,7 @@
 
 
 === How can I find out if my bug is in AutoBar or some other mod? ===
- # Please make sure you are running the latest version. The latest release is here, and the latest developer build is on [http://files.wowace.com]
+ # Please make sure you are running the latest version. The latest release is here under Downloads, and the latest developer build is on [http://files.wowace.com]
  # Disable all other mods except AutoBar. If you still get the error then it is an AutoBar bug.
  # Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
  # Please say what version you are running when reporting a bug, it saves me a lot of time.
