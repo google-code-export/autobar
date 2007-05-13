@@ -1,5 +1,8 @@
 #summary Frequently Asked Questions.
 
+=== How do I customize AutoBar ===
+ * See the Customize page.
+
 === How can I get the easy & classic AutoBar back? ===
  * On the Profile tab select the "Reset" button next to the "Single (Classic) Setup" button. This gives you a single character layer as with the Classic AutoBar but with the current defaults which have changed quite a bit.
  * On the Slots tab, drag and drop the slots on the bottom "Character Layer" if you want to change their order. This is faster than classic AutoBar which had no way to do this.
