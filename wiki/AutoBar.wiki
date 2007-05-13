@@ -6,6 +6,7 @@
 AutoBar provides a configurable set of 24 slots that automatically display items in your inventory for easy use. You can assign hot keys to a slot. Each slot can be customized to have whatever you want in it. You can have specific items smart selfcast if your target is not valid. Slots with multiple items in your bags can have a popup list of the items to choose from.
  * [http://www.wowace.com/forums/index.php?topic=2582#top WowAce Forum]
  * How to [Customize] your AutoBar
+ * [FAQ]
 
 = Examples =
 
@@ -49,7 +50,6 @@ AutoBar provides a configurable set of 24 slots that automatically display items
 == Downloads ==
  * [http://www.wowinterface.com/downloads/fileinfo.php?id=5502 WoW Interface]
  * [http://wow-en.curse-gaming.com/downloads/details/3353/autobar-toadkiller/ Curse-gaming]
-
 
 
 
