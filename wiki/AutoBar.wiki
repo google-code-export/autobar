@@ -7,6 +7,7 @@ AutoBar provides a configurable set of 24 slots that automatically display items
  * [http://www.wowace.com/forums/index.php?topic=2582#top WowAce Forum]
  * How to [Customize] your AutoBar
  * [FAQ]
+ * [http://www.wowace.com/wiki/AutoBar/WishList Wish List]
 
 = Examples =
 
@@ -50,7 +51,6 @@ AutoBar provides a configurable set of 24 slots that automatically display items
 == Downloads ==
  * [http://www.wowinterface.com/downloads/fileinfo.php?id=5502 WoW Interface]
  * [http://wow-en.curse-gaming.com/downloads/details/3353/autobar-toadkiller/ Curse-gaming]
-
 
 
 
