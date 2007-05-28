@@ -25,6 +25,12 @@
   # Select "Auto Self Cast".
 
 
+=== How do I set key bindings for AutoBar? ===
+ * Use the BLizzard key-binding interface:
+  # Open up the Blizzard Keybindings Panel
+  # Scroll down to the AutoBar section and bind the keys you want
+
+
 === Why can AutoBar no longer shuffle items during combat? ===
 The whole point behind the 2.0 UI changes Blizzard made is to specifically disable automation during combat. As you go into combat, the buttons on the bar and popups are frozen. They can no longer shuffle or change. That is it, end of story. No amount of requests to change this behaviour will make AutoBar behave differently during combat.  That said, it may be possible to shuffle items around behind the scene.  I will look into that after 2.1 is out.
 
