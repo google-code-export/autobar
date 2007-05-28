@@ -13,10 +13,11 @@
 
 
 === How can I find out if my bug is in AutoBar or some other mod? ===
- # Please make sure you are running the latest version. The latest release is here under Downloads, and the latest developer build is on [http://files.wowace.com]
+ # Please make sure you are running the latest version. The latest release is here under Downloads, and the latest developer build is on [http://files.wowace.com].  Please make sure your bug has not been fixed in the developer build before logging a bug.
  # Disable all other mods except AutoBar. If you still get the error then it is an AutoBar bug.
  # Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
- # Please say what version you are running when reporting a bug, it saves me a lot of time.
+ # Another potential source of bugs are script errors, especially during startup.  Download !Buggrabber from [http://files.wowace.com].  Buggrabber records all bugs and lets you list them by typing in /buggrabber # into chat.  Ideally there should be no errors.  Startup errors in a particular mod probably mean it is not going to work correctly.
+ # Please state what version you are running when reporting a bug, it saves me a lot of time.
 
 
 === How do I self cast or auto self cast? ===
