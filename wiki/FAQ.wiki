@@ -37,6 +37,10 @@
 The whole point behind the 2.0 UI changes Blizzard made is to specifically disable automation during combat. As you go into combat, the buttons on the bar and popups are frozen. They can no longer shuffle or change. That is it, end of story. No amount of requests to change this behaviour will make AutoBar behave differently during combat.  That said, it may be possible to shuffle items around behind the scene.  I will look into that after 2.1 is out.
 
 
+=== Arrange on use is not working for me during combat! ===
+ True that.
+
+
 === Waah, I don't want popups? ===
  Popups are either always shown, or only shown when shift is held down (as soon as I implement the shift part that is).
 
