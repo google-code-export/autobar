@@ -22,7 +22,7 @@
   * Startup errors in a particular mod probably mean it is not going to work correctly.
   * Please only report the first bug "/buggrabber 1".  The first one usually leads to a cascade of meaningless bugs that may or may not even be real.
  * Please state what version you are running when reporting a bug, it saves a lot of time and confusion.
- * If you download off of WowAce you need to report the SVN revision number (r#####) as well as the official AutoBar version number.
+ * If you download off of wowace you need to report the SVN revision number (r#####) as well as the official AutoBar version number.
 
 
 === How do I self cast or auto self cast? ===
@@ -108,5 +108,4 @@ Character > Shared > Class > Basic
  * AutoBar provides only the standard Blizzard cooldown clock. If you would like a digital cooldown, then get the [http://wow-en.curse-gaming.com/downloads/details/2775/omnicc/ OmniCC] mod.
  * OmniCC provides a digital cooldown for any button that has a standard Blizzard cooldown clock. I would highly recommend it.
  * A clock will never be added to AutoBar, because all I would be doing is copying the OmniCC code which makes no sense. Better to have one OmniCC, than 50 mods with duplicate OmniCC code in them.
-
 
