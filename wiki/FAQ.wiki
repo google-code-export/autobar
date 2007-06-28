@@ -38,6 +38,13 @@
   # Scroll down to the AutoBar section and bind the keys you want
 
 
+=== AutoBar use 5 gajillion gigabytes of memory? ===
+ * This is not correct
+  # AutoBar uses about 400-500k
+  # AutoBar does use the embedded Ace libraries which load along with the first Ace mod which alphabeticaly tends to be AutoBar.
+  # The Ace libraries are shared among all your Ace mods.  If you want to get a better idea of who is hogging memory then load up the optional standalone versions of the Ace libraries.  Do not forget to delete them after your experiment is over.
+
+
 === Why can AutoBar no longer shuffle items during combat? ===
 The whole point behind the 2.0 UI changes Blizzard made is to specifically disable automation during combat. As you go into combat, the buttons on the bar and popups are frozen. They can no longer shuffle or change. That is it, end of story. No amount of requests to change this behaviour will make AutoBar behave differently during combat.  That said, it may be possible to shuffle items around behind the scene.  I will look into that after 2.1 is out.
 
