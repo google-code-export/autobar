@@ -38,7 +38,7 @@
   # Scroll down to the AutoBar section and bind the keys you want
 
 
-=== AutoBar use 5 gajillion gigabytes of memory? ===
+=== AutoBar uses 5 gajillion gigabytes of memory? ===
  * This is not correct
   # AutoBar uses about 400-500k
   # AutoBar does use the embedded Ace libraries which load along with the first Ace mod which alphabeticaly tends to be AutoBar.
