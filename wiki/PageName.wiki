@@ -31,7 +31,8 @@
 -- 33042:7200 Black Coffee
 -- Fix cyCircled timing issue
 -- Fix weapon buff to be arrange on use again
-
+}}}
+{{{
 -- 2.01.00.03 beta
 -- 22850:2200 Super Rejuvenation
 -- 31677:3200 Fel Mana
@@ -56,7 +57,8 @@
 -- "Toggle the config panel" & other localizations by helium
 -- Consumable.Potion.Recovery.[Healing | Mana].Blades Edge
 -- Nether Ray Mounts
-
+}}}
+{{{
 -- 2.01.00.02 beta
 -- TOC update 20100
 -- Ace2 lib update
@@ -65,7 +67,8 @@
 -- Babble-2.2 frFR Summon Dreadsteed: fix case
 -- Remove some Data Rot from AutoBar.xml
 -- Fix missing keybindings
-
+}}}
+{{{
 -- 2.00.00.37 beta
 -- Add Summon Warhorse and Summon Felsteed
 -- Only parent anchor, dont specify relpoint so tinytip will be happy
@@ -82,14 +85,17 @@
 -- Fix Mana Citrine & Jade order
 -- Fix arrangeOnUse
 -- Clearer AutoBarConfig load error message.
-
+}}}
+{{{
 -- 2.00.00.36 beta
 -- Add missing sets to PT3 consumable
-
+}}}
+{{{
 -- 2.00.00.35 beta
 -- Switch from PT3 alldata to consumable, misc & tradeskill
 -- Add links to Google Code Project Page
-
+}}}
+{{{
 -- 2.00.00.34 beta
 -- Bug Fix for 2.1.
 -- Fix update issue after flying
@@ -111,7 +117,8 @@
 -- Rogue poisons are all in the 2 weapon buff slots.
 -- The weapon buff slots & category are arrange on use so the last used item becomes the default.
 -- As usual, do a reset on the profile page to pick up the changes
-
+}}}
+{{{
 -- 2.00.00.33 beta
 -- Split out Mana Stone conjure buttons for Mages
 -- Fix bg mana & heal potion categories.  Requires Reset on the profile tab.
@@ -120,7 +127,8 @@
 -- Edit the Class layer to get rid of it.  Needs Reset on Profile Tab to pick up the changes.
 -- Mess with event delays.
 -- Fix cyCircled AutoBar code to avoid skinning 288 buttons on every update
-
+}}}
+{{{
 -- 2.00.00.32 beta
 -- crash fix in update
 -- Sort weapon poisons
@@ -134,7 +142,8 @@
 -- zhTW locale: tx helium_wong
 -- 21151:15 Rumsey Rum Black Label
 -- Added some performance profiling support: checkbox on profile tab to activate
-
+}}}
+{{{
 -- 2.00.00.31 beta
 -- New bag scan code, integrated, likely some issues left
 -- 30360 Murky pet
@@ -145,12 +154,14 @@
 -- 22837:75 Heroic Potion
 -- 22828:120 Insane Strength Potion
 -- 27553 Red Bull .. er Steer
-
+}}}
+{{{
 -- 2.00.00.30 beta
 -- Added more stuff to caster buffs.  Requires Profile tab reset.
 -- Attack Power, Healing and Spell Damage Foods.  Requires Profile tab reset.
 -- New bag scan code, not integrated yet but tested
-
+}}}
+{{{
 -- 2.00.00.29 beta
 -- Consumable.Warlock.Health Stone -> Consumable.Warlock.Healthstone
 -- Jeweler Stone Statues added
@@ -162,7 +173,8 @@
 -- Removed bogus instance dependency for flying mounts.  Awaiting patch 2.1 "canfly" or something property for final flying mount support.
 -- Reorganize buff foods a bit.  Added warp burgers.
 -- Add Chest and Shield Buffs
-
+}}}
+{{{
 -- 2.00.00.28 beta
 -- Mini Pets: Gurky [Pink Murloc Egg] itemid = 22114, Murky [Blue Murloc Egg] itemid = 20371
 -- Major Combat Potions
@@ -170,12 +182,14 @@
 -- PT3.  This is a reworked item database, if you are missing an item see above for how to report it.
 -- Code to add priority to certain items.  eg. conjured food.  Not used everywhere yet.
 -- New conjured food & water added
-
+}}}
+{{{
 -- 2.00.00.27 beta
 -- Dont lock size for cyCircled buttons
 -- Dont show annoying ugly borders around buttons
 -- Slightly better button click feedback
-
+}}}
+{{{
 -- 2.00.00.26 beta
 -- Kill the keybind tab & switch back to Blizzard KeyBind UI based keys.
 -- Keys tab keys are not preserved, old ones still bound from Blizzard UI will be reused.
@@ -183,32 +197,38 @@
 -- Allow gapping of -1
 -- CanCastSpell -> AutoBarProfile:CanCastSpell
 -- Zorbin's Ultra-Shrinker
-
+}}}
+{{{
 -- 2.00.00.25 beta
 -- Fix cyCircled code
 -- Add flying mounts to defaults.  Needs reset to pick up change.
 -- Extend icon gapping minimum down to 0
-
+}}}
+{{{
 -- 2.00.00.24 beta
 -- Chinese New Year prep: Fireworks added.
 -- Dragging items from bag or character sheet now supported.
 -- Can now drag items directly to the edit slots on the Slots Tab; category slots on the slot edit view;
-
+}}}
+{{{
 -- 2.00.00.23 beta
 -- Move Summon Charger and Summon Warhorse to the mount slot.
-
+}}}
+{{{
 -- 2.00.00.22 beta
 -- Split Out the button code
 -- Switch to Bartender3 style buttons
 -- Check for BG needed items.
-
+}}}
+{{{
 -- 2.00.00.21 beta
 -- TOC fix
 -- Possibly fixed right click to feed pet.
 -- Fixed alpha of standalone icon for spell casts (mounts etc.)
 -- First cut at support for equipped items.
 -- Partial fix for layout centering issues.
-
+}}}
+{{{
 -- 2.00.00.20 beta
 -- Removed alt & ctrl self cast in options.  Use blizz interface instead.
 -- Alt / Ctrl selfcast changed to use blizz code.
@@ -217,14 +237,17 @@
 -- Do not show a count of just 1
 -- Fixed show category icons
 -- Fixed one issue with the cast spells migrating to the left click.
-
+}}}
+{{{
 -- 2.00.00.19 beta
 -- Added "Summon Warhorse" & "Summon Felsteed" for low level pallies & locks.
 -- Replaced "smartSelfCast" in config with automatic right click selfcast, as well as alt or ctrl - self cast.
-
+}}}
+{{{
 -- 2.00.00.18 beta
 -- Update cooldown & counts during combat.
-
+}}}
+{{{
 -- 2.00.00.17 beta
 -- Upgraded right click spell casts to show spell icon if no such item in inventory.  Should now work for all summoned mounts and travel forms, mana & health stones, conjured food & water.  Needs a reset.
 -- Right Click to feed pet for Food: Pet Bread / Cheese / Fish / Fruit / Fungus / Meat added.  No hunter so not tested...
@@ -233,11 +256,13 @@
 -- Extra InCombatLockdown() checks in case 3rd parties call update functions or delayed callbacks get triggered during combat lockdown.
 -- Fixed bug with resetting not showing basic layer slots.
 -- Dock to Bartender bar 6 option
-
+}}}
+{{{
 -- 2.00.00.16 beta
 -- IsUsableItem check added.  Thanks turkoid.
 -- Back out the callback update mechanism for buttons that are not action items.  This should fix the lag.
-
+}}}
+{{{
 -- 2.00.00.15 beta
 -- May have successfully added Conjure Food and Conjure Water on right click on food & water item / category.
 -- Changed the Manastone code to look for the first castable one in order (on init so far only).
@@ -246,14 +271,17 @@
 -- Conjured Mountain Spring Water 30703:5100
 -- Candy Cane 17344:61
 -- Graccu's Meat Pie 17407:874
-
+}}}
+{{{
 -- 2.00.00.14 beta
 -- Selectable strata level Config/Bar/High Frame Strata
-
+}}}
+{{{
 -- 2.00.00.13 beta
 -- Fixed bug in the casting code when the slot is empty
 -- Partial lag fix.  Added delay timers to avoid multiple bag scans.
-
+}}}
+{{{
 -- 2.00.00.12 beta
 -- Change strata to always be high
 -- Right clicking healthstone by warlock, or mana stone by mage should cast it.
@@ -261,7 +289,8 @@
 -- Right click mount by pally or warlock casts summon mount
 -- Only tested for a druid...
 -- More mounts added
-
+}}}
+{{{
 -- 2.00.00.11 beta
 -- Espanol or something!  Tx shiftos!
 -- Fixed illegal use of Show();
@@ -269,10 +298,12 @@
 -- Removed obsolete option to disable popups
 -- Popup on shift is broken for now
 -- Only tested for a druid...
-
+}}}
+{{{
 -- 2.00.00.10 beta
 -- Just fixing externals for ace
-
+}}}
+{{{
 -- 2.00.00.09 beta
 -- Switch to PeriodicTable-2.0
 -- mana & hp thresholds now based on PT so wont get out of sync again
@@ -281,52 +312,63 @@
 -- HideTooltips checkbox works again
 -- Docking adjusted a bit but not completely redone yet
 -- Add ItemId to tooltip so missing items can be reported easily!
-
+}}}
+{{{
 -- 2.00.00.08 beta
 -- Reduced the key bindings in Blizzards Keybind UI to only the config toggle.
 -- Added basic Tooltip support.
 -- Update bar after binding changes
-
+}}}
+{{{
 -- 2.00.00.07 beta
 -- Alt self target support added
 -- Close & disable config during combat
 -- Cooldown support added
 -- Hotkey display support added to bar buttons
-
+}}}
+{{{
 -- 2.00.00.06 beta
 -- Fixed lib path issue
-
+}}}
+{{{
 -- 2.00.00.05 beta
 -- Left & Right clicking a button fixed.  Should target offhand weapon for right click once more.
 -- Fixed at least one instance of the itemCount error.
 -- Draghandle can be hidden once more
 -- First cut at fixing docking.  It works & is tested only for the chat frame.  Offsets still need adjusting and new anchor frames used or hilarity does ensue.
 -- More keybinding progress.  Now saves for single & shared profile.
-
+}}}
+{{{
 -- 2.00.00.04 beta
 -- Unbind button now actually unbinds key binding
 -- Revert button will now revert key binds made since the last time done or revert was pressed or the mod loaded. Escaping out of config neither reverts nor commits.
-
+}}}
+{{{
 -- 2.00.00.03
 -- Fixed popups
 -- Quest category added.  Slot 24 for non-rogues.
 -- Disable health & mana change updates.  No point since we can't change items during combat anymore & out of combat you can just eat something.
 -- First cut at Key binding tab.  Mostly works, left click to set left mouse button binding, right click to set right mouse button binding.
-
+}}}
+{{{
 -- 2.00.00.02
 -- Some gimped keybindings workaround.  It sort of works off the blizz interface but you can lose bindings if u open it during combat.
 -- It may be unstable in some other ways, I seem to lose the bindings from time to time but haven't noticed why yet.
 -- This will have to do for now.  I may add explicit per slot binding if this is too lame for real use.
 -- Show category icons for 0 item slots works again
 -- Show empty slots kinda works but still some strangeness when used with category icons off.
-
+}}}
+{{{
 -- 2.00.00.01
 -- Make blizz clock cooldown show up again
 -- Some progress on drag handle
 -- Got rid of Compost
-
+}}}
+{{{
 -- 2.00.00.00
 -- First rough cut.  Using Secure State Header & Buttons for the bar & popups.
 -- Hacking around the lack of an inventory item button with itemId other than direct bag slot & by name.
 -- Oops, didnt ship the config.  Doh!
 }}}
+
+
