@@ -2,6 +2,7 @@
 
 = Release Notes =
 
+{{{
 -- 2.01.00.04 beta
 -- Removed a bunch of redundant categories, shifted all non spell ones to PT3, partway through being completely PT3 based.
 -- Spell categories converted
@@ -328,3 +329,4 @@
 -- First rough cut.  Using Secure State Header & Buttons for the bar & popups.
 -- Hacking around the lack of an inventory item button with itemId other than direct bag slot & by name.
 -- Oops, didnt ship the config.  Doh!
+}}}
