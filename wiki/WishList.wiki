@@ -1,22 +1,11 @@
-#summary One-sentence summary of this page.
+#summary Wish List for AutoBar.
 #labels Featured
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
 = Hiding AutoBar =
   * Hide unless hovered over 
   * Hide unless modifier key pressed 
   * Fade outside combat (after say 20 seconds) 
   * Popup on shift, this is for the popups only. 
-=== Discussion ===
 I think this would be a useful feature because running around in alt-z mode is really nice so something close to that in the regular interface but with the minimap showing would rock. This becomes easier in 2.1 with better alpha support. 
 
 = Multiple bars =
@@ -25,25 +14,25 @@ I think this would be a useful feature because running around in alt-z mode is r
   * This would require some snap to as well. 
 
 = Custom / Named Buttons =
-  * Could switch to using individual settings on custom buttons instead of the current preference system. A particular profile would then have a list of buttons it turns off / on / ignores. On buttons would have additional settings for that particular button. Each character can then select from 1 or more profiles which would get merged into the final list of what is turned on or off. 
-  * Plugin architecture so buttons can be more customized. 
-  * Buttons could handle inventory for certain items like buff consumables, pots, ammo etc. 
-  * Instance / Boss settings would be nice. This requires some kind of general ACE2 mechanism for determining who we are fighting. 
-  * Buff detection: grey out buff items if user already has that buff. This is a lot of work involving matching buff type with items that give it. 
-  * "Official" custom buttons would have a particular name & so keybinds would be to that instead of to some numbered button which breaks each time the order is changed. 
-  * Deal with charges: display them & use smaller charged items first. 
-=== Crafting Buttons ===
+ * Could switch to using individual settings on custom buttons instead of the current preference system. A particular profile would then have a list of buttons it turns off / on / ignores. On buttons would have additional settings for that particular button. Each character can then select from 1 or more profiles which would get merged into the final list of what is turned on or off. 
+ * Plugin architecture so buttons can be more customized. 
+ * Buttons could handle inventory for certain items like buff consumables, pots, ammo etc. 
+ * Instance / Boss settings would be nice. This requires some kind of general ACE2 mechanism for determining who we are fighting. 
+ * Buff detection: grey out buff items if user already has that buff. This is a lot of work involving matching buff type with items that give it. 
+ * "Official" custom buttons would have a particular name & so keybinds would be to that instead of to some numbered button which breaks each time the order is changed. 
+ * Deal with charges: display them & use smaller charged items first. 
+ === Crafting Buttons ===
   * This is a good idea, but the crafting API is just so cruddy... 
-=== Drag Button ===
+ === Drag Button ===
   * A button that you can directly drag items onto from inventory without opening up config 
-=== Mount Button ===
+ === Mount Button ===
   * Handle flying. 
   * Handle shape shifting properly. Un-shapefhift if needed. 
-=== Pet Food Button ===
+ === Pet Food Button ===
   * Custom food blend for your pets food preferences. 
   * Maybe have an unhappiness outline so you know to feed the poor thing b4 it runs away. 
-=== Shaman Totem Buttons ===
-Earth air fire water buttons, rearrange on use 
+ === Shaman Totem Buttons ===
+  * Earth air fire water buttons, rearrange on use 
 = More Better PT3 =
   * PT3 use is pretty shallow at the moment. This can be extended to use PT3 sets directly instead of custom AutoBar sets. This gives AutoBar access to sets in PT3 from other mods like Baggins for instance. 
   * This would also entail some PT3 browsing & picking code. 
@@ -56,4 +45,9 @@ Earth air fire water buttons, rearrange on use
 Some settings should be moved so they can be managed through FuBar 
 = Waterfall =
 Waterfall seems like a nicer aproach for prefs. Look into this.
+
+
+
+
+
 
