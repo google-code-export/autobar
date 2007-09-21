@@ -67,16 +67,16 @@ The whole point behind the 2.0 UI changes Blizzard made is to specifically disab
 
 
 === How do I report a missing item? ===
- * Please use something specific like: "Reins of the Black War Tiger 29471" or "FarkleBerry Juice  47:14000"
+ * Please use something specific like: "Reins of the Black War Tiger 29471" or "Farkle Berry Juice  47:14000"
 
  * The 29471 & 47 are the ItemId for each item.
-  * Get it from LootLink as the "BaseId" in the tooltip.
+  * Get it from Loot Link as the "BaseId" in the tooltip.
   * Look it up on [http://www.wowhead.com] or [http://www.allakhazam.com] by searching by name & then looking at the items URL. The ItemId is at the end.
  * For foods & whatnot an aditional value after the colon gives how much it heals etc.
- * If FarkleBerry Juice was real and a buff food then also include what it buffs:
-  * FarkleBerry Juice  47:14000   strength 30, dexterity 60, attack speed 90
- * Is there no end to the wondrous FarkleBerry Juice? It is also a combo food, so list its mana gain as well:
-  * FarkleBerry Juice  47:14000 47:17000 mana strength 30, dexterity 60, attack speed 90
+ * If Farkle Berry Juice was real and a buff food then also include what it buffs:
+  * Farkle Berry Juice  47:14000   strength 30, dexterity 60, attack speed 90
+ * Is there no end to the wondrous Farkle Berry Juice? It is also a combo food, so list its mana gain as well:
+  * Farkle Berry Juice  47:14000 47:17000 mana strength 30, dexterity 60, attack speed 90
 
  I do not have the time to go search the entire game for missing items. If you miss it, give me the specific info I need to add it.
 
@@ -120,4 +120,6 @@ Character > Shared > Class > Basic
  * AutoBar provides only the standard Blizzard cooldown clock. If you would like a digital cooldown, then get the [http://wow-en.curse-gaming.com/downloads/details/2775/omnicc/ OmniCC] mod.
  * OmniCC provides a digital cooldown for any button that has a standard Blizzard cooldown clock. I would highly recommend it.
  * A clock will never be added to AutoBar, because all I would be doing is copying the OmniCC code which makes no sense. Better to have one OmniCC, than 50 mods with duplicate OmniCC code in them.
+ 
+ 
  
