@@ -39,7 +39,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
  * This is a rewrite of AutoBar and its config system.
  * The state machine for the popups is rewritten and much simpler than the old one.
  * Ace style profiles are used, allowing you to make character, class, etc. profiles, save them, and swap between them.
- * There are more buttons available and you can now simply disable any buttons you do not want.
+ * There are more buttons available, some with overlapping functionality. This is intentional.  Pick the ones you want and disable any buttons you do not want.
  * Built in Buttons are named and keybindings are directly to that Button, so if you move the Button around your keybinding still works.
 
  * Preferences
