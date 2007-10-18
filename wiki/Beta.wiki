@@ -13,7 +13,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
  * Moving button order is flaky and may cause errors.  If you get an error please reload your ui (/rl) or relog.
  * The bar fade setting is not functional
  * Last button on the popup is mia
- * Make rows * columns limit active Buttons displayed.
+ * Make rows x columns limit active Buttons displayed.
  * Make fadeout work
  * Not refreshing right when last item used. The button disapears even though it has other items.
  * Fix the centered alignments: TOP LEFT CENTER etc.
