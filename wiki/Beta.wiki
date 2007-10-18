@@ -1,8 +1,12 @@
 #summary Documentation for the new AutoBar Beta.
 
-= Where can I get the beta? =
+= There is a beta? =
 
+Download:
 [http://files.wowace.com/cat-action-bars.html]
+
+Discussion & bug reports for it here for now please:
+http://www.wowace.com/forums/index.php?topic=9138.0
 
 Note that this is a beta, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
 
