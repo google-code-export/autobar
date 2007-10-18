@@ -6,22 +6,22 @@
 
 = What is in the new version? =
 
-* This is a rewrite of AutoBar and its config system.
-* The state machine for the popups is rewritten and much simpler than the old one.
-* Ace style profiles are used, allowing you to make character, class, etc. profiles, save them, and swap between them.
-* There are more buttons available and you can now simply disable any buttons you do not want.
-* Built in buttons are named and keybindings are directly to that button, so if you move it around your keybinding still works.
+ * This is a rewrite of AutoBar and its config system.
+ * The state machine for the popups is rewritten and much simpler than the old one.
+ * Ace style profiles are used, allowing you to make character, class, etc. profiles, save them, and swap between them.
+ * There are more buttons available and you can now simply disable any buttons you do not want.
+ * Built in buttons are named and keybindings are directly to that button, so if you move it around your keybinding still works.
 
 
 = What is still planned for the new version? =
 
-* Multiple bars are supported and you will be able to add your own custom bars soon.
+ * Multiple bars are supported and you will be able to add your own custom bars soon.
 
 = What do I do if I want to go back to the old version? =
 
-* Simply download the old one from the downloads section.
-* Your settings will remain the same (assuming you do not delete your saved variables)
-* If you reassigned any key bindings you will have to fix that yorself.
+ * Simply download the old one from the downloads section.
+ * Your settings will remain the same (assuming you do not delete your saved variables)
+ * If you reassigned any key bindings you will have to fix that yorself.
 
 = Details =
 
