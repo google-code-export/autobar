@@ -8,7 +8,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
 
 = What is not working right now? =
 
- * Rearranging buttons is flaky and may cause errors.
+ * Moving button order is flaky and may cause errors.  If you get an error please reload your ui (/rl) or relog.
  * The bar fade setting is not functional
 
 = What is in the new version? =
