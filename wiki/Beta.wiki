@@ -50,6 +50,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
 
  * Preferences
   * All Preferences are configuarable via Waterfall in a tree style view
+  * THis replaces the old preferences, and you no longer need the separate AutoBarConfig mod.  It does no harm to have it but you do not need it and can safely delete it.
   * FuBar or the minimap has an AutoBar button which lets you bring up the Preferences.
   * Double click on the AutoBar FuBar icon or minimap icon to bring up the config
 
