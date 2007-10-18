@@ -1,4 +1,4 @@
-#Documentation for the new AutoBar Beta.
+#summary Documentation for the new AutoBar Beta.
 
 = Where can I get the beta? =
 
