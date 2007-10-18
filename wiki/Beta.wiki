@@ -23,8 +23,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Click on your category and name it
   * Open the tree to the items inside it & click *New* for however many items you need.
   * Click on each item.  This reveals a dragLink icon (empty one looks like a gift box) and a delete button for it.
-  * Drag a *spell* or *item* onto the dragLink icon.  You can drag from inventory, bags, 
-action bars, or your spellbook.
+  * Drag a *spell* or *item* onto the dragLink icon.  You can drag from inventory, bags, action bars, or your spellbook.
   * You can click on the Delete button to get rid of an item.
 
  * Custom Buttons: *Bars/<My Bar>/Buttons/New*
