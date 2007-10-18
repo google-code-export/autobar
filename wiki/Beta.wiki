@@ -6,6 +6,11 @@
 
 Note that this is a beta, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
 
+= What is not working right now? =
+
+ * Rearranging buttons is flaky and may cause errors.
+ * The bar fade setting is not functional
+
 = What is in the new version? =
 
  * This is a rewrite of AutoBar and its config system.
@@ -62,15 +67,8 @@ Note that this is a beta, a particular release may not be stable, you may need t
  * Upgrade the StickyFrames "library" to handle multiple source frames via a registration mechanism & update BT3 to use it.  This would allow "sticky" dragging of AutoBars & "docking" them to BT3 & other bar mods using the StickyFrames stuff.
  * Customization via Waterfall is barely functional & needs drag & drop rearranging + icons in the tree view at a minimum.
 
-
-
 = What do I do if I want to go back to the old version? =
 
  * Simply download the old one from the downloads section.
  * Your settings will remain the same (assuming you do not delete your saved variables)
  * If you reassigned any key bindings you will have to fix that yorself.
-
-= What is not working right now? =
-
- * Rearranging buttons is flaky and may cause errors.
- * The bar fade setting is not functional
