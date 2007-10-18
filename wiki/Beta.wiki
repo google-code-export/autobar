@@ -4,6 +4,8 @@
 
 [http://files.wowace.com/cat-action-bars.html]
 
+Note that this is a beta, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
+
 = What is in the new version? =
 
  * This is a rewrite of AutoBar and its config system.
@@ -11,6 +13,22 @@
  * Ace style profiles are used, allowing you to make character, class, etc. profiles, save them, and swap between them.
  * There are more buttons available and you can now simply disable any buttons you do not want.
  * Built in buttons are named and keybindings are directly to that button, so if you move it around your keybinding still works.
+ * Preferences
+  * All Preferences are configuarable via Waterfall in a tree style view
+  * FuBar or the minimap has an AutoBar button which lets you bring up the Preferences.
+ * Custom Categories
+  * You can create new custom categories that are available to all your characters
+  * You can drag & drop items from your bags or inventory or spell book onto the icon in the category list.
+ * Custom Buttons
+  * You can create new custom buttons for your current profile. *AutoBar/Bars/<MyBar>/Buttons/New*
+  * Add a custom category to the button with *<MyButton>/Categories/Add*
+ * Bar movement: *AutoBar/Move the Bars*
+  * Selecting "Move the Bars" option to make all your bars green (or red if hidden) and moveable.
+  * Click-drag to move the bar.
+  * Left click on the bar to hide (red) / show (green) the bar.
+  * Right click the bar to bring up a config drop down for that bar.
+  * Select "Move the Bars" again to lock the bars in place.
+  * If *AutoBar/Sticky Frames* is on then the bars will be "sticky" and snap to other AutoBar bars.  Eventually this stickiness will extend to other bars and frames beyond AutoBar.
 
 
 = What is still planned for the new version? =
