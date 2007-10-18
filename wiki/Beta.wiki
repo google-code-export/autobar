@@ -13,22 +13,33 @@ Note that this is a beta, a particular release may not be stable, you may need t
  * Ace style profiles are used, allowing you to make character, class, etc. profiles, save them, and swap between them.
  * There are more buttons available and you can now simply disable any buttons you do not want.
  * Built in buttons are named and keybindings are directly to that button, so if you move it around your keybinding still works.
+
  * Preferences
   * All Preferences are configuarable via Waterfall in a tree style view
   * FuBar or the minimap has an AutoBar button which lets you bring up the Preferences.
- * Custom Categories
+
+ * Custom Categories: Categories/New
   * You can create new custom categories that are available to all your characters
-  * You can drag & drop items from your bags or inventory or spell book onto the icon in the category list.
- * Custom Buttons
-  * You can create new custom buttons for your current profile. *AutoBar/Bars/<MyBar>/Buttons/New*
-  * Add a custom category to the button with *<MyButton>/Categories/Add*
- * Bar movement: *AutoBar/Move the Bars*
-  * Selecting "Move the Bars" option to make all your bars green (or red if hidden) and moveable.
+  * Click on your category and name it
+  * Open the tree to the items inside it & click *New* for however many items you need.
+  * Click on each item.  This reveals a dragLink icon (empty one looks like a gift box) and a delete button for it.
+  * Drag a *spell* or *item* onto the dragLink icon.  You can drag from inventory, bags, 
+action bars, or your spellbook.
+  * You can click on the Delete button to get rid of an item.
+
+ * Custom Buttons: *Bars/<My Bar>/Buttons/New*
+  * You can create new custom buttons for your current profile.
+  * Add one or more custom categories to the button with *<My Button>/Categories/Add*
+  * A default category with Hearthstone shows up.  Click its Popup & select your Custom Category instead.
+  * Enable or Disable your custom button just like a regular button.
+
+ * Bar movement: *Move the Bars*
+  * Shift click the AutoBar _icon_, or select *Move the Bars* to make all your bars moveable and green (if shown) or red (if hidden).
   * Click-drag to move the bar.
   * Left click on the bar to hide (red) / show (green) the bar.
   * Right click the bar to bring up a config drop down for that bar.
-  * Select "Move the Bars" again to lock the bars in place.
-  * If *AutoBar/Sticky Frames* is on then the bars will be "sticky" and snap to other AutoBar bars.  Eventually this stickiness will extend to other bars and frames beyond AutoBar.
+  * Select *Move the Bars* again to lock the bars in place.
+  * If *Sticky Frames* is on then the bars will be "sticky" and snap to other AutoBar bars.  Eventually this stickiness will extend to other bars and frames beyond AutoBar.
 
 
 = What is still planned for the new version? =
