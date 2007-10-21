@@ -76,6 +76,13 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Select *Move the Bars* again to lock the bars in place.
   * If *Sticky Frames* is on then the bars will be "sticky" and snap to other AutoBar bars.  Eventually this stickiness will extend to other bars and frames beyond AutoBar.
 
+ * Button movement: *Move the Buttons*
+  * Control click the AutoBar _icon_, or select *Move the Buttons* to make all your buttons moveable.
+  * Click-drag to move the button.
+  * Hover over the Button to see its name in your tooltip (if displayed).
+  * Right click the bar to bring up a config drop down for that bar.
+  * Select *Move the Buttons* again to lock the buttons in place.
+ 
  * Druid Forms: *Bars/Druid*
   * The Druid Bar contains buttons for Cat, Bear, Travel as well as Tree of Life / Boomkin
   *  You can bind keys to these from the Blizzard keybind interface
