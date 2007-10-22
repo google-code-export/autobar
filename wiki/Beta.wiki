@@ -12,12 +12,11 @@ Note that this is a beta, a particular release may not be stable, you may need t
 
 = What is not working right now? =
 
- * cyCircled breaks with the beta ;-( 
-  * Get the latest cyCircled please 
+ * cyCircled breaks with the beta ;-(
+  * Get the latest cyCircled please
  * Learning new spells not updating buttons.  Requires reload for now.
  * Make fadeout work
  * Not refreshing right when last item used. The button disapears even though it has other items.
- * Fix the centered alignments: TOP LEFT CENTER etc.
  * Create New Bar mia
   * Select Named Buttons for a Bar mia
  * Binding to Custom Buttons mia
