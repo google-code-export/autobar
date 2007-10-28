@@ -36,7 +36,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Items dragged onto a button go into its top custom category or automatically create a custom category if it does not have one
   * Buttons need a drop setting that if checked allow items to be dragged right onto the button itself
   * Categories in a button & items inside a category need to be draggable to rearrange them
- * Custom Categories need to be able to pick PeriodicTable-3.0 sets for their contents.
+ * Custom Categories need to be able to pick [http://www.wowace.com/wiki/PeriodicTable-3.0 PeriodicTable-3.0] sets for their contents.
  * Full Mount support, including form switching, automatic flying vs ground selection, etc.
 
 = What is in the new version? =
