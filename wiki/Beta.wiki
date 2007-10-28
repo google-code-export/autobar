@@ -91,7 +91,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * You may also use a mod like [http://www.wowinterface.com/downloads/fileinfo.php?s=&id=5108 Clique] or [http://files.wowace.com/cat-interface-enhancements.html Click2Cast]
    * For your Custom Button the frame name is `AutoBarButtonCustom<MyCustomButtonName>Frame`.  So if you named your button `Chocolate` then you would bind to `AutoBarButtonCustomChocolateFrame`
    * Named Button frame names are `<ButtonName>Frame`.  So to bind to `AutoBarButtonBuffWeapon2` you would use `AutoBarButtonBuffWeapon2Frame`.  A full list is in Locale-enUS.lua under "Button Names"
-   * Example: /script SetOverrideBindingClick(AutoBarButtonTrinket1Frame, false, "U", "AutoBarButtonTrinket1Frame") will for the current login only bind U to the first trinket button.
+   * Example: `/script SetOverrideBindingClick(AutoBarButtonTrinket1Frame, false, "U", "AutoBarButtonTrinket1Frame")` will for the current login only bind U to the first trinket button.  Use `/script ClearOverrideBindings(AutoBarButtonTrinket1Frame)` to clear your bindings.
 
  * Druid Forms: *Bars/Druid*
   * The Druid Bar contains buttons for Cat, Bear, Travel as well as Tree of Life / Boomkin
