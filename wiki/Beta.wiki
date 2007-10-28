@@ -82,7 +82,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Right click the bar to bring up a config drop down for that bar.
   * Select *Move the Buttons* again to lock the buttons in place.
  
- * KeyBinding:
+ * Key Bindings: *Blizzard Options/Key Bindings*
   * Regular named Buttons are bound through the Blizzard *Options/Key Bindings* interface
   * You may also use a mod like Clique or Click2Cast
    * For your Custom Button the frame name is "AutoBarButtonCustom<MyCustomButtonName>Frame".  So if you named your button "Chocolate" then you would bind to "AutoBarButtonCustomChocolateFrame"
