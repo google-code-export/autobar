@@ -22,7 +22,6 @@ Note that this is a beta, a particular release may not be stable, you may need t
  * Not refreshing right when last item used. The button disapears even though it has other items.
  * Create New Bar mia
   * Select Named Buttons for a Bar mia
- * Binding to Custom Buttons mia
  * Docking mia.  Move to the sticky interface...?
  * Macro Buttons
   * Icons mia
