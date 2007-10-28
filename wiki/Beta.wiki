@@ -49,9 +49,9 @@ Note that this is a beta, a particular release may not be stable, you may need t
 
  * Preferences
   * All Preferences are configuarable via Waterfall in a tree style view
-  * This replaces the old preferences, and you no longer need the separate AutoBarConfig mod.  It does no harm to have it but you do not need it and can safely delete it.
+  * This replaces the old preferences, and you no longer need the separate `AutoBarConfig` mod.  It does no harm to have it but you do not need it and can safely delete it.
   * [http://files.wowace.com/cat-interface-enhancements.html FuBar] or the minimap has an AutoBar button which lets you bring up the Preferences.
-  * Double click on the AutoBar FuBar icon or minimap icon to bring up the config
+  * Double click on the AutoBar [http://files.wowace.com/cat-interface-enhancements.html FuBar] icon or minimap icon to bring up the config
 
  * Custom Categories: Categories/New
   * You can create new custom categories that are available to all your characters
