@@ -55,6 +55,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
    * Type */atb* or */autobar* to bring up the config as a text based console interface
    * Type */atb config* or */autobar config* to bring up the config as a GUI
    * Bind a key to the AutoBar Configuration Interface using the *Blizzard Options/Key Bindings* panel.
+   * When you are in *Move the Bars* mode you can right click a Bar to bring up a dropdown config for the Bar.
 
  * Custom Categories: Categories/New
   * You can create new custom categories that are available to all your characters
