@@ -15,14 +15,14 @@ Note that this is a beta, a particular release may not be stable, you may need t
 
 = What is not working right now? =
 
+ * The new preference scheme requires a profile reset & a Bar reset.
  * cyCircled breaks with the beta ;-(
   * Get the latest cyCircled please
- * Learning new spells not updating buttons.  Requires reload for now.
+ * Crafting Alchemy Button & Trinket2 equip buttons not working.
  * Make fadeout work
- * Not refreshing right when last item used. The button disapears even though it has other items.
  * Create New Bar mia
   * Select Named Buttons for a Bar mia
- * Docking mia.  Move to the sticky interface...?
+ * Docking mia -> Move to the sticky interface...
  * Macro Buttons
   * Icons mia
   * Support for the built in sets of macros for character (18) & general (18) as well.
@@ -35,8 +35,9 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Items dragged onto a button go into its top custom category or automatically create a custom category if it does not have one
   * Buttons need a drop setting that if checked allow items to be dragged right onto the button itself
   * Categories in a button & items inside a category need to be draggable to rearrange them
- * Custom Categories need to be able to pick [http://www.wowace.com/wiki/PeriodicTable-3.0 PeriodicTable-3.0] sets for their contents.
+ * Custom Categories need to be able to pick PeriodicTable-3.0 sets for their contents.
  * Full Mount support, including form switching, automatic flying vs ground selection, etc.
+ * Rock: implement the link type so Rock can be used for config.  dragLink -> link in waterfall.
 
 = What is in the new version? =
 
