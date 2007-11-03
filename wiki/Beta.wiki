@@ -117,6 +117,18 @@ Note that this is a beta, a particular release may not be stable, you may need t
  * Upgrade the StickyFrames "library" to handle multiple source frames via a registration mechanism & update BT3 to use it.  This would allow "sticky" dragging of AutoBars & "docking" them to BT3 & other bar mods using the StickyFrames stuff.
  * Customization via Waterfall is barely functional & needs drag & drop rearranging + icons in the tree view at a minimum.
 
+= Why make a new version? =
+The basic answer is that any software explores a problem domain.  Software also acts like it is alive while growing through the domain.  So given enough time, hacks & features, various software ailments start to develop:
+ * Algorithm Necrosis
+ * Data Rot
+ * Bit Decay
+ * Hack Plaque
+ * Upgrade Resistance
+ * API Collapse
+To combat these maladies, the software is refactored from time to time to better explore current aspects of the problem domain and to enable exploration of new areas.
+
+Such is the case with the current rewrite of AutoBar.  The ailments in the old version are numerous and multiple.  It became old & set in its ways and must now make way for a younger vigorous clone with improved dna & super powers to meet new challenges.  At times this will make it seem more monster than superhero, but bear with it, the end result will be worth the growing pains.
+
 = What do I do if I want to go back to the old version? =
 
  * Simply download the old one from the downloads section.
