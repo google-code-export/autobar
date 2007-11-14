@@ -1,4 +1,5 @@
 #summary Documentation for the new AutoBar Beta.
+#labels Featured
 
 = There is a beta? =
 
