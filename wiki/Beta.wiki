@@ -68,9 +68,13 @@ Note that this is a beta, a particular release may not be stable, you may need t
 
  * Custom Buttons: *Bars/<My Bar>/Buttons/New*
   * You can create new custom buttons for your current profile.
-  * Add one or more custom categories to the button with *<My Button>/Categories/Add*
-  * A default category with Hearthstone shows up.  Click its Popup & select your Custom Category instead.
+  * Add one or more reguler categories or custom categories you created yourself to the button with *<My Button>/Categories/Add*
+  * A default category with Hearthstone shows up.  Click its Popup & select your Custom Category or a another category instead.
   * Enable or Disable your custom button just like a regular button.
+  * If you added 1 or more custom categories to your custom button, then you can easily drag & drop new items into it:
+   * Select *Move the Buttons* mode.
+   * Drag & drop items from your bags or spell book, etc. onto the button.
+   * The item is added to the top of your Custom Category item list.
 
  * Bar movement: *Move the Bars*
   * Shift click the AutoBar _icon_, or select *Move the Bars* to make all your bars moveable and green (if shown) or red (if hidden).
@@ -78,7 +82,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Left click on the bar to hide (red) / show (green) the bar.
   * Right click the bar to bring up a config drop down for that bar.
   * Select *Move the Bars* again to lock the bars in place.
-  * If *Sticky Frames* is on then the bars will be "sticky" and snap to other AutoBar bars.  Eventually this stickiness will extend to other bars and frames beyond AutoBar.
+  * If *Sticky Frames* is on then the bars will be "snappy" and snap to other AutoBar bars.  Eventually this stickiness will extend to other bars and frames beyond AutoBar.
 
  * Button movement: *Move the Buttons*
   * Control click the AutoBar _icon_, or select *Move the Buttons* to make all your buttons moveable.
