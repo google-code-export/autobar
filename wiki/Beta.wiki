@@ -77,6 +77,11 @@ Note that this is a beta, a particular release may not be stable, you may need t
    * Drag & drop items from your bags or spell book, etc. onto the button.
    * The item is added to the top of your Custom Category item list.
 
+ * Empty "spacer" Button:
+  * Create a custom button and move it to the spot you want.
+  * Delete its category
+  * Select "Always Show"
+
  * Bar movement: *Move the Bars*
   * Shift click the AutoBar _icon_, or select *Move the Bars* to make all your bars moveable and green (if shown) or red (if hidden).
   * Click-drag to move the bar.
