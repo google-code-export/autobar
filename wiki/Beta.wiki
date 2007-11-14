@@ -82,9 +82,11 @@ Note that this is a beta, a particular release may not be stable, you may need t
 
  * Button movement: *Move the Buttons*
   * Control click the AutoBar _icon_, or select *Move the Buttons* to make all your buttons moveable.
+   * All active buttons will get a green outline
+   * All inactive buttons will show up with a blue outline
+   * Other buttons will have a red outline
   * Click-drag to move the button.
   * Hover over the Button to see its name in your tooltip (if displayed).
-  * Right click the bar to bring up a config drop down for that bar.
   * Select *Move the Buttons* again to lock the buttons in place.
  
  * Key Bindings: *Blizzard Options/Key Bindings*
