@@ -88,7 +88,10 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Left click on the bar to hide (red) / show (green) the bar.
   * Right click the bar to bring up a config drop down for that bar.
   * Select *Move the Bars* again to lock the bars in place.
-  * If *Sticky Frames* is on then the bars will be "snappy" and snap to other AutoBar bars.  Eventually this stickiness will extend to other bars and frames beyond AutoBar.
+  * When dragging, the bars are "snappy" and snap to other AutoBar bars.
+   * Snapping is also done to some Blizzard frames.
+   * Eventually this snapping will extend to other bars and frames beyond AutoBar.
+   * You can disable snapping by holding down the Shift key.
 
  * Button movement: *Move the Buttons*
   * Control click the AutoBar _icon_, or select *Move the Buttons* to make all your buttons moveable.
