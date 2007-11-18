@@ -155,9 +155,84 @@ Note that this is a beta, a particular release may not be stable, you may need t
    * Water Combo (health + mana)
   * Buff
    * Any and all non-food buffs should show up here.
+  * Elixer Buttons
+   * Battle
+   * Guardian
+   * Flasks
   * Buff Weapon
    * Buff Weapon Main Hand
    * Buff Weapon Off Hand
+  * Fishing
+   * Casting button is the default
+   * Poles, Fishing Gear, Lures available on the popup.
+  * Pets
+   * Various non-combat pets all classes can use including the snowball based holiday ones.
+  * Quest
+   * Various quest items you need to click on to use.
+   * Includes some permanent ones like Vargoth's Staff, kegs, fronds etc.
+   * Daily quest items like booterang, bombs etc.
+  * Crafting
+   * Leatherworking, Find Herbs, etc.
+   * *Alchemy & German Fishing not included or working due to a Blizzard bug*.
+  * Track
+   * Various tracking abilities that can be activated by /cast <ability>, or are in your spell book.
+   * This excludes the trainer, flightmaster etc. stuff which use a completely separate API for some strange reason.
+  * Trinket
+   * Trinket 1
+   * Trinket 2
+    * *Note that Trinket 2 can not be used to equip into Trinket 2 slot yet.*
+  * Pet Food
+   * This has the various foods hunter pets can eat
+   * Right click feeds the food to the pet.
+   * Left click lets you eat it.
+  * Trap (Hunter)
+  * Sting (Hunter)
+  * Aura
+   * Hunter Aspects
+   * Paladin Auras
+  * Class Pet
+   * Druid
+    *Force of Nature
+   * Hunter
+    * Scare Beast
+    * Tame Beast
+    * Beast Training
+    * Beast Lore
+    * Eyes of the Beast
+    * Mend Pet
+    * Feed Pet
+    * Dismiss Pet
+    * Revive Pet
+    * Call Pet
+   * Mage
+    * Summon Water Elemental
+   * Priest
+    * Shadowfiend
+   * Shaman
+    * Fire Elemental Totem
+    * Earth Elemental Totem
+   Warlock
+    * Eye of Kilrogg
+    * Summon Felguard
+    * Summon Felhunter
+    * Summon Imp
+    * Summon Succubus
+    * Summon Voidwalker
+  * Class Buff
+   * Various buffs a class can cast
+   * Left click for the welfare version
+   * Right click for the deluxe version
+  * Pick Lock
+   * Lockboxes, right click to pick for Rogues
+   * Seaforium charges
+   * Skeleton keys
+  * Totems
+   * These are set to arrange on use
+   * Grouped by totem type:
+    * Air
+    * Earth
+    * Fire
+    * Water
 
 = What is still planned for the new version? =
 
