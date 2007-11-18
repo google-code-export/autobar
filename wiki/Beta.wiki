@@ -192,7 +192,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
    * Paladin Auras
   * Class Pet
    * Druid
-    *Force of Nature
+    * Force of Nature
    * Hunter
     * Scare Beast
     * Tame Beast
