@@ -123,7 +123,41 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * The Druid Bar contains buttons for Cat, Bear, Travel as well as Tree of Life / Boomkin
   *  You can bind keys to these from the Blizzard keybind interface
   *  
-  *  These are still a work in progress  &the icons dont actually display.
+  *  These are still a work in progress & the icons don't actually display.
+
+ * Named Buttons
+  * These are built in buttons with limited or no customizability.
+  * They have specific keybinds via the Blizzard Key Binding interface.
+  * Hearth
+   * Hearth Stone
+   * Teleport (left click) / Portal (right click) for mages.
+   * Other teleport spells for Druids, Warlocks, Shamans.
+  * Mount
+   * Various regular, flying and Ahn'Qiraj mounts
+   * Summoned mounts, and travel forms
+  * Bandages
+   * Various Bandages, including BG specific ones.
+  * Health & Mana / Rage / Energy Buttons
+   * There are 2 sets of these:
+    * 6 buttons based on cooldown type, these are the default enabled ones
+     * Potion Cooldown: Health; Mana / Rage / Energy; Rejuvenation
+     * Stone Cooldown: Health; Mana / Rage / Energy; Rejuvenation
+    * 2 all in one buttons, you need to enable them yourself & disable the cooldown based ones.
+     * Heal
+     * Mana / Rage / Energy
+  * Food Buttons
+   * Food
+   * Food Buff
+   * Food Combo (health + mana)
+  * Water Buttons
+   * Water
+   * Water Buff
+   * Water Combo (health + mana)
+  * Buff
+   * Any and all non-food buffs should show up here.
+  * Buff Weapon
+   * Buff Weapon Main Hand
+   * Buff Weapon Off Hand
 
 = What is still planned for the new version? =
 
