@@ -211,7 +211,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
    * Shaman
     * Fire Elemental Totem
     * Earth Elemental Totem
-   Warlock
+   * Warlock
     * Eye of Kilrogg
     * Summon Felguard
     * Summon Felhunter
