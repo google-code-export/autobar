@@ -28,7 +28,6 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Class bar settings will only have Custom or Class (shared with same class characters) to choose from.
   * Based on forum feedback there will be 2 or 3 Quick Config buttons per class
   * Custom Categories, Custom Buttons & Custom Bars will also be global to all characters on an account (unless marked class specific)
- * Crafting Alchemy Button & German Fishing button do not work.  THis is Blizzard screwing it up, not AutoBar.  I am not willing to write special code for them at this time.
  * Trinket2 equip buttons not working.  This needs special code which has not been written yet.
  * Make fadeout work
  * Create New Bar mia
