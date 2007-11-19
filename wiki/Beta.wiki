@@ -171,8 +171,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
    * Includes some permanent ones like Vargoth's Staff, kegs, fronds etc.
    * Daily quest items like booterang, bombs etc.
   * Crafting
-   * Leatherworking, Find Herbs, etc.
-   * *Alchemy & German Fishing not included or working due to a Blizzard bug*.
+   * Alchemy, Leatherworking, Cooking, etc.
   * Track
    * Various tracking abilities that can be activated by /cast <ability>, or are in your spell book.
    * This excludes the trainer, flightmaster etc. stuff which use a completely separate API for some strange reason.
