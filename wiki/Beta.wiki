@@ -57,7 +57,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
  * Built in Buttons are named and keybindings are directly to that Button, so if you move the Button around your keybinding still works.
 
  * Preferences
-  * All Preferences are configuarable via Waterfall in a tree style view
+  * All Preferences are configurable via Waterfall in a tree style view
   * This replaces the old preferences, and you no longer need the separate `AutoBarConfig` mod.  It does no harm to have it but you do not need it and can safely delete it.
   * There are a few ways to bring up and edit the preferences:
    * Double click on the AutoBar [http://files.wowace.com/cat-interface-enhancements.html FuBar] icon or minimap icon to bring up the GUI config
@@ -109,6 +109,10 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Click-drag to move the button.
   * Hover over the Button to see its name in your tooltip (if displayed).
   * Select *Move the Buttons* again to lock the buttons in place.
+ 
+ * Button disabling / enabling: *Bars/<My Bar>/Buttons/<the Button>/Enable*
+  * Select *Enable* to have the Button be active.
+  * Deselect *Enable* to stop the button from showing up on the bar.
  
  * Key Bindings: *Blizzard Options/Key Bindings*
   * Regular named Buttons are bound through the Blizzard *Options/Key Bindings* interface
