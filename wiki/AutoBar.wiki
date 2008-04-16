@@ -52,11 +52,7 @@ Note that this is an alpha, a particular release may not be stable, you may need
  * [http://www.wowinterface.com/downloads/fileinfo.php?id=5502 WoW Interface]
  * [http://wow-en.curse-gaming.com/downloads/details/3353/autobar-toadkiller/ Curse-gaming]
 
-
-
-
 = What is not working right now? =
-
 **
  * Preferences need improvement
   * ACE3 / Rock
@@ -96,9 +92,7 @@ Note that this is an alpha, a particular release may not be stable, you may need
   * AutoBarButtonTrap/Sting/Totem: need cooldowns
   * Note Petfood needs an ug to be a rightclick hunter eats & left click pet eats.
 
-
 = What is in the new version? =
-
  * This is a rewrite of AutoBar and its config system.
  * The state machine for the popups is rewritten and much simpler than the old one.
  * Sharing of settings can be done per Button and per the Layout / Position / Buttons of bars.
