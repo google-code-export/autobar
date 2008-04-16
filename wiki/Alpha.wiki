@@ -1,9 +1,9 @@
 #Details about the current Alpha version on this site.
 
 = What is not working right now: =
-  *Preferences need improvement
-   *ACE3 / Rock
-  *Trinket2 equip buttons not working.  This needs special code which has not been written yet.
+  * Preferences need improvement
+   * ACE3 / Rock
+  * Trinket2 equip buttons not working.  This needs special code which has not been written yet.
   * Macro Buttons
    * Support for the built in sets of macros for character (18) & general (18) as well.
    * Travel macro beyond just druids: Ghost Wolf, Pally Aura & Hunter thingy.
