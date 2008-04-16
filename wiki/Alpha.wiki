@@ -1,4 +1,5 @@
 #summary Details about the current Alpha version on this site.
+#labels Featured
 
 = What is not working right now: =
   * Preferences need improvement
