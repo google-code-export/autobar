@@ -1,4 +1,4 @@
-#Details about the current Alpha version on this site.
+#summary Details about the current Alpha version on this site.
 
 = What is not working right now: =
   * Preferences need improvement
