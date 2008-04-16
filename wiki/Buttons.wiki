@@ -1,26 +1,27 @@
 #summary List of current and planned buttons.
 
- * Druid Forms: *Bars/Druid*
-  * The Druid Bar contains buttons for Cat, Bear, Travel as well as Tree of Life / Boomkin
-  *  You can bind keys to these from the Blizzard keybind interface
-  *  
-  *  These are still a work in progress & the icons don't actually display.
-
 == Named Buttons ==
   * These are built in buttons with limited or no customizability.
   * They have specific keybinds via the Blizzard Key Binding interface.
 
-=== Hearth ===
+ === Druid Forms ===
+  * The Druid Bar contains buttons for Cat, Bear, Travel as well as Tree of Life / Boomkin
+  * You can bind keys to these from the Blizzard keybind interface
+  * These are macro based buttons.  You can mouseover them to see the macro in the tooltip.
+
+ === Hearth ===
    * Hearth Stone
    * Teleport (left click) / Portal (right click) for mages.
    * Other teleport spells for Druids, Warlocks, Shamans.
    * Other Hearthing / Teleporting items.  Ruby Slippers etc.
-=== Mount ===
+
+ === Mount ===
    * Various regular, flying and Ahn'Qiraj mounts
    * Summoned mounts, and travel forms
   * Bandages
    * Various Bandages, including BG specific ones.
-  * Health & Mana / Rage / Energy Buttons
+
+ === Health & Mana / Rage / Energy ===
    * There are 2 sets of these:
     * 6 buttons based on cooldown type, these are the default enabled ones
      * Potion Cooldown: Health; Mana / Rage / Energy; Rejuvenation
@@ -28,54 +29,70 @@
     * 2 all in one buttons, you need to enable them yourself & disable the cooldown based ones.
      * Heal
      * Mana / Rage / Energy
-  * Food Buttons
+
+ === Food ===
    * Food
    * Food Buff
    * Food Combo (health + mana)
-  * Water Buttons
+
+ === Water ===
    * Water
    * Water Buff
    * Water Combo (health + mana)
-  * Buff
+
+ === Buff ===
    * Any and all non-food buffs should show up here.
-  * Elixer Buttons
+
+ === Elixer Buttons ===
    * Battle
    * Guardian
    * Flasks
-  * Buff Weapon
+
+ === Buff Weapon ===
    * Buff Weapon Main Hand
    * Buff Weapon Off Hand
-  * Fishing
+
+ === Fishing ===
    * Casting button is the default
    * Poles, Fishing Gear, Lures available on the popup.
-  * Pets
+
+ === Pets ===
    * Various non-combat pets all classes can use including the snowball based holiday ones.
-  * Quest
+
+ === Quest ===
    * Various quest items you need to click on to use.
    * Includes some permanent ones like Vargoth's Staff, kegs, fronds etc.
    * Daily quest items like booterang, bombs etc.
-  * Crafting
+
+ === Crafting ===
    * Alchemy, Leatherworking, Cooking, etc.
-  * Track
+
+ === Track ===
    * Various tracking abilities that can be activated by /cast <ability>, or are in your spell book.
    * This excludes the trainer, flightmaster etc. stuff which use a completely separate API for some strange reason.
-  * Trinket
+
+ === Trinket ===
    * Trinket 1
    * Trinket 2
     * *Note that Trinket 2 can not be used to equip into Trinket 2 slot yet.*
-  * Pet Food
+
+ === Pet Food ===
    * This has the various foods hunter pets can eat
    * Right click feeds the food to the pet.
    * Left click lets you eat it.
-  * Trap (Hunter)
-  * Sting (Hunter)
-  * Aura
+
+ === Trap (Hunter) ===
+
+ === Sting (Hunter) ===
+
+ === Aura ===
    * Hunter Aspects
    * Paladin Auras
-  * Class Pet
-   * Druid
+
+ === Class Pet ===
+ ==== Druid ====
     * Force of Nature
-   * Hunter
+ ==== Hunter ====
     * Scare Beast
     * Tame Beast
     * Beast Training
