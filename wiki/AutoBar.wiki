@@ -34,6 +34,7 @@ AutoBar provides a configurable set of Buttons that automatically display items 
 Note that this is an [Alpha], a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
 
  * [http://code.google.com/p/autobar/downloads/list Download the Alpha]
+ * [Alpha Known Alpha issues]
  * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 Report Missing Items]
  * [http://www.wowace.com/forums/index.php?topic=9138.0#top WowAce Forum]
  * How to [Customize] your AutoBar
