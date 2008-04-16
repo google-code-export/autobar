@@ -31,7 +31,7 @@ AutoBar provides a configurable set of Buttons that automatically display items 
 
 = There is an alpha? =
 
-Note that this is an alpha, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
+Note that this is an [Alpha], a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
 
  * [http://code.google.com/p/autobar/downloads/list Download the Alpha]
  * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 Report Missing Items]
