@@ -61,12 +61,12 @@
   * Click-drag to move the button.
   * Hover over the Button to see its name in your tooltip (if displayed).
   * Select *Move the Buttons* again to lock the buttons in place.
- ----
- * Button disabling / enabling: *Bars/<My Bar>/Buttons/<the Button>/Enable*
+----
+Button disabling / enabling: *Bars/<My Bar>/Buttons/<the Button>/Enable*
   * Select *Enable* to have the Button be active.
   * Deselect *Enable* to stop the button from showing up on the bar.
- ----
- * Bar Settings Sharing
+----
+Bar Settings: *Bars/<My Bar>/Shared Buttons, Bars/<My Bar>/Shared Layout, Bars/<My Bar>/Shared Position*
   * By default Bars have their shared settings as account wide (global).
   * A Bar has 3 aspects it can independently share: Position, Layout, Buttons.
   * The setting can be to share with Account, Class, or None.
