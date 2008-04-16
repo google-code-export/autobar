@@ -2,7 +2,8 @@
 
 = What is not working right now: =
   * Preferences need improvement
-    * ACE3 / Rock
+    * ACE3
+    * Rock
   * Trinket2 equip buttons not working.  This needs special code which has not been written yet.
   * Macro Buttons
     * Support for the built in sets of macros for character (18) & general (18) as well.
@@ -40,18 +41,17 @@
     * Note Petfood needs an ug to be a rightclick hunter eats & left click pet eats.
 
 = What is still planned for the new version? =
-
  * Multiple bars are supported and you will be able to add your own custom bars soon.
  * Popup on shift.  There is just one more bug to iron out in the test state machine then this can be incorporated.
  * Items need to be shuffled as a bag location gets depleted during combat
  * Plugin architecture for buttons so this can become more of a framework
  * For custom categories allow direct selection of a PT3 set + an optional priority set (that takes precedence over the regular set for a particular item's value.  For example conjured food over regular)
  * Finish macro buttons.
-  # Editable text for a custom macro
-  # Ability to use one of the macros from Blizzard's macro interface.
+  * Editable text for a custom macro
+  * Ability to use one of the macros from Blizzard's macro interface.
  * Buttons
-  # Finally do a proper mount button (a Macro Button)
-  # Trinket buttons
+  * Finally do a proper mount button (a Macro Button)
+  * Trinket buttons
  * Upgrade the StickyFrames "library" to handle multiple source frames via a registration mechanism & update BT3 to use it.  This would allow "sticky" dragging of AutoBars & "docking" them to BT3 & other bar mods using the StickyFrames stuff.
  * Customization via Waterfall is barely functional & needs drag & drop rearranging + icons in the tree view at a minimum.
 
