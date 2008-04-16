@@ -8,7 +8,7 @@
  * There are more buttons available, some with overlapping functionality. This is intentional.  Pick the ones you want and disable any buttons you do not want.
  * Built in Buttons are named and keybindings are directly to that Button, so if you move the Button around your keybinding still works.
 ----
-==== Preferences ====
+=== Preferences ===
   * All Preferences are configurable via Waterfall in a tree style view
   * This replaces the old preferences, and you no longer need the separate `AutoBarConfig` mod.  It does no harm to have it but you do not need it and can safely delete it.
   * There are a few ways to bring up and edit the preferences:
@@ -19,7 +19,7 @@
    * Bind a key to the AutoBar Configuration Interface using the *Blizzard Options/Key Bindings* panel.
    * When you are in *Move the Bars* mode you can right click a Bar to bring up a dropdown config for the Bar.
 ----
-==== Custom Categories: ====
+=== Custom Categories: ===
 _Categories/New_
   * You can create new custom categories that are available to all your characters
   * Click on your category and name it
@@ -28,7 +28,7 @@ _Categories/New_
   * Drag a *spell* or *item* onto the dragLink icon.  You can drag from inventory, bags, action bars, or your spellbook.
   * You can click on the Delete button to get rid of an item.
 ----
-==== Custom Buttons: ====
+=== Custom Buttons: ===
 _Bars/<My Bar>/Buttons/New_ or _Buttons/New_
   * You can create new custom buttons.
   * Add one or more regular categories or custom categories you created yourself to the button with *<My Button>/Categories/Add*
