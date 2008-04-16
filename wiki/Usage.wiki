@@ -7,7 +7,7 @@
  * Sharing of settings can be done per Button and per the Layout / Position / Buttons of bars.
  * There are more buttons available, some with overlapping functionality. This is intentional.  Pick the ones you want and disable any buttons you do not want.
  * Built in Buttons are named and keybindings are directly to that Button, so if you move the Button around your keybinding still works.
-
+----
  * Preferences
   * All Preferences are configurable via Waterfall in a tree style view
   * This replaces the old preferences, and you no longer need the separate `AutoBarConfig` mod.  It does no harm to have it but you do not need it and can safely delete it.
@@ -18,7 +18,7 @@
    * Type */atb config* or */autobar config* to bring up the config as a GUI
    * Bind a key to the AutoBar Configuration Interface using the *Blizzard Options/Key Bindings* panel.
    * When you are in *Move the Bars* mode you can right click a Bar to bring up a dropdown config for the Bar.
-
+----
  * Custom Categories: *Categories/New*
   * You can create new custom categories that are available to all your characters
   * Click on your category and name it
@@ -26,7 +26,7 @@
   * Click on each item.  This reveals a dragLink icon (empty one looks like a gift box) and a delete button for it.
   * Drag a *spell* or *item* onto the dragLink icon.  You can drag from inventory, bags, action bars, or your spellbook.
   * You can click on the Delete button to get rid of an item.
-
+----
  * Custom Buttons: *Bars/<My Bar>/Buttons/New* or *Buttons/New*
   * You can create new custom buttons.
   * Add one or more regular categories or custom categories you created yourself to the button with *<My Button>/Categories/Add*
@@ -36,12 +36,12 @@
    * Select *Move the Buttons* mode.
    * Drag & drop items from your bags or spell book, etc. onto the button.
    * The item is added to the top of your Custom Category item list.
-
+----
  * Empty "spacer" Button:
   * Create a custom button and move it to the spot you want.
   * Delete its category
   * Select "Always Show"
-
+----
  * Bar movement: *Move the Bars*
   * Shift click the AutoBar _icon_, or select *Move the Bars* to make all your bars moveable and green (if shown) or red (if hidden).
   * Click-drag to move the bar.
@@ -52,7 +52,7 @@
    * Snapping is also done to some Blizzard frames.
    * Eventually this snapping will extend to other bars and frames beyond AutoBar.
    * You can disable snapping by holding down the Shift key.
-
+----
  * Button movement: *Move the Buttons*
   * Control click the AutoBar _icon_, or select *Move the Buttons* to make all your buttons moveable.
    * All active buttons will get a green outline
@@ -61,11 +61,21 @@
   * Click-drag to move the button.
   * Hover over the Button to see its name in your tooltip (if displayed).
   * Select *Move the Buttons* again to lock the buttons in place.
- 
+ ----
  * Button disabling / enabling: *Bars/<My Bar>/Buttons/<the Button>/Enable*
   * Select *Enable* to have the Button be active.
   * Deselect *Enable* to stop the button from showing up on the bar.
- 
+ ----
+ * Bar Settings Sharing
+  * By default Bars have their shared settings as account wide (global).
+  * A Bar has 3 aspects it can independently share: Position, Layout, Buttons.
+  * The setting can be to share with Account, Class, or None.
+  * In most cases you can leave these as Account, which is the default setting.
+  * Example
+    # You like identical Layouts across all characters, so you keep Shared Layout to be Account.
+    # Your Priest needs room for raid frames so its Shared Position is set to Class.  Moving the Bar around on your Priest will thus only affect other Priests you have on your account.  The Position for your Mage remains unchanged and is still shared with other characters that have Shared Position set to Account.
+    # Your Mage is a frost Mage because you like to pwn noobs in arena.  You want to add all your frost spells to the Basic Bar.  So for Shared Buttons you set it to None on your Mage.  Changes to the Buttons for that bar are thus only for your Mage and will affect no other character, including your little sister's Mage who is all fire specced for raiding anyway.
+----
  * Key Bindings: *Blizzard Options/Key Bindings*
   * Regular named Buttons are bound through the Blizzard *Options/Key Bindings* interface
    * Note that during the beta process not all the Named Buttons will have bindings until they are stable and functional.
