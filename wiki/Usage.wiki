@@ -19,7 +19,7 @@
    * Bind a key to the AutoBar Configuration Interface using the *Blizzard Options/Key Bindings* panel.
    * When you are in *Move the Bars* mode you can right click a Bar to bring up a dropdown config for the Bar.
 
- * Custom Categories: Categories/New
+ * Custom Categories: *Categories/New*
   * You can create new custom categories that are available to all your characters
   * Click on your category and name it
   * Open the tree to the items inside it & click *New* for however many items you need.
