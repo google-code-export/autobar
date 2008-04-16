@@ -47,11 +47,11 @@
  * Plugin architecture for buttons so this can become more of a framework
  * For custom categories allow direct selection of a PT3 set + an optional priority set (that takes precedence over the regular set for a particular item's value.  For example conjured food over regular)
  * Finish macro buttons.
-  * Editable text for a custom macro
-  * Ability to use one of the macros from Blizzard's macro interface.
+  # Editable text for a custom macro
+  # Ability to use one of the macros from Blizzard's macro interface.
  * Buttons
-  * Finally do a proper mount button (a Macro Button)
-  * Trinket buttons
+  # Finally do a proper mount button (a Macro Button)
+  # Trinket buttons
  * Upgrade the StickyFrames "library" to handle multiple source frames via a registration mechanism & update BT3 to use it.  This would allow "sticky" dragging of AutoBars & "docking" them to BT3 & other bar mods using the StickyFrames stuff.
  * Customization via Waterfall is barely functional & needs drag & drop rearranging + icons in the tree view at a minimum.
 
@@ -67,8 +67,6 @@ To combat these maladies, the software is refactored from time to time to better
 
 Such is the case with the current rewrite of AutoBar.  The ailments in the old version are numerous and multiple.  It became old & set in its ways and must now make way for a younger vigorous clone with improved dna & super powers to meet new challenges.  At times this will make it seem more monster than superhero, but bear with it, the end result will be worth the growing pains.
 
-= What do I do if I want to go back to the old version? =
-
- * Simply download the old one from the downloads section.
- * Your settings will remain the same (assuming you do not delete your saved variables)
+= What do I do if I want to go back to an old version? =
+ * Simply download the old one you like from the downloads section.
  * If you reassigned any key bindings you will have to fix that yourself.
