@@ -52,10 +52,13 @@ http://code.google.com/p/autobar/downloads/list
 
 
 
-= There is a beta? =
+= There is an alpha? =
 
 Download:
-[http://files.wowace.com/cat-action-bars.html]
+[http://code.google.com/p/autobar/downloads/list]
+
+Missing Items:
+[http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1]
 
 Bug reports & issues:
 [http://code.google.com/p/autobar/issues/list]
@@ -63,12 +66,12 @@ Bug reports & issues:
 Discussion:
 [http://www.wowace.com/forums/index.php?topic=9138.0]
 
-Note that this is a beta, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
+Note that this is an alpha, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
 
 = What is not working right now? =
 
  * Preferences need improvement
-  * Based on forum feedback there will be 2 or 3 Quick Config buttons per class
+  * ACE3 / Rock
  * Trinket2 equip buttons not working.  This needs special code which has not been written yet.
  * Macro Buttons
   * Support for the built in sets of macros for character (18) & general (18) as well.
@@ -105,11 +108,12 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * AutoBarButtonTrap/Sting/Totem: need cooldowns
   * Note Petfood needs an ug to be a rightclick hunter eats & left click pet eats.
 
+
 = What is in the new version? =
 
  * This is a rewrite of AutoBar and its config system.
  * The state machine for the popups is rewritten and much simpler than the old one.
- * Ace style profiles are used, allowing you to make character, class, etc. profiles, save them, and swap between them.
+ * Sharing of settings can be done per Button and per the Layout / Position / Buttons of bars.
  * There are more buttons available, some with overlapping functionality. This is intentional.  Pick the ones you want and disable any buttons you do not want.
  * Built in Buttons are named and keybindings are directly to that Button, so if you move the Button around your keybinding still works.
 
@@ -132,9 +136,9 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Drag a *spell* or *item* onto the dragLink icon.  You can drag from inventory, bags, action bars, or your spellbook.
   * You can click on the Delete button to get rid of an item.
 
- * Custom Buttons: *Bars/<My Bar>/Buttons/New*
-  * You can create new custom buttons for your current profile.
-  * Add one or more reguler categories or custom categories you created yourself to the button with *<My Button>/Categories/Add*
+ * Custom Buttons: *Bars/<My Bar>/Buttons/New* or *Buttons/New*
+  * You can create new custom buttons.
+  * Add one or more regular categories or custom categories you created yourself to the button with *<My Button>/Categories/Add*
   * A default category with Hearthstone shows up.  Click its Popup & select your Custom Category or a another category instead.
   * Enable or Disable your custom button just like a regular button.
   * If you added 1 or more custom categories to your custom button, then you can easily drag & drop new items into it:
