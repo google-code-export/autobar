@@ -25,8 +25,7 @@ AutoBar provides a configurable set of Buttons that automatically display items 
 *Food Buttons*
  * Any of hundreds of foods automatically go into these buttons, including buff foods, combo foods, conjured foods. 
 *Pet Food Button*
- * You can set up a Button with pet food and enable having a right mouse button click feed the pet. 
-
+ * You can set up a Button with pet food and enable having a right mouse button click feed the pet.
 *Make your own Categories, Buttons or Bars*
  * Found some stuff not yet supported in Autobar? Drag & drop it into your own custom Category.  Add the Category to a custom Button.  Create custom Bars to organize your buttons as you see fit. See [Customize] for more details.
 
@@ -34,9 +33,7 @@ AutoBar provides a configurable set of Buttons that automatically display items 
 
 Note that this is an alpha, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
 
-Download the alpha here:
-[http://code.google.com/p/autobar/downloads/list]
-
+ * [http://code.google.com/p/autobar/downloads/list Download the Alpha]
  * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 Missing Items]
  * [http://www.wowace.com/forums/index.php?topic=9138.0#top WowAce Forum]
  * How to [Customize] your AutoBar
