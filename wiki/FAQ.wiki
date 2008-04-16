@@ -11,11 +11,11 @@
 
 
 === How can I find out if my bug is in AutoBar or some other mod? ===
-*Narrow it Down:*
+ *Narrow it Down:*
   * Please make sure you are running the latest version. The latest release is here under Downloads, and the latest developer build is on [http://files.wowace.com].  Please make sure your bug has not been fixed in the developer build before logging a bug.
   * Disable all other mods except AutoBar (and Buggrabber: see below). If you still get the error then it may be an AutoBar bug.
   * Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
-*What error is causing it:*
+ *What error is causing it:*
   * Another potential source of bugs are script errors, especially during startup.  Download !Buggrabber from [http://files.wowace.com].  Buggrabber records all bugs and lets you list them by typing in /buggrabber # into chat.  Ideally there should be no errors.
   * Startup errors in a particular mod probably mean it is not going to work correctly.
   * Please only report the first bug "/buggrabber 1".  The first one usually leads to a cascade of meaningless bugs that may or may not even be real.
@@ -31,7 +31,7 @@
 
 
 === How do I set key bindings for AutoBar? ===
- * Use the BLizzard key-binding interface:
+ * Use the Blizzard key-binding interface:
   # Open up the Blizzard Keybindings Panel
   # Scroll down to the AutoBar section and bind the keys you want
  * To bind to your Custom Buttons, see the [Usage] section.
@@ -45,15 +45,15 @@
 
 
 === Why can AutoBar no longer shuffle items during combat? ===
-The whole point behind the 2.0 UI changes Blizzard made is to specifically disable automation during combat. As you go into combat, the buttons on the bar and popups are frozen. They can no longer shuffle or change. That is it, end of story. No amount of requests to change this behaviour will make AutoBar behave differently during combat.  That said, it is possible to shuffle items around behind the scene.  I will look into that during the next Beta cycle.
+ The whole point behind the 2.0 UI changes Blizzard made is to specifically disable automation during combat. As you go into combat, the buttons on the bar and popups are frozen. They can no longer shuffle or change. That is it, end of story. No amount of requests to change this behaviour will make AutoBar behave differently during combat.  That said, it is possible to shuffle items around behind the scene.  I will look into that during the next Beta cycle.
 
 
 === Arrange on use is not working for me during combat! ===
-True that.
+ True that.
 
 
 === Waah, I don't want popups? ===
-Popups are either always shown, or only shown when shift is held down (as soon as I implement the shift part that is).
+ Popups are either always shown, or only shown when shift is held down (as soon as I implement the shift part that is).
 
  The reasons are simple:
  # Blizzard has systematically and thoroughly disabled automated choice during combat.
