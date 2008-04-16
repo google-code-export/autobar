@@ -4,9 +4,11 @@
 === How do I Use AutoBar ===
  * See the [Usage] page.
 
+
 === How can I get the easy & classic AutoBar back? ===
  * Simply disable all but the Basic Bar
  * Remove all buttons on it that you do not like.
+
 
 === How can I find out if my bug is in AutoBar or some other mod? ===
 *Narrow it Down:*
@@ -20,11 +22,13 @@
  * Please state what version you are running when reporting a bug, it saves a lot of time and confusion.
  * If you download off of wowace you need to report the SVN revision number (r#####) as well as the official AutoBar version number.
 
+
 === How do I self cast or auto self cast? ===
   * For targeted items right click generally self casts
   * If you want to automatically cast items / spells on yourself when your target is not valid for that spell or item:
    # Open up the Blizzard Interface Options Panel / Basic Options.
    # Select "Auto Self Cast".
+
 
 === How do I set key bindings for AutoBar? ===
  * Use the BLizzard key-binding interface:
@@ -32,17 +36,21 @@
   # Scroll down to the AutoBar section and bind the keys you want
  * To bind to your Custom Buttons, see the [Usage] section.
 
+
 === AutoBar uses 5 gajillion gigabytes of memory? ===
  * This is not correct
   # AutoBar uses about 400-500k
   # AutoBar does use the embedded Ace libraries which load along with the first Ace mod which alphabeticaly tends to be AutoBar.
   # The Ace libraries are shared among all your Ace mods.  If you want to get a better idea of who is hogging memory then load up the optional standalone versions of the Ace libraries.  Do not forget to delete them after your experiment is over.
 
+
 === Why can AutoBar no longer shuffle items during combat? ===
 The whole point behind the 2.0 UI changes Blizzard made is to specifically disable automation during combat. As you go into combat, the buttons on the bar and popups are frozen. They can no longer shuffle or change. That is it, end of story. No amount of requests to change this behaviour will make AutoBar behave differently during combat.  That said, it is possible to shuffle items around behind the scene.  I will look into that during the next Beta cycle.
 
+
 === Arrange on use is not working for me during combat! ===
  True that.
+
 
 === Waah, I don't want popups? ===
  Popups are either always shown, or only shown when shift is held down (as soon as I implement the shift part that is).
@@ -55,6 +63,7 @@ The whole point behind the 2.0 UI changes Blizzard made is to specifically disab
  # Thus, the popup's availability is now mandatory.
  # The only "hiding" of the popup will be the "Popup on Shift" key.
  # To avoid support issues like: "I died / the raid wiped because I could not click on X potion after I ran out of Y" etc. the popup will just always be there. If you do run out of the first item there needs to be a fallback option during combat. So rather than allow users to break the mod through a "Disable Popup" option I am just not going to allow that. Popup on shift is close enough to hiding it. 
+
 
 === How do I report a missing item? ===
  * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 List of Reported Missing Items]
@@ -70,10 +79,12 @@ The whole point behind the 2.0 UI changes Blizzard made is to specifically disab
 
  I do not have the time to go search the entire game for missing items. If you miss it, give me the specific info I need to add it.
 
+
 === How do I add items that are not in any existing categories? ===
  * See the [Usage] section.
  * See the "How do I report a missing item?" faq to get the item into the items database.
  * If you are an Ace author or have SVN access you can add the item to [http://www.wowace.com/wiki/PeriodicTable-3.0 PeriodicTable-3.1].
+
 
 === I can't see my Bar ===
  * Try a UI reload "/rl".
@@ -81,8 +92,10 @@ The whole point behind the 2.0 UI changes Blizzard made is to specifically disab
  * Make sure your Bar's Alpha setting is high enough to see the bar. 
  * If you have fadeout set for the Bar, hold down ctrl / shift / alt to make it visible again.
 
+
 === My buttons shift around when items get used up ===
  Under Config / Buttons tab, select Show Category Icons. This will put a dimmed out placeholder button there when you run out. 
+
 
 === How do I get a cooldown count like <some mod> has? ===
  * AutoBar provides only the standard Blizzard cooldown clock. If you would like a digital cooldown, then get the [http://wow-en.curse-gaming.com/downloads/details/2775/omnicc/ OmniCC] mod.
