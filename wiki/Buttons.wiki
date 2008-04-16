@@ -1,6 +1,6 @@
 #summary List of current and planned buttons.
 
-== Named Buttons ==
+= Named Buttons =
   * These are built in buttons with limited or no customizability.
   * They have specific keybinds via the Blizzard Key Binding interface.
 
