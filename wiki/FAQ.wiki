@@ -11,11 +11,11 @@
 
 
 === How can I find out if my bug is in AutoBar or some other mod? ===
- *Narrow it Down:*
+*Narrow it Down:*
   * Please make sure you are running the latest version. The latest release is here under Downloads, and the latest developer build is on [http://files.wowace.com].  Please make sure your bug has not been fixed in the developer build before logging a bug.
   * Disable all other mods except AutoBar (and Buggrabber: see below). If you still get the error then it may be an AutoBar bug.
   * Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
- *What error is causing it:*
+*What error is causing it:*
   * Another potential source of bugs are script errors, especially during startup.  Download !Buggrabber from [http://files.wowace.com].  Buggrabber records all bugs and lets you list them by typing in /buggrabber # into chat.  Ideally there should be no errors.
   * Startup errors in a particular mod probably mean it is not going to work correctly.
   * Please only report the first bug "/buggrabber 1".  The first one usually leads to a cascade of meaningless bugs that may or may not even be real.
