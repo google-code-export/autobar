@@ -6,14 +6,16 @@
   *  
   *  These are still a work in progress & the icons don't actually display.
 
- * Named Buttons
+== Named Buttons ==
   * These are built in buttons with limited or no customizability.
   * They have specific keybinds via the Blizzard Key Binding interface.
-  * Hearth
+
+=== Hearth ===
    * Hearth Stone
    * Teleport (left click) / Portal (right click) for mages.
    * Other teleport spells for Druids, Warlocks, Shamans.
-  * Mount
+   * Other Hearthing / Teleporting items.  Ruby Slippers etc.
+=== Mount ===
    * Various regular, flying and Ahn'Qiraj mounts
    * Summoned mounts, and travel forms
   * Bandages
