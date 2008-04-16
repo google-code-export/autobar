@@ -1,16 +1,11 @@
 #summary Frequently Asked Questions.
 #labels Featured
 
-=== How do I customize AutoBar ===
- * See the [Customize] page.
+=== How do I Use AutoBar ===
+ * See the [Usage] page.
 
 === How can I get the easy & classic AutoBar back? ===
- * On the Profile tab select the "Reset" button next to the "Single (Classic) Setup" button. This gives you a single character layer as with the Classic AutoBar but with the current defaults which have changed quite a bit.
- * On the Slots tab, drag and drop the slots on the bottom "Character Layer" if you want to change their order. This is faster than classic AutoBar which had no way to do this.
- * To modify a slot itself click on it to edit it on the bottom "Character Layer" of the Slots tab. This brings up the list of 16 categories or items you can have in a slot.
-  * Drag and drop to rearrange items in the list.
-  * Drag items from your bags to add custom items. This is faster than the clunky manual typing of classic AutoBar for adding custom items.
-
+ * Simply disable all but the Basic Bar, and remove all buttons on it that you do not like.
 
 === How can I find out if my bug is in AutoBar or some other mod? ===
  # Narrow it Down:
@@ -24,19 +19,17 @@
  * Please state what version you are running when reporting a bug, it saves a lot of time and confusion.
  * If you download off of wowace you need to report the SVN revision number (r#####) as well as the official AutoBar version number.
 
-
 === How do I self cast or auto self cast? ===
  * For targeted items right click generally self casts
  * If you want to automatically cast items / spells on yourself when your target is not valid for that spell or item:
   # Open up the Blizzard Interface Options Panel / Basic Options.
   # Select "Auto Self Cast".
 
-
 === How do I set key bindings for AutoBar? ===
  * Use the BLizzard key-binding interface:
   # Open up the Blizzard Keybindings Panel
   # Scroll down to the AutoBar section and bind the keys you want
-
+ * To bind to your Custom Buttons, see the [Usage] section.
 
 === AutoBar uses 5 gajillion gigabytes of memory? ===
  * This is not correct
@@ -44,14 +37,11 @@
   # AutoBar does use the embedded Ace libraries which load along with the first Ace mod which alphabeticaly tends to be AutoBar.
   # The Ace libraries are shared among all your Ace mods.  If you want to get a better idea of who is hogging memory then load up the optional standalone versions of the Ace libraries.  Do not forget to delete them after your experiment is over.
 
-
 === Why can AutoBar no longer shuffle items during combat? ===
-The whole point behind the 2.0 UI changes Blizzard made is to specifically disable automation during combat. As you go into combat, the buttons on the bar and popups are frozen. They can no longer shuffle or change. That is it, end of story. No amount of requests to change this behaviour will make AutoBar behave differently during combat.  That said, it may be possible to shuffle items around behind the scene.  I will look into that after 2.1 is out.
-
+The whole point behind the 2.0 UI changes Blizzard made is to specifically disable automation during combat. As you go into combat, the buttons on the bar and popups are frozen. They can no longer shuffle or change. That is it, end of story. No amount of requests to change this behaviour will make AutoBar behave differently during combat.  That said, it is possible to shuffle items around behind the scene.  I will look into that during the next Beta cycle.
 
 === Arrange on use is not working for me during combat! ===
  True that.
-
 
 === Waah, I don't want popups? ===
  Popups are either always shown, or only shown when shift is held down (as soon as I implement the shift part that is).
@@ -65,10 +55,9 @@ The whole point behind the 2.0 UI changes Blizzard made is to specifically disab
  # The only "hiding" of the popup will be the "Popup on Shift" key.
  # To avoid support issues like: "I died / the raid wiped because I could not click on X potion after I ran out of Y" etc. the popup will just always be there. If you do run out of the first item there needs to be a fallback option during combat. So rather than allow users to break the mod through a "Disable Popup" option I am just not going to allow that. Popup on shift is close enough to hiding it. 
 
-
 === How do I report a missing item? ===
- * Please use something specific like: "Reins of the Black War Tiger 29471" or "Farkle Berry Juice  47:14000"
-
+ * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 List of Reported Missing Items]
+ * Please use something specific like: "Reins of the Black War Tiger 29471" or "Farkle Berry Juice 47:14000"
  * The 29471 & 47 are the ItemId for each item.
   * Get it from Loot Link as the "BaseId" in the tooltip.
   * Look it up on [http://www.wowhead.com] or [http://www.allakhazam.com] by searching by name & then looking at the items URL. The ItemId is at the end.
@@ -80,41 +69,19 @@ The whole point behind the 2.0 UI changes Blizzard made is to specifically disab
 
  I do not have the time to go search the entire game for missing items. If you miss it, give me the specific info I need to add it.
 
-
 === How do I add items that are not in any existing categories? ===
- * Open the Config / Slots tab and drag the item from your bag onto a slot.  This adds the item at the end so it has priority over anything else already in the slot.
- * You can also click on a slot to edit it, and then drag the item to any of the category slots. Drag onto an existing item to replace it.  Drop onto the end or a blank spot to set it as the highest priority item.  Drag and drop items to rearrange their priority.
-
+ * See the [Usage] section.
  * See the "How do I report a missing item?" faq to get the item into the items database.
+ * If you are an Ace author or have SVN access you can add the item to [http://www.wowace.com/wiki/PeriodicTable-3.0 PeriodicTable-3.1].
 
- * If you are an Ace author or have SVN access you can add the item to [http://www.wowace.com/wiki/PeriodicTable-3.0 PeriodicTable-3.0].
-
-
-=== I can't see my AutoBar ===
- * Go to Config / Profiles tab and click one of the three reset buttons. The bar should show up at 300 x 300 up and right of the bottom left corner.
- * Try some of the docking options like say Chatframe. Once you see it drag it where you want it.
- * In Config / Buttons make sure your alpha setting is high enough to see the bar. 
-
+=== I can't see my Bar ===
+ * Try a UI reload "/rl".
+ * Enter Move the Bars mode to see where your bars are at.
+ * Make sure your Bar's Alpha setting is high enough to see the bar. 
+ * If you have fadeout set for the Bar, hold down ctrl / shift / alt to make it visible again.
 
 === My buttons shift around when items get used up ===
  Under Config / Buttons tab, select Show Category Icons. This will put a dimmed out placeholder button there when you run out. 
-
-
-=== Whats with the layers? ===
- The layers allow you to customize AutoBar and still make use of the defaults, as well as automatically picking up changes to any of the default slots you use whenever AutoBar is updated.
-
- They are as simple as possible without losing necessary functionality.
-
- The profiles tab lets you select a simple single user setup which is very similar to the old AutoBar setup, and squashes everything into a single layer.
-
- The shared option allows you to set up options for more than one user and have changes be instantly updated for all the users using that shared profile. This option uses both a shared layer as well as a custom layer for each individual user that can overide the shared options. This lets you set up the common items as you want them and make minor changes for each user if needed.
-
- The standard setup lets you customize everything.
-In addition to the shared and character layer it also gives access to the default and class default layers.
-
- The layers are overlayed on top of each other, so that if a slot is not empty in a higher layer, then it replaces anything in a lower layer. The order is:
-Character > Shared > Class > Basic
-
 
 === How do I get a cooldown count like <some mod> has? ===
  * AutoBar provides only the standard Blizzard cooldown clock. If you would like a digital cooldown, then get the [http://wow-en.curse-gaming.com/downloads/details/2775/omnicc/ OmniCC] mod.
