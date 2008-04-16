@@ -29,18 +29,19 @@ AutoBar provides a configurable set of Buttons that automatically display items 
 *Make your own Categories, Buttons or Bars*
  * Found some stuff not yet supported in Autobar? Drag & drop it into your own custom Category.  Add the Category to a custom Button.  Create custom Bars to organize your buttons as you see fit. See [Customize] for more details.
 
-= There is an alpha? =
-
-Note that this is an [Alpha], a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
-
- * [http://code.google.com/p/autobar/downloads/list Download the Alpha]
- * [Alpha Known Alpha issues]
+= Links =
  * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 Report Missing Items]
  * [http://www.wowace.com/forums/index.php?topic=9138.0#top WowAce Forum]
  * How to [Customize] your AutoBar
  * [FAQ]
  * [http://www.wowace.com/wiki/AutoBar/WishList Wish List]
  * [http://code.google.com/p/autobar/issues/list Bugs, Issues, Feature Requests]
+
+= There is an alpha? =
+Note that this is an [Alpha], a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
+
+ * [http://code.google.com/p/autobar/downloads/list Download the Alpha]
+ * [Alpha Known Alpha issues]
 
 = Notes =
  * Inventory items have a green border while equipped.
