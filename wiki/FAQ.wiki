@@ -21,10 +21,10 @@
  * If you download off of wowace you need to report the SVN revision number (r#####) as well as the official AutoBar version number.
 
 === How do I self cast or auto self cast? ===
- * For targeted items right click generally self casts
- * If you want to automatically cast items / spells on yourself when your target is not valid for that spell or item:
-  # Open up the Blizzard Interface Options Panel / Basic Options.
-  # Select "Auto Self Cast".
+  * For targeted items right click generally self casts
+  * If you want to automatically cast items / spells on yourself when your target is not valid for that spell or item:
+   # Open up the Blizzard Interface Options Panel / Basic Options.
+   # Select "Auto Self Cast".
 
 === How do I set key bindings for AutoBar? ===
  * Use the BLizzard key-binding interface:
