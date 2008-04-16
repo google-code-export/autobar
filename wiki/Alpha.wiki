@@ -1,6 +1,6 @@
 #Details about the current Alpha version on this site.
 
-= What is not working right now? =
+= What is not working right now: =
   * Preferences need improvement
    * ACE3 / Rock
   * Trinket2 equip buttons not working.  This needs special code which has not been written yet.
