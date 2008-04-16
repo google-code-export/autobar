@@ -5,14 +5,6 @@
 
 AutoBar provides a configurable set of Buttons that automatically display items in your inventory for easy use. You can assign hot keys to Buttons. Each Button can be customized to have whatever you want in it. Buttons with multiple items in your bags can have a popup list of the items to choose from.
 
-Download the alpha here:
-http://code.google.com/p/autobar/downloads/list
-
- * [http://www.wowace.com/forums/index.php?topic=2582#top WowAce Forum]
- * How to [Customize] your AutoBar
- * [FAQ]
- * [http://www.wowace.com/wiki/AutoBar/WishList Wish List]
-
 = Examples =
 
 *Bandage Button*
@@ -21,8 +13,8 @@ http://code.google.com/p/autobar/downloads/list
 *Potion Button*
  * It will show the best potion available
  * A popup list lets you use cheaper potions if you have any 
-*Protection Potions Button*
- * From Arcane to Shadow & even Invulnerability and Spell reflection potions. 
+*Quest Button*
+ * Various items used in daily quests as well as some other useful click to use items. 
 *Weapon Buff Button*
  * Includes Mana and Wizard Oils, Sharpening and Weight Stones, Rogue poisons.
  * The items rearrange on use so the last used item becomes the default. 
@@ -30,13 +22,27 @@ http://code.google.com/p/autobar/downloads/list
  * This will show your current mount with a popup of other mounts in your bags.
  * Ahn'Qiraj mounts show up if you are in AQ40.
  * The rearrange on Use checkbox is set by default for Mounts so when you click on a mount in the popup that becomes your default mount.
-*Food Button*
- * Any of dozens of foods automatically go into this slot. You can set up more slots for foods with buffs so you can eat those as appropriate. 
+*Food Buttons*
+ * Any of hundreds of foods automatically go into these buttons, including buff foods, combo foods, conjured foods. 
 *Pet Food Button*
- * You can set up a slot with pet food and enable having a right mouse button click feed the pet. 
+ * You can set up a Button with pet food and enable having a right mouse button click feed the pet. 
 
-*Make your own Button*
- * Found some stuff not yet supported in Autobar? Drag & drop it into your own custom slots.  See [Customize] for more details.
+*Make your own Categories, Buttons or Bars*
+ * Found some stuff not yet supported in Autobar? Drag & drop it into your own custom Category.  Add the Category to a custom Button.  Create custom Bars to organize your buttons as you see fit. See [Customize] for more details.
+
+= There is an alpha? =
+
+Note that this is an alpha, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
+
+Download the alpha here:
+[http://code.google.com/p/autobar/downloads/list]
+
+ * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 Missing Items]
+ * [http://www.wowace.com/forums/index.php?topic=9138.0#top WowAce Forum]
+ * How to [Customize] your AutoBar
+ * [FAQ]
+ * [http://www.wowace.com/wiki/AutoBar/WishList Wish List]
+ * [http://code.google.com/p/autobar/issues/list Bugs, Issues, Feature Requests]
 
 = Notes =
  * Inventory items have a green border while equipped.
@@ -52,24 +58,9 @@ http://code.google.com/p/autobar/downloads/list
 
 
 
-= There is an alpha? =
-
-Download:
-[http://code.google.com/p/autobar/downloads/list]
-
-Missing Items:
-[http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1]
-
-Bug reports & issues:
-[http://code.google.com/p/autobar/issues/list]
-
-Discussion:
-[http://www.wowace.com/forums/index.php?topic=9138.0]
-
-Note that this is an alpha, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
-
 = What is not working right now? =
 
+**
  * Preferences need improvement
   * ACE3 / Rock
  * Trinket2 equip buttons not working.  This needs special code which has not been written yet.
