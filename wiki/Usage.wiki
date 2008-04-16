@@ -1,4 +1,4 @@
-#summary How to use and customize AutoBar for your characters.
+#summary How to use and customize AutoBar for your characters.  This documentation refers to the Alpha.  All other versions are no longer supported.
 #labels Featured
 
 = What is in the new version? =
