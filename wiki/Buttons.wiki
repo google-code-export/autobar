@@ -91,9 +91,9 @@
    * Paladin Auras
 
  === Class Pet ===
- ==== Druid ====
+  ==== Druid ====
     * Force of Nature
- ==== Hunter ====
+  ==== Hunter ====
     * Scare Beast
     * Tame Beast
     * Beast Training
@@ -104,14 +104,14 @@
     * Dismiss Pet
     * Revive Pet
     * Call Pet
- ==== Mage ====
+  ==== Mage ====
     * Summon Water Elemental
- ==== Priest ====
+  ==== Priest ====
     * Shadowfiend
- ==== Shaman ====
+  ==== Shaman ====
     * Fire Elemental Totem
     * Earth Elemental Totem
- ==== Warlock ====
+  ==== Warlock ====
     * Eye of Kilrogg
     * Summon Felguard
     * Summon Felhunter
