@@ -32,7 +32,7 @@ AutoBar provides a configurable set of Buttons that automatically display items 
 = Links =
  * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 Report Missing Items]
  * [http://www.wowace.com/forums/index.php?topic=9138.0#top WowAce Forum]
- * How to [Customize] your AutoBar
+ * How to [Usage Use] your AutoBar
  * [FAQ]
  * [http://www.wowace.com/wiki/AutoBar/WishList Wish List]
  * [http://code.google.com/p/autobar/issues/list Bugs, Issues, Feature Requests]
