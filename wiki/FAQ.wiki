@@ -37,7 +37,7 @@
  * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 List of Reported Missing Items]
  * Please use something specific like: "Reins of the Black War Tiger 29471" or "Farkle Berry Juice 47:14000"
  * The 29471 & 47 are the !ItemId for each item.
-  * Get it from Loot Link as the "BaseId" in the tooltip.
+  * Get it from Loot Link as the "!BaseId" in the tooltip.
   * Look it up on [http://www.wowhead.com] or [http://www.allakhazam.com] by searching by name & then looking at the items URL. The !ItemId is at the end.
  * For foods & whatnot an aditional value after the colon gives how much it heals etc.
  * If Farkle Berry Juice was real and a buff food then also include what it buffs:
@@ -71,7 +71,7 @@ Inside World of Warcraft\Interface\!AddOns\!AutoBar
   # Style.lua
   # !AutoBarFuBar.lua
 
-Inside World of Warcraft\Interface\AddOns\AutoBar\libs
+Inside World of Warcraft\Interface\!AddOns\!AutoBar\libs
   # !LibStub\!LibStub.lua
   # !AceLibrary\!AceLibrary.lua
   # AceOO-2.0\AceOO-2.0.lua
@@ -93,7 +93,7 @@ Inside World of Warcraft\Interface\AddOns\AutoBar\libs
   # Waterfall-1.0\Waterfall-1.0.lua
   # !LibStickyFrames-1.0\!LibStickyFrames-1.0.lua
 
-If these files are not inside *World of Warcraft\Interface\AddOns\AutoBar* then you have failed to download AutoBar correctly.  Please go to files.wowace.com to get the a zip with what you actually need.
+If these files are not inside *World of Warcraft\Interface\!AddOns\!AutoBar* then you have failed to download !AutoBar correctly.  Please go to files.wowace.com to get the zip with what you actually need.
 
 
 === !ButtonFacade looks really cool why are you not using it right now! ===
