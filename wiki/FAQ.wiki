@@ -72,26 +72,26 @@ Inside World of Warcraft\Interface\AddOns\AutoBar
   # !AutoBarFuBar.lua
 
 Inside World of Warcraft\Interface\AddOns\AutoBar\libs
-  # !LibStub\LibStub.lua
-  # !AceLibrary\AceLibrary.lua
-  # !AceOO-2.0\AceOO-2.0.lua
-  # !AceEvent-2.0\AceEvent-2.0.lua
-  # !AceAddon-2.0\AceAddon-2.0.lua
-  # !AceDB-2.0\AceDB-2.0.lua
-  # !AceDebug-2.0\AceDebug-2.0.lua
-  # !AceHook-2.1\AceHook-2.1.lua
-  # !AceLocale-2.2\AceLocale-2.2.lua
-  # !Babble-Zone-2.2\Babble-Zone-2.2.lua
+  # !LibStub\!LibStub.lua
+  # !AceLibrary\!AceLibrary.lua
+  # !AceOO-2.0\!AceOO-2.0.lua
+  # !AceEvent-2.0\!AceEvent-2.0.lua
+  # !AceAddon-2.0\!AceAddon-2.0.lua
+  # !AceDB-2.0\!AceDB-2.0.lua
+  # !AceDebug-2.0\!AceDebug-2.0.lua
+  # !AceHook-2.1\!AceHook-2.1.lua
+  # !AceLocale-2.2\!AceLocale-2.2.lua
+  # !Babble-Zone-2.2\!Babble-Zone-2.2.lua
   # Dewdrop-2.0\Dewdrop-2.0.lua
-  # !FuBarPlugin-2.0\FuBarPlugin-2.0.lua
-  # !LibPeriodicTable-3.1\LibPeriodicTable-3.1.lua
-  # !LibPeriodicTable-3.1-Consumable\LibPeriodicTable-3.1-Consumable.lua
-  # !LibPeriodicTable-3.1-Gear\LibPeriodicTable-3.1-Gear.lua
-  # !LibPeriodicTable-3.1-Misc\LibPeriodicTable-3.1-Misc.lua
-  # !LibPeriodicTable-3.1-Tradeskill\LibPeriodicTable-3.1-Tradeskill.lua
+  # !FuBarPlugin-2.0\!FuBarPlugin-2.0.lua
+  # !LibPeriodicTable-3.1\!LibPeriodicTable-3.1.lua
+  # !LibPeriodicTable-3.1-Consumable\!LibPeriodicTable-3.1-Consumable.lua
+  # !LibPeriodicTable-3.1-Gear\!LibPeriodicTable-3.1-Gear.lua
+  # !LibPeriodicTable-3.1-Misc\!LibPeriodicTable-3.1-Misc.lua
+  # !LibPeriodicTable-3.1-Tradeskill\!LibPeriodicTable-3.1-Tradeskill.lua
   # Tablet-2.0\Tablet-2.0.lua
   # Waterfall-1.0\Waterfall-1.0.lua
-  # !LibStickyFrames-1.0\LibStickyFrames-1.0.lua
+  # !LibStickyFrames-1.0\!LibStickyFrames-1.0.lua
 
 If these files are not inside *World of Warcraft\Interface\AddOns\AutoBar* then you have failed to download AutoBar correctly.  Please go to files.wowace.com to get the a zip with what you actually need.
 
