@@ -33,7 +33,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
   * Items dragged onto a custom button automatically create a custom category if it does not have one & drop into it
   * Buttons need a drop setting that if enabled allow items to be dragged right onto the button itself
   * Categories in a button & items inside a category need to be draggable to rearrange them
- * Custom Categories need to be able to pick LibPeriodicTable-3.1 sets for their contents.
+ * Custom Categories need to be able to pick [http://www.wowace.com/wiki/LibPeriodicTable-3.1 LibPeriodicTable-3.1] sets for their contents.
  * Full Mount support, including form switching, automatic flying vs ground selection, etc.
  * Rock: implement the link type so Rock can be used for config.
   * Rock: stringControl -> linkControl
