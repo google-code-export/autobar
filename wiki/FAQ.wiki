@@ -4,9 +4,11 @@
 === How do I Use AutoBar ===
  * See the [Usage] page.
 
+
 === How can I get the easy & classic AutoBar back? ===
  * Simply disable all but the Basic Bar
  * Remove all buttons on it that you do not like.
+
 
 === How can I get my gigantic all in one Bar back? ===
  * Get into *AutoBar/Move the Buttons* Mode.  Drag and drop all the Extras Buttons to your main bar.  Since both these bars are shared account wide this change happens for all characters.
@@ -15,6 +17,7 @@
  * Repeat moving the Class Buttons for each different class you have.
  * If you have multiple characters of the same class that need individual button layouts then simply set *Shared Buttons* to "None" for one or more of them.
  * Note that with enough different classes eventually all Buttons will not fit on a single Bar.
+
 
 === How can I find out if my bug is in AutoBar or some other mod? ===
 *Narrow it Down:*
@@ -49,6 +52,7 @@
  * It is in Beta.
  * Once it is a replacement for cyCircled it will be used.
  * The ButtonFacade switch will completely rip out all support for cyCircled.
+
 
 === How do I self cast or auto self cast? ===
  * For targeted items right click generally self casts
@@ -102,7 +106,8 @@
  * Try a UI reload "/rl".
  * Enter Move the Bars mode to see where your bars are at.
  * Make sure your Bar's Alpha setting is high enough to see the bar. 
- * If you have fadeout set for the Bar, hold down ctrl / shift / alt to make it visible again.
+ * If you have fadeout set for the Bar, hold down ctrl / shift / alt to make it visible again.  Make sure you have enabled one of these keys to show your Bar.
+ * If you have changed your UI scale, the Bar may be positioned off the screen. Set *AutoBar/Clamp Bars to screen* then do a UI reload "/rl"
 
 
 === My buttons shift around when items get used up ===
