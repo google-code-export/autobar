@@ -49,7 +49,7 @@
 
 
 === Files Required for !AutoBar to work ===
-Inside World of Warcraft\Interface\AddOns\AutoBar
+Inside World of Warcraft\Interface\!AddOns\!AutoBar
   # embeds.xml
   # !AutoBarConsole-1.0.lua
   # Core.lua
