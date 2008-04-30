@@ -72,6 +72,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
  * Upgrade the !StickyFrames "library" to handle multiple source frames via a registration mechanism & update BT3 to use it.  This would allow "sticky" dragging of !AutoBars & "docking" them to BT3 & other bar mods using the StickyFrames stuff.
  * Customization via Waterfall is barely functional & needs drag & drop rearranging + icons in the tree view at a minimum.
 
+
 = Why make a new version? =
 The basic answer is that any software explores a problem domain.  Software also acts like it is alive while growing through the domain.  So given enough time, hacks & features, various software ailments start to develop:
  * Algorithm Necrosis
