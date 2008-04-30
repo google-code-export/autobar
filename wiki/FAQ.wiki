@@ -11,7 +11,7 @@
 
 
 === How can I get my gigantic all in one Bar back? ===
- * Get into *AutoBar/Move the Buttons* Mode.  Drag and drop all the Extras Buttons to your main bar.  Since both these bars are shared account wide this change happens for all characters.
+ * Get into _AutoBar/Move the Buttons_ Mode.  Drag and drop all the Extras Buttons to your main bar.  Since both these bars are shared account wide this change happens for all characters.
  * Alternatively Use *Remove* on all the Extras Buttons, and then the Add Buttons popup to add them to the Basic Bar.
  * Next you need to move the Class Buttons.  Set *Basic/Shared Buttons* to "Class" for the currently logged in character.  Now drag the class buttons over.  Since the Buttons are specific to that class, setting sharing to Class lets the bar remember the buttons differently for each class.
  * Repeat moving the Class Buttons for each different class you have.
