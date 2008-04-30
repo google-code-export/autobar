@@ -1,4 +1,4 @@
-#summary About the !AutoBar Beta.
+#summary About the AutoBar Beta.
 #labels Featured
 
 = There is a beta? =
@@ -59,7 +59,6 @@ Note that this is a beta, a particular release may not be stable, you may need t
 
 
 = What is still planned for the new version? =
- * Multiple bars are supported and you will be able to add your own custom bars soon.
  * Popup on shift.  There is just one more bug to iron out in the test state machine then this can be incorporated.
  * Items need to be shuffled as a bag location gets depleted during combat
  * Plugin architecture for buttons so this can become more of a framework
@@ -85,8 +84,9 @@ To combat these maladies, the software is refactored from time to time to better
 
 Such is the case with the current rewrite of AutoBar.  The ailments in the old version are numerous and multiple.  It became old & set in its ways and must now make way for a younger vigorous clone with improved dna & super powers to meet new challenges.  At times this will make it seem more monster than superhero, but bear with it, the end result will be worth the growing pains.
 
-= What do I do if I want to go back to the old version? =
 
- * Simply download the old one from the downloads section.
+= What do I do if I want to go back to the old version? =
+ * First I strongly urge you to post your difficulties in the forum, or issues list.  This is the only way AutoBar will change to accomodate your neds and tastes.
+ * Simply download some old one from the downloads section.
  * Your settings will remain the same (assuming you do not delete your saved variables)
  * If you reassigned any key bindings you will have to fix that yourself.
