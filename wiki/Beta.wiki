@@ -69,7 +69,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
  * Buttons
   * Finally do a proper mount button (a Macro Button)
   * Trinket buttons
- * Upgrade the StickyFrames "library" to handle multiple source frames via a registration mechanism & update BT3 to use it.  This would allow "sticky" dragging of AutoBars & "docking" them to BT3 & other bar mods using the StickyFrames stuff.
+ * Upgrade the !StickyFrames "library" to handle multiple source frames via a registration mechanism & update BT3 to use it.  This would allow "sticky" dragging of !AutoBars & "docking" them to BT3 & other bar mods using the StickyFrames stuff.
  * Customization via Waterfall is barely functional & needs drag & drop rearranging + icons in the tree view at a minimum.
 
 = Why make a new version? =
