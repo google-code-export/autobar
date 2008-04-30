@@ -48,6 +48,12 @@
  I do not have the time to go search the entire game for missing items, nor do all items need to be added. If you miss it, give me the specific info I need to add it.
 
 
+=== How do I add items that are not in any existing categories? ===
+ * See the [Usage] section.
+ * See the "How do I report a missing item?" FAQ to get the item into the items database.
+ * If you are an Ace author or have SVN access you can add the item to [http://www.wowace.com/wiki/PeriodicTable-3.0 PeriodicTable-3.1].
+
+
 === Files Required for !AutoBar to work ===
 Inside World of Warcraft\Interface\!AddOns\!AutoBar
   # embeds.xml
@@ -97,7 +103,7 @@ If these files are not inside *World of Warcraft\Interface\!AddOns\!AutoBar* the
 
 
 === !ButtonFacade looks really cool why are you not using it right now! ===
-* It is in Beta.
+ * It is in Beta.
  * Once it is a replacement for cyCircled it will be used.
  * The [http://www.wowace.com/forums/index.php?topic=12549.0 ButtonFacade] switch will completely rip out all support for cyCircled.
 
@@ -144,18 +150,12 @@ If these files are not inside *World of Warcraft\Interface\!AddOns\!AutoBar* the
  # To avoid support issues like: "I died / the raid wiped because I could not click on X potion after I ran out of Y" etc. the popup will just always be there. If you do run out of the first item there needs to be a fallback option during combat. So rather than allow users to break the mod through a "Disable Popup" option I am just not going to allow that. Popup on shift is close enough to hiding it. 
 
 
-=== How do I add items that are not in any existing categories? ===
- * See the [Usage] section.
- * See the "How do I report a missing item?" faq to get the item into the items database.
- * If you are an Ace author or have SVN access you can add the item to [http://www.wowace.com/wiki/PeriodicTable-3.0 PeriodicTable-3.1].
-
-
 === I can't see my Bar ===
  * Try a UI reload "/rl".
  * Enter Move the Bars mode to see where your bars are at.
  * Make sure your Bar's Alpha setting is high enough to see the bar. 
  * If you have fadeout set for the Bar, hold down ctrl / shift / alt to make it visible again.  Make sure you have enabled one of these keys to show your Bar.
- * If you have changed your UI scale, the Bar may be positioned off the screen. Set *AutoBar/Clamp Bars to screen* then do a UI reload "/rl"
+ * If you have changed your UI scale, the Bar may be positioned off the screen. Set *!AutoBar/Clamp Bars to screen* then do a UI reload "/rl"
 
 
 === My buttons shift around when items get used up ===
@@ -163,7 +163,7 @@ If these files are not inside *World of Warcraft\Interface\!AddOns\!AutoBar* the
 
 
 === How do I get a cooldown count like <some mod> has? ===
- * AutoBar provides only the standard Blizzard cooldown clock. If you would like a digital cooldown, then get the [http://wow-en.curse-gaming.com/downloads/details/2775/omnicc/ OmniCC] mod.
+ * !AutoBar provides only the standard Blizzard cooldown clock. If you would like a digital cooldown, then get the [http://wow-en.curse-gaming.com/downloads/details/2775/omnicc/ OmniCC] mod.
  * OmniCC provides a digital cooldown for any button that has a standard Blizzard cooldown clock. I would highly recommend it.
  * A clock will never be added to AutoBar, because all I would be doing is copying the OmniCC code which makes no sense. Better to have one OmniCC, than 50 mods with duplicate OmniCC code in them.
  
