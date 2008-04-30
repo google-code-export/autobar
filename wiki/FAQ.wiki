@@ -55,6 +55,7 @@
 
 
 === Files Required for !AutoBar to work ===
+Inside "World of Warcraft\Interface\!AddOns\!AutoBar":
   # embeds.xml
   # !AutoBarConsole-1.0.lua
   # Core.lua
@@ -76,7 +77,7 @@
   # Style.lua
   # !AutoBarFuBar.lua
 
-Inside World of Warcraft\Interface\!AddOns\!AutoBar\libs
+Inside "World of Warcraft\Interface\!AddOns\!AutoBar\libs":
 
   # !LibStub\!LibStub.lua
   # !AceLibrary\!AceLibrary.lua
