@@ -31,16 +31,18 @@ AutoBar provides a configurable set of Buttons that automatically display items 
 
 = Links =
  * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 Report Missing Items]
+ * [http://files.wowace.com/cat-action-bars.html Latest Version]
  * [http://www.wowace.com/forums/index.php?topic=9138.0#top WowAce Forum]
  * How to [Usage Use] your !AutoBar
  * [FAQ]
  * [http://www.wowace.com/wiki/AutoBar/WishList Wish List]
  * [http://code.google.com/p/autobar/issues/list Bugs, Issues, Feature Requests]
 
-= There is an alpha? =
-Note that this is an [Alpha], a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
+= There is a Beta? =
+Note that this is an [Beta], a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
 
- * [http://code.google.com/p/autobar/downloads/list Download the Alpha]
+ * [http://files.wowace.com/cat-action-bars.html Latest Version]
+ * [http://code.google.com/p/autobar/downloads/list Download the Beta]
  * [Alpha Known Alpha issues]
 
 = Notes =
