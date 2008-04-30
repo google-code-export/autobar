@@ -10,8 +10,19 @@
  * Remove all buttons on it that you do not like.
 
 
+=== How can I get my gigantic all in one Bar back? ===
+ * Get into *AutoBar/Move the Buttons* Mode.  Drag and drop all the Extras Buttons to your main bar.  Since both these bars are shared account wide this change happens for all characters.
+ * Alternatively Use *Remove* on all the Extras Buttons, and then the Add Buttons popup to add them to the Basic Bar.
+ * Next you need to move the Class Buttons.  Set *Basic/Shared Buttons* to "Class" for the currently logged in character.  Now drag the class buttons over.  Since the Buttons are specific to that class, setting sharing to Class lets the bar remember the buttons differently for each class.
+ * Repeat moving the Class Buttons for each different class you have.
+ * If you have multiple characters of the same class that need individual button layouts then simply set *Shared Buttons* to "None" for one or more of them.
+ * Note that with enough different classes eventually all Buttons will not fit on a single Bar.
+
+Delete is only an option for a Custom Button that you yourself created.  It completely deletes it for all characters.  Remove is an option for all Buttons including the built in ones.  It removes it from the Bar it is currently on.
+
 === How can I find out if my bug is in AutoBar or some other mod? ===
 *Narrow it Down:*
+  * Make sure you are not running disembeded. In your Wow Ace Updater preferences make sure the only thing checked on the left side of the preferences panel is "Default mode WITH externals".
   * Please make sure you are running the latest version. The latest release is here under Downloads, and the latest developer build is on [http://files.wowace.com].  Please make sure your bug has not been fixed in the developer build before logging a bug.
   * Disable all other mods except AutoBar (and Buggrabber: see below). If you still get the error then it may be an AutoBar bug.
   * Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
@@ -21,6 +32,21 @@
   * Please only report the first bug "/buggrabber 1".  The first one usually leads to a cascade of meaningless bugs that may or may not even be real.
   * Please state what version you are running when reporting a bug, it saves a lot of time and confusion.
   * If you download off of wowace you need to report the SVN revision number (r#####) as well as the official AutoBar version number.
+
+
+=== How do I report a missing item? ===
+ * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 List of Reported Missing Items]
+ * Please use something specific like: "Reins of the Black War Tiger 29471" or "Farkle Berry Juice 47:14000"
+ * The 29471 & 47 are the ItemId for each item.
+  * Get it from Loot Link as the "BaseId" in the tooltip.
+  * Look it up on [http://www.wowhead.com] or [http://www.allakhazam.com] by searching by name & then looking at the items URL. The ItemId is at the end.
+ * For foods & whatnot an aditional value after the colon gives how much it heals etc.
+ * If Farkle Berry Juice was real and a buff food then also include what it buffs:
+  * Farkle Berry Juice  47:14000   strength 30, dexterity 60, attack speed 90
+ * Is there no end to the wondrous Farkle Berry Juice? It is also a combo food, so list its mana gain as well:
+  * Farkle Berry Juice  47:14000 47:17000 mana strength 30, dexterity 60, attack speed 90
+
+ I do not have the time to go search the entire game for missing items. If you miss it, give me the specific info I need to add it.
 
 
 === How do I self cast or auto self cast? ===
@@ -63,21 +89,6 @@
  # Thus, the popup's availability is now mandatory.
  # The only "hiding" of the popup will be the "Popup on Shift" key.
  # To avoid support issues like: "I died / the raid wiped because I could not click on X potion after I ran out of Y" etc. the popup will just always be there. If you do run out of the first item there needs to be a fallback option during combat. So rather than allow users to break the mod through a "Disable Popup" option I am just not going to allow that. Popup on shift is close enough to hiding it. 
-
-
-=== How do I report a missing item? ===
- * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 List of Reported Missing Items]
- * Please use something specific like: "Reins of the Black War Tiger 29471" or "Farkle Berry Juice 47:14000"
- * The 29471 & 47 are the ItemId for each item.
-  * Get it from Loot Link as the "BaseId" in the tooltip.
-  * Look it up on [http://www.wowhead.com] or [http://www.allakhazam.com] by searching by name & then looking at the items URL. The ItemId is at the end.
- * For foods & whatnot an aditional value after the colon gives how much it heals etc.
- * If Farkle Berry Juice was real and a buff food then also include what it buffs:
-  * Farkle Berry Juice  47:14000   strength 30, dexterity 60, attack speed 90
- * Is there no end to the wondrous Farkle Berry Juice? It is also a combo food, so list its mana gain as well:
-  * Farkle Berry Juice  47:14000 47:17000 mana strength 30, dexterity 60, attack speed 90
-
- I do not have the time to go search the entire game for missing items. If you miss it, give me the specific info I need to add it.
 
 
 === How do I add items that are not in any existing categories? ===
