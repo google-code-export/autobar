@@ -48,10 +48,10 @@
  I do not have the time to go search the entire game for missing items. If you miss it, give me the specific info I need to add it.
 
 
-=== [http://www.wowace.com/forums/index.php?topic=12549.0 ButtonFacade] looks really cool why are you not using it right now! ===
+=== !ButtonFacade looks really cool why are you not using it right now! ===
  * It is in Beta.
  * Once it is a replacement for cyCircled it will be used.
- * The ButtonFacade switch will completely rip out all support for cyCircled.
+ * The [http://www.wowace.com/forums/index.php?topic=12549.0 ButtonFacade] switch will completely rip out all support for cyCircled.
 
 
 === How do I self cast or auto self cast? ===
