@@ -35,8 +35,7 @@
   # !AutoBar is constantly changing.  Mistakes can happen.
   # You can save this file first if you dont want to lose your settings.  If it does not fix your issue then just quit Wow, restore the file & relog.
   # Quit completely from WoW, then delete:
-  # World of Warcraft\WTF\Account\<YOUR ACCOUNT NAME>\!SavedVariables\!AutoBar.lua and 
-!AutoBar.bak.
+  # World of Warcraft\WTF\Account\<YOUR ACCOUNT NAME>\!SavedVariables\!AutoBar.lua and !AutoBar.bak.
   # Restart WoW.
 
 
