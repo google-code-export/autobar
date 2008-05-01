@@ -30,7 +30,14 @@
   * Startup errors in a particular mod probably mean it is not going to work correctly.
   * Please only report the first bug "/buggrabber 1".  The first one usually leads to a cascade of meaningless bugs that may or may not even be real.
   * Please state what version you are running when reporting a bug, it saves a lot of time and confusion.
-  * If you download off of wowace you need to report the SVN revision number (r#####) as well as the official AutoBar version number.
+  * If you download off of wowace you need to report the SVN revision number (r#####) as well as the official !AutoBar version number.
+*Perhaps the Saved Variable File is corrupted:*
+  * !AutoBar is constantly changing.  Mistakes can happen.
+  # Quit completely from WoW, then delete:
+  # World of Warcraft\WTF\Account\<YOUR ACCOUNT NAME>\!SavedVariables\!AutoBar.lua and 
+!AutoBar.bak.
+  # Restart WoW.
+  * You can save this file first if you dont want to lose your settings.  If it does not fix your issue then just quit Wow, restore the file & relog.
 
 
 === How do I report a missing item? ===
