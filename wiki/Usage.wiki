@@ -30,7 +30,7 @@ _Categories/New_
 ----
 === Custom Buttons ===
 _Bars/<My Bar>/Buttons/New_ or _Buttons/New_
-  * You can create new custom buttons.
+  * You can create new custom Buttons.
   * Add one or more regular categories or custom categories you created yourself to the button with *<My Button>/Categories/Add*
   * A default category with Hearthstone shows up.  Click its Popup & select your Custom Category or a another category instead.
   * Enable or Disable your custom button just like a regular button.
@@ -38,6 +38,14 @@ _Bars/<My Bar>/Buttons/New_ or _Buttons/New_
    * Select *Move the Buttons* mode.
    * Drag & drop items from your bags or spell book, etc. onto the button.
    * The item is added to the top of your Custom Category item list.
+----
+=== Custom Bars ===
+_Bars/New_
+  * You can create new custom Bars.
+  * Add new Buttons to it
+  * Add unplaced Buttons to it using *Bars/<My Bar>/Buttons/Add Button*
+  * Move Buttons from other Bars to it using *Move the Buttons* mode.
+  * Move Buttons from other Bars to it by first using *<My Button>/Remove* to remove it from the other Bar, then using *Bars/<My Bar>/Buttons/Add Button* to add it.
 ----
 === Empty "spacer" Button ===
   * Create a custom button and move it to the spot you want.
