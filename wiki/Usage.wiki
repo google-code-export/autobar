@@ -12,7 +12,7 @@
   * All Preferences are configurable via Waterfall in a tree style view
   * This replaces the old preferences, and you no longer need the separate `AutoBarConfig` mod.  It does no harm to have it but you do not need it and can safely delete it.
   * There are a few ways to bring up and edit the preferences:
-   * Double click on the AutoBar [http://files.wowace.com/cat-interface-enhancements.html FuBar] icon or minimap icon to bring up the GUI config
+   * Double click on the !AutoBar [http://files.wowace.com/cat-interface-enhancements.html FuBar] icon or minimap icon to bring up the GUI config
    * [http://files.wowace.com/cat-interface-enhancements.html FuBar] or the minimap has an AutoBar button which you can right click for a drop down menu.  Select the AutoBar option on this to bring up the GUI
    * Type */atb* or */autobar* to bring up the config as a text based console interface
    * Type */atb config* or */autobar config* to bring up the config as a GUI
