@@ -54,7 +54,7 @@ _Bars/New_
 ----
 === Bar movement ===
 _Move the Bars_
-  * Shift click the AutoBar _icon_, or select *Move the Bars* to make all your bars moveable and green (if shown) or red (if hidden).
+  * Shift click the AutoBar _icon_, or select *Move the Bars* to make all your bars moveable and green (if normally shown) or red (if normally hidden).
   * Click-drag to move the bar.
   * Left click on the bar to hide (red) / show (green) the bar.
   * Right click the bar to bring up a config drop down for that bar.
