@@ -42,7 +42,7 @@ _Bars/<My Bar>/Buttons/New_ or _Buttons/New_
 === Custom Bars ===
 _Bars/New_
   * You can create new custom Bars.
-  * Add new Buttons to it
+  * Add new Buttons to it with *Bars/<My Bar>/Buttons/New*
   * Add unplaced Buttons to it using *Bars/<My Bar>/Buttons/Add Button*
   * Move Buttons from other Bars to it using *Move the Buttons* mode.
   * Move Buttons from other Bars to it by first using *<My Button>/Remove* to remove it from the other Bar, then using *Bars/<My Bar>/Buttons/Add Button* to add it.
@@ -73,6 +73,10 @@ _Move the Buttons_
   * Click-drag to move the button.
   * Hover over the Button to see its name in your tooltip (if displayed).
   * Select *Move the Buttons* again to lock the buttons in place.
+_Remove and Add Button_
+  * Remove Buttons from other Bars using *<My Button>/Remove* to remove it.
+  * Next use *Bars/<My Bar>/Buttons/Add Button* to add it.
+
 ----
 === Button disabling / enabling ===
 _Bars/<My Bar>/Buttons/<the Button>/Enable_
