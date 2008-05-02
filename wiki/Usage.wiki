@@ -76,6 +76,19 @@ _Move the Buttons_
 _Remove and Add Button_
   * Remove Buttons from other Bars using *<My Button>/Remove* to remove it.
   * Next use *Bars/<My Bar>/Buttons/Add Button* to add it.
+_Button Sharing_
+  * The settings for each button can be set to share with Account, Class, or None.
+  * Use *Bars/<My Bar>/Buttons/<My Button>/Shared* or *Buttons/<My Button>/Shared* to set its sharing.
+  * By default most Buttons have Shared set to "Account": the same settings for all characters.
+  * Let's say you want to disable the hearth button for just one of your characters:
+   * Set Shared for that character to either "Class" or "None".
+   * Disable it for that character.
+   * It will be disabled and not show up for that character, but still be enabled for all other characters.
+_Bar/Shared Buttons_
+  * You can also rearrange Buttons differently for specific characters.
+  * By setting *Bars/<My Bar>/Shared Buttons* to "Class" or "None" you can have a custom button list for a particular character.
+  * For instance, you can leave all your characters with the default settings, but for your Druids you can set *Bars/<My Bar>/Shared Buttons* to "Class" and then move all the Buttons into one Bar.  All your druids will then have a single Bar with all the Buttons on it.
+  * You can take it a step further and treat your Feral druid differently by setting its Shared Buttons to "None" and then adding all your custom macro buttons for powershifting, shift potion drinking etc. to the Bar.
 
 ----
 === Button disabling / enabling ===
