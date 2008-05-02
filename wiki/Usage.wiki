@@ -83,9 +83,11 @@ _Bars/<My Bar>/Buttons/<the Button>/Enable_
   * Select *Enable* to have the Button be active.
   * Deselect *Enable* to stop the button from showing up on the bar.
 ----
-=== Bar Settings ===
+=== Bar Sharing Settings ===
 _Bars/<My Bar>/Shared Buttons_
+
 _Bars/<My Bar>/Shared Layout_
+
 _Bars/<My Bar>/Shared Position_
   * By default Bars have their shared settings as account wide (global).
   * A Bar has 3 aspects it can independently share: Position, Layout, Buttons.
