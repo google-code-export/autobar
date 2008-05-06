@@ -122,8 +122,8 @@ _Blizzard Options/Key Bindings_
 ----
 === Skinning ===
 _/bf_
-  * Skinning AutoBar is done via the !ButtonFacade mod and skin plugins for it.
+  * Skinning !AutoBar is done via the !ButtonFacade mod and skin plugins for it.
   * Use */bf* to bring up the !ButtonFacade options.
-  * Select *Elements/AutoBar/<my Bar>* and apply a skin to it.
+  * Select *Elements/!AutoBar/<my Bar>* and apply a skin to it.
   * Download !ButtonFacade from [http://files.wowace.com/ files.wowace.com]
-  * You can also use [http://www.wowace.com/wiki/WowAceUpdater Wow Ace Updater] to install and keep !ButtonFacade as well as !AutoBar and all your Ace mods up to date.
+  * You can also use the [http://www.wowace.com/wiki/WowAceUpdater Wow Ace Updater] to install and keep !ButtonFacade as well as !AutoBar and all your Ace mods up to date.
