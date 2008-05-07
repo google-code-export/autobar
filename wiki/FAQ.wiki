@@ -20,18 +20,20 @@
 
 
 === How can I find out if my bug is in AutoBar or some other mod? ===
-*Narrow it Down:*
+*Actually Download the LATEST version:*
   * Make sure you are not running disembeded. In your Wow Ace Updater preferences make sure the only thing checked on the left side of the preferences panel is "Default mode WITH externals".
-  * Please make sure you are running the latest version. The latest release is here under Downloads, and the latest developer build is on [http://files.wowace.com].  Please make sure your bug has not been fixed in the developer build before logging a bug.
+  * The latest developer build is on [http://files.wowace.com].  Please make sure your bug has not been fixed in the developer build before logging a bug.
   * Once you think you have downloaded !AutoBar, see *Files Required for !AutoBar to work* below and make sure you actually did download !AutoBar
+  * Completely quit Wow and restart.  Did the bug go away?
+*Narrow it Down:*
   * Download and install !Buggrabber and !BugSack from [http://files.wowace.com].
-  * Disable all other mods except AutoBar, Buggrabber and BugSack. If you still get the error then it may be an AutoBar bug.
+  * Use the BugSack UI (fubar icon or /bugsack) to turn off *Throttle at excessive amount* then log out.
+  * Disable all other mods except AutoBar, Buggrabber and BugSack. Log in.  If you still get the error then it may be an AutoBar bug.
   * Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
 *What error is causing it:*
   * Another potential source of bugs are script errors, especially during startup.
-  * Buggrabber records all bugs and lets you list them by typing in /buggrabber # into chat or much more easily just using the BugSack ui.
-  * Ideally there should be no errors.  !BugSack gives you a very nice ui for the !Buggrabber errors as well as options for bug tracking.
-  * Use the BugSack UI (fubar icon or /bugsack) to turn off *Throttle at excessive amount* then log out & back in again.
+  * Buggrabber records all bugs and lets you list them using the BugSack UI.
+  * Ideally there should be no errors.  !BugSack gives you a very nice UI for the !Buggrabber errors as well as options for bug tracking, and the ability to copy and paste errors.
   * Startup errors in a particular mod probably mean it is not going to work correctly.
   * Please only report the first bug.  The first one usually leads to a cascade of meaningless bugs that may or may not even be real.
   * Please state what version you are running when reporting a bug, it saves a lot of time and confusion.
