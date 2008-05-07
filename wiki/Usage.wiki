@@ -48,7 +48,7 @@ _Bars/New_
   * Move Buttons from other Bars to it by first using *<My Button>/Remove* to remove it from the other Bar, then using *Bars/<My Bar>/Buttons/Add Button* to add it.
 ====Example: Create a Trinket Bar====
   * Create a new Custom Bar and name it "Trinket Bar"
-  * Follow the directions below for moving Buttons to move both the Trinket 1 and Trinket 2 Buttons to it
+  * Follow the directions below for moving Buttons to move both the *Trinket 1* and *Trinket 2* Buttons to it
   * Adjust the size of it to be 1 x 2 columns or 1 x 2 rows
   * Use the Bar movement directions below to move the bar where you want it.
   * NOTE: While you can make your own Trinket 1 button using a custom Button with a custom Category of Trinkets, you can NOT make a Trinket 2 button that way.
