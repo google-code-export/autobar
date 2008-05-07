@@ -51,7 +51,7 @@ _Bars/New_
   * Follow the directions below for moving Buttons to move both the *Trinket 1* and *Trinket 2* Buttons to it
   * Adjust the size of it to be 1 x 2 columns or 1 x 2 rows
   * Use the Bar movement directions below to move the bar where you want it.
-  * NOTE: While you can make your own Trinket 1 button using a custom Button with a custom Category of Trinkets, you can NOT make a Trinket 2 button that way.
+  * NOTE: While you can make your own Trinket 1 button using a custom Button with a custom Category of Trinkets, you can NOT make a *Trinket 2* button that way.
 ----
 === Empty "spacer" Button ===
   * Create a custom button and move it to the spot you want.
