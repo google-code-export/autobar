@@ -26,8 +26,9 @@ _Categories/New_
   * Click on your category and name it
   * Open the tree to the items inside it & click *New* for however many items you need.
   * Click on each item.  This reveals a dragLink icon (empty one looks like a gift box) and a delete button for it.
-  * Drag a *spell* or *item* onto the dragLink icon.  You can drag from inventory, bags, action bars, or your spellbook.
+  * Drag a *spell*, *item* or *macro* onto the dragLink icon.  You can drag from inventory, bags, action bars, your spellbook, or the Macro UI.
   * You can click on the Delete button to get rid of an item.
+  * To add your own Macro click *new Macro*.  Name the macro and type in the Macro Text. Note that such custom Macros are in addition to the 18 that Blizzard allows.
 ----
 === Custom Buttons ===
 _Bars/<My Bar>/Buttons/New_ or _Buttons/New_
