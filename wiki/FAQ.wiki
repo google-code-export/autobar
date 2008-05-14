@@ -10,6 +10,11 @@
  * Remove all buttons on it that you do not like.
 
 
+=== How do I skin AutoBar / my cyCircled does not work? ===
+ * Please install [http://files.wowace.com/cat-action-bars.html ButtonFacade].
+ * Uninstall cyCirlced, or get whatever mod still needs it to switch to ButtonFacade.
+
+
 === How can I get my gigantic all in one Bar back? ===
  * Get into *!AutoBar/Move the Buttons* Mode.  Drag and drop all the Extras Buttons to your main bar.  Since both these bars are shared account wide this change happens for all characters.
  * Alternatively Use *Remove* on all the Extras Buttons, and then the Add Buttons popup to add them to the Basic Bar.
