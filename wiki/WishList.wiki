@@ -23,6 +23,8 @@ I think this would be a useful feature because running around in alt-z mode is r
   * Maybe have an unhappiness outline so you know to feed the poor thing b4 it runs away. 
  === Shaman Totem Buttons ===
   * Need to add indicator of active status 
+ === Always popup option === 
+  * I think this would be a great button specific option, for buttons such as combined mana regen, where you go through different pots, mana gems etc in a fight. Allowing a single button to remain expanded would allow MUCH quicker clicking through these. 
 = More Better PT3 =
   * PT3 use is pretty shallow at the moment. This can be extended to use PT3 sets directly instead of custom AutoBar sets. This gives AutoBar access to sets in PT3 from other mods like Baggins for instance. 
   * This would also entail some PT3 browsing & picking code. 
@@ -31,7 +33,5 @@ I think this would be a useful feature because running around in alt-z mode is r
   * Version AutoBar data & explicitly upgrade & leave behind obsolete stuff. This is now implemented.
   * Verify the data is not corrupt 
   * Hopefully this would avoid people needing to delete the AutoBar WTF files instead of just using Reset on the profile page and/or /script ReloadUI() 
-
-
 
 
