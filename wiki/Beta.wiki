@@ -60,16 +60,30 @@ Note that this is a beta, a particular release may not be stable, you may need t
 
 = What is still planned for the new version? =
  * Popup on shift.  There is just one more bug to iron out in the test state machine then this can be incorporated.
- * Items need to be shuffled as a bag location gets depleted during combat
+ * Shuffle: Items need to be shuffled as a bag location gets depleted during combat
  * Plugin architecture for buttons so this can become more of a framework
  * For custom categories allow direct selection of a PT3 set + an optional priority set (that takes precedence over the regular set for a particular item's value.  For example conjured food over regular)
  * Finish macro buttons.
-  * Editable text for a custom macro
-  * Ability to use one of the macros from Blizzard's macro interface.
+  * For Blizzard macros, use name, not number to index them.
  * Buttons
-  * Finally do a proper mount button (a Macro Button)
+  * Finally do a proper mount button (a Macro Button) including form switching, automatic flying vs ground selection, etc.
   * Trinket buttons
- * Upgrade the !StickyFrames "library" to handle multiple source frames via a registration mechanism & update BT3 to use it.  This would allow "sticky" dragging of !AutoBars & "docking" them to BT3 & other bar mods using the StickyFrames stuff.
+  * Buttons need a drop setting that if checked allow items to be dragged right onto the button itself
+  * AutoBarButtonCharge / Sprint Button for druids, rogues, warriors
+ * Combat Buttons.  (short duration buffs)
+   * AutoBarButtonCooldownPotionCombat (Heroic Potion, Destruction Potion ...)
+   * AutoBarButtonCooldownStoneCombat (Nightmare Seed, Flamecap, Fel Blossom, ...)
+ * Finish LibStickyFrames: needs grouped dragging.
+ * Trelis: disable/enable bar during move bars or buttons orphans it and other glitches.
+ * Add Position for X & Y to Bar ui.  Location -> Position
+ * Verify arena water precedence & tears + conjured only
+ * Switch to GetItemIcon(itemId or itemName or itemLink or itemString) for category icons
+ * Reset Button for built in Bars
+ * Reset Button for built in Buttons
+ * Reset Button for AutoBar
+ * Resolve issues with class buttons being placed on account bars.
+ * Implement upgrade to version 1: delete old data.
+ * Clicking / channeling feedback for buttons
  * Customization via Waterfall is barely functional & needs drag & drop rearranging + icons in the tree view at a minimum.
 
 
