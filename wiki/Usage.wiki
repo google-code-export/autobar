@@ -7,6 +7,7 @@
  * Sharing of settings can be done per Button and per the Layout / Position / Buttons of bars.
  * There are more buttons available, some with overlapping functionality. This is intentional.  Pick the ones you want and disable any buttons you do not want.
  * Built in Buttons are named and keybindings are directly to that Button, so if you move the Button around your keybinding still works.
+ * Your Custom Buttons can now have Custom Categories containing items, spells and macros.
 ----
 === Preferences ===
   * All Preferences are configurable via Waterfall in a tree style view
