@@ -10,6 +10,14 @@
  * Remove all buttons on it that you do not like.
 
 
+=== Why can AutoBar no longer shuffle items during combat? ===
+Stuff in your bags will soon be able to shuffle again.
+
+
+=== Arrange on use is not working for me during combat! ===
+ True that.
+
+
 === How do I skin AutoBar / my cyCircled does not work? ===
  * Please install [http://files.wowace.com/cat-action-bars.html ButtonFacade].
  * Uninstall cyCirlced, or get whatever mod still needs it to switch to ButtonFacade.
@@ -120,12 +128,6 @@ Inside "World of Warcraft\Interface\!AddOns\!AutoBar\libs":
 If these files are not inside *World of Warcraft\Interface\!AddOns\!AutoBar* then you have failed to download !AutoBar correctly.  Please go to files.wowace.com to get the zip with what you actually need.
 
 
-=== !ButtonFacade looks really cool why are you not using it right now! ===
- * It is in Beta.
- * Once it is a replacement for cyCircled it will be used.
- * The [http://www.wowace.com/forums/index.php?topic=12549.0 ButtonFacade] switch will completely rip out all support for cyCircled.
-
-
 === How do I self cast or auto self cast? ===
  * For targeted items right click generally self casts
   * If you want to automatically cast items / spells on yourself when your target is not valid for that spell or item:
@@ -145,14 +147,6 @@ If these files are not inside *World of Warcraft\Interface\!AddOns\!AutoBar* the
   # AutoBar uses about 400-500k
   # AutoBar does use the embedded Ace libraries which load along with the first Ace mod which alphabeticaly tends to be AutoBar.
   # The Ace libraries are shared among all your Ace mods.  If you want to get a better idea of who is hogging memory then load up the optional standalone versions of the Ace libraries.  Do not forget to delete them after your experiment is over.
-
-
-=== Why can AutoBar no longer shuffle items during combat? ===
- The whole point behind the 2.0 UI changes Blizzard made is to specifically disable automation during combat. As you go into combat, the buttons on the bar and popups are frozen. They can no longer shuffle or change. That is it, end of story. No amount of requests to change this behaviour will make AutoBar behave differently during combat.  That said, it is possible to shuffle items around behind the scene.  I will look into that during the next Beta cycle.
-
-
-=== Arrange on use is not working for me during combat! ===
- True that.
 
 
 === Waah, I don't want popups? ===
