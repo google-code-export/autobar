@@ -11,7 +11,7 @@
 
 
 === Why can AutoBar no longer shuffle items during combat? ===
-Stuff in your bags will soon be able to shuffle again.
+You need to enable the Shuffle attribute for a Button.  This lets it shuffle certain items during combat.
 
 
 === Arrange on use is not working for me during combat! ===
