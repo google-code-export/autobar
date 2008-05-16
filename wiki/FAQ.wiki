@@ -20,7 +20,7 @@ You need to enable the Shuffle attribute for a Button.  This lets it shuffle cer
 
 === How do I skin AutoBar / my cyCircled does not work? ===
  * Please install [http://files.wowace.com/cat-action-bars.html ButtonFacade].
- * Uninstall cyCirlced, or get whatever mod still needs it to switch to ButtonFacade.
+ * Uninstall cyCircled, or get whatever mod still needs it to switch to ButtonFacade.
 
 
 === How can I get my gigantic all in one Bar back? ===
