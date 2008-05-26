@@ -1,4 +1,5 @@
 #summary Disembedding is the worst possible thing you can possibly do with your wowace mods.
+#labels Featured
 
 WARNING: This page contains strong language and may not be suitable for viewing by all users.
 
