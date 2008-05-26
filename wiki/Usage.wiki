@@ -136,26 +136,17 @@ _Bars/<My Bar>/Shared Position_
 === Key Bindings ===
 _Blizzard Options/Key Bindings_
 _!AutoBar/Key Bindings_
+_Alt-Click Minimap / Fubar Icon_
   * Regular named Buttons are bound through the Blizzard *Options/Key Bindings* interface
    * Note that during the beta process not all the Named Buttons will have bindings until they are stable and functional.
   * You can also use *_!AutoBar/Key Bindings* to get into Key Bindings mode.
    * All bars get a teal color in this mode.
    * Simply hover over a button and press the key(s) you want bound to it.
   * You may also use a mod like [http://www.wowinterface.com/downloads/fileinfo.php?s=&id=5108 Clique] or [http://files.wowace.com/cat-interface-enhancements.html Click2Cast]
+  * Frame Names
+   * You can see the frame name for a button by going into Key Bindings mode and hovering over it.  The frame name is in brackets after the Button name in the tooltip.
    * For your Custom Button the frame name is `AutoBarCustomButton<MyCustomButtonName>Frame`.  So if you named your button `Chocolate` then you would bind to `AutoBarCustomButtonChocolateFrame`
    * Named Button frame names are `<ButtonName>Frame`.  So to bind to `AutoBarButtonBuffWeapon2` you would use `AutoBarButtonBuffWeapon2Frame`.  A full list is in Locale-enUS.lua under "Button Names"
-   * You can see the frame name for a button by going into Key Bindings mode and hovering over it.  The frame name is in brackets after the Button name in the tooltip.
-   * Example: `/script SetOverrideBindingClick(AutoBarButtonTrinket1Frame, false, "U", "AutoBarButtonTrinket1Frame")` will for the current login only bind U to the first trinket button.  Use `/script ClearOverrideBindings(AutoBarButtonTrinket1Frame)` to clear your bindings.
-----
-=== Skinning ===
-_!AutoBar/Skin the Buttons_
-_Ctrl-Shift-Click Minimap / Fubar Icon_
-_/bf_
-  * Skinning !AutoBar is done via the !ButtonFacade mod and Skin plugins for it.
-  * Select *!ButtonFacade/!AutoBar/<my Bar>* and apply a skin to the Bar.
-  * Select *!ButtonFacade/!AutoBar* to apply the same skin to all the Bars.
-  * Download !ButtonFacade from [http://files.wowace.com/ files.wowace.com]
-  * You can also use the [http://www.wowace.com/wiki/WowAceUpdater Wow Ace Updater] to install and keep !ButtonFacade as well as !AutoBar and all your Ace mods up to date.
 ----
 === Clicking !AutoBar Buttons from a Macro ===
 /click <ButtonFrameName>_
@@ -167,3 +158,13 @@ So the macro would be
 {{{
 /click AutoBarButtonTrinket2Frame
 }}}
+----
+=== Skinning ===
+_!AutoBar/Skin the Buttons_
+_Ctrl-Shift-Click Minimap / Fubar Icon_
+_/bf_
+  * Skinning !AutoBar is done via the !ButtonFacade mod and Skin plugins for it.
+  * Select *!ButtonFacade/!AutoBar/<my Bar>* and apply a skin to the Bar.
+  * Select *!ButtonFacade/!AutoBar* to apply the same skin to all the Bars.
+  * Download !ButtonFacade from [http://files.wowace.com/ files.wowace.com]
+  * You can also use the [http://www.wowace.com/wiki/WowAceUpdater Wow Ace Updater] to install and keep !ButtonFacade as well as !AutoBar and all your Ace mods up to date.
