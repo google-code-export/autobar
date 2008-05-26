@@ -9,9 +9,11 @@ DISEMBEDDING IS ONLY FOR PROGRAMMERS.  If you are not a programmer then you lack
  * You save a couple of seconds of load time IF everything went well.
  * If you are looking at memory issues it gives you a slightly better idea of what is going on.
 
-That is it.  That is the sum total of what you accomplish.
+That is it.  That is the sum total of what you accomplish.  After loading Wow, there is absolutely no difference whatsoever between disembedded and embedded mods performance wise. None.
 
 = What are the hideous drawbacks of running disembedded? =
+ * Disembedding is bad, ... M'Kay.
+ * Disembedded libs contain more files than their embeded versions and sometimes actually contain code embedded libs do not.  Extra code is a big deal because that is stuff sitting around wasting your time and your computers time.
  * Your startup time increases significantly if toc files do not find what they are looking for because thats how blizzard coded it.  Perhaps your updater runs around and rewrites toc files for you.  Perhaps this will never go hideously wrong for you.  Perhaps.
  * Complete and utter noobs run disembeded because they read or heard somewhere that it is kool.  Then they run into errors and do not have any clue how to fix it so they post all over the place and waste everyones time.
  * Mods will break simply because your libraries are now scattered all over and can be out of date, incompatible, missing or any number of other things that can go wrong.  This breaking has nothing to do with the mod though, it works perfectly fine embedded.  The only thing that went wrong is user error.
