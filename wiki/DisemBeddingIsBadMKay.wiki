@@ -19,3 +19,7 @@ That is it.  That is the sum total of what you accomplish.  After loading Wow, t
  * Mods will break simply because your libraries are now scattered all over and can be out of date, incompatible, missing or any number of other things that can go wrong.  This breaking has nothing to do with the mod though, it works perfectly fine embedded.  The only thing that went wrong is user error.
  * Every time an included lib changes, is added or removed, some ignorant disembedded user will have an issue and come post on the forums wasting peoples time.  Every Time.  It does not matter if the checkin is flawless or not.  Phantom errors will get reported.  This is beyond outrageous.
  * Letting you run embedded is catering to some silly fetish you have that is not based in reality.  The support cost of your fetish dwarfs the couple of seconds you may have saved on startup or a few extra k on your hard drive.  Look around.  You can buy terrabyte drives now.  Hard drive space is just not an issue.  My entire addon folder with a ton of mods is 100MB.  This is a tiny tiny fraction of just one of the hard drives in my computer.
+
+= I am convinced.  How do I get the real mod? =
+ * Follow the FAQ direction to Actually Download the LATEST version.
+ * Never look back.
