@@ -60,8 +60,10 @@ _Bars/New_
   * Delete its category
   * Select "Always Show"
 ----
-=== Bar movement ===
+=== Bar Positioning ===
 _Move the Bars_
+_Shift-Click Minimap / Fubar Icon_
+_/kb or /lkb or /libkeybound_
   * Shift click the AutoBar _icon_, or select *Move the Bars* to make all your bars moveable and green (if normally shown) or red (if normally hidden).
   * Click-drag to move the bar.
   * Left click on the bar to hide (red) / show (green) the bar.
@@ -72,8 +74,18 @@ _Move the Bars_
    * Eventually this snapping will extend to other bars and frames beyond AutoBar.
    * You can disable snapping by holding down the Shift key.
 ----
+=== Bar Sticking ===
+_Move the Bars_
+_Shift-Click Minimap / Fubar Icon_
+_/kb or /lkb or /libkeybound_
+  * Shift click the AutoBar _icon_, or select *Move the Bars* to make all your bars moveable and green (if normally shown) or red (if normally hidden).
+  * A Bar can stick to another bar.  Move it close till it snaps together.  The side that is sticking will turn red.  If you let go at that point the Bar is stuck to the other Bar.
+  * If you move the parent Bar your Bar is stuck to, your Bar will move with it.
+  * When you are not dragging a Bar, some UI elements are colored blue.  These can be stuck to, but can not themselves be dragged around.  For example, you can stick a Bar to parts of the Chat dialog, but you cannot move the Chat dialog around and stick it to an AutoBar Bar.
+  * To unstick a Bar, simply drag it away from its parent.
+----
 === Button movement ===
-_Move the Buttons_
+_!AutoBar/Move the Buttons_
   * Control click the AutoBar _icon_, or select *Move the Buttons* to make all your buttons moveable.
    * All active buttons will get a green outline
    * All inactive buttons will show up with a blue outline
@@ -131,9 +143,11 @@ _Blizzard Options/Key Bindings_
    * Example: `/script SetOverrideBindingClick(AutoBarButtonTrinket1Frame, false, "U", "AutoBarButtonTrinket1Frame")` will for the current login only bind U to the first trinket button.  Use `/script ClearOverrideBindings(AutoBarButtonTrinket1Frame)` to clear your bindings.
 ----
 === Skinning ===
+_!AutoBar/Skin the Buttons_
+_Ctrl-Shift-Click Minimap / Fubar Icon_
 _/bf_
   * Skinning !AutoBar is done via the !ButtonFacade mod and skin plugins for it.
-  * Use */bf* to bring up the !ButtonFacade options.
-  * Select *Elements/!AutoBar/<my Bar>* and apply a skin to it.
+  * Select *ButtonFacade/!AutoBar/<my Bar>* and apply a skin to the Bar.
+  * Select *ButtonFacade/!AutoBar* to apply the same skin to all the Bars.
   * Download !ButtonFacade from [http://files.wowace.com/ files.wowace.com]
   * You can also use the [http://www.wowace.com/wiki/WowAceUpdater Wow Ace Updater] to install and keep !ButtonFacade as well as !AutoBar and all your Ace mods up to date.
