@@ -152,11 +152,11 @@ _/bf_
   * Download !ButtonFacade from [http://files.wowace.com/ files.wowace.com]
   * You can also use the [http://www.wowace.com/wiki/WowAceUpdater Wow Ace Updater] to install and keep !ButtonFacade as well as !AutoBar and all your Ace mods up to date.
 ----
-=== Clicking AutoBar Buttons from a Macro ===
+=== Clicking !AutoBar Buttons from a Macro ===
 /click <ButtonFrameName>_
-  * To get ButtonFrameName, go into Key Bindings mode and hover over it.  It will show up in brackets after the Button name.
+  * To get the !ButtonFrameName, go into Key Bindings mode and hover over it.  It will show up in brackets after the Button name.
 
-For example, hovering over the Trinket 2 Button the tooltip shows "AutoBarButtonTrinket2Frame"
+For example, hovering over the Trinket 2 Button the tooltip shows "!AutoBarButtonTrinket2Frame"
 
 So the macro would be
 {{{
