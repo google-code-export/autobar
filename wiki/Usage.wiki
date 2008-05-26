@@ -146,8 +146,19 @@ _Blizzard Options/Key Bindings_
 _!AutoBar/Skin the Buttons_
 _Ctrl-Shift-Click Minimap / Fubar Icon_
 _/bf_
-  * Skinning !AutoBar is done via the !ButtonFacade mod and skin plugins for it.
-  * Select *ButtonFacade/!AutoBar/<my Bar>* and apply a skin to the Bar.
-  * Select *ButtonFacade/!AutoBar* to apply the same skin to all the Bars.
+  * Skinning !AutoBar is done via the !ButtonFacade mod and Skin plugins for it.
+  * Select *!ButtonFacade/!AutoBar/<my Bar>* and apply a skin to the Bar.
+  * Select *!ButtonFacade/!AutoBar* to apply the same skin to all the Bars.
   * Download !ButtonFacade from [http://files.wowace.com/ files.wowace.com]
   * You can also use the [http://www.wowace.com/wiki/WowAceUpdater Wow Ace Updater] to install and keep !ButtonFacade as well as !AutoBar and all your Ace mods up to date.
+----
+=== Clicking AutoBar Buttons from a Macro ===
+/click <ButtonFrameName>_
+  * To get ButtonFrameName, go into Key Bindings mode and hover over it.  It will show up in brackets after the Button name.
+
+For example, hovering over the Trinket 2 Button the tooltip shows "AutoBarButtonTrinket2Frame"
+
+So the macro would be
+{{{
+/click AutoBarButtonTrinket2Frame
+}}}
