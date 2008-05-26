@@ -31,7 +31,8 @@ _Categories/New_
   * To add your own Macro click *New Macro*.  Name the macro and type in the Macro Text. Note that such custom Macros are in addition to the 18 that Blizzard allows.
 ----
 === Custom Buttons ===
-_Bars/<My Bar>/Buttons/New_ or _Buttons/New_
+ _Bars/<My Bar>/Buttons/New_
+ _Buttons/New_
   * You can create new custom Buttons.
   * Add one or more regular categories or custom categories you created yourself to the button with *<My Button>/Categories/Add*
   * A default category with Hearthstone shows up.  Click its Popup & select your Custom Category or a another category instead.
