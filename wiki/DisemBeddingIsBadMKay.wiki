@@ -13,6 +13,7 @@ That is it.  That is the sum total of what you accomplish.  After loading Wow, t
 
 = What are the hideous drawbacks of running disembedded? =
  * Disembedding is bad, ... M'Kay.
+ * All those libs that used to be inside your mods are now loaded like addons and your list of "Addons" becomes huge.
  * Disembedded libs contain more files than their embeded versions and sometimes actually contain code embedded libs do not.  Extra code is a big deal because that is stuff sitting around wasting your time and your computers time.
  * Your startup time increases significantly if toc files do not find what they are looking for because thats how blizzard coded it.  Perhaps your updater runs around and rewrites toc files for you.  Perhaps this will never go hideously wrong for you.  Perhaps.
  * Complete and utter noobs run disembeded because they read or heard somewhere that it is kool.  Then they run into errors and do not have any clue how to fix it so they post all over the place and waste everyones time.
