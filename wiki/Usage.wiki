@@ -75,7 +75,7 @@
   * Right click the bar to bring up a config drop down for that bar.
   * Select *Move the Bars* again to lock the bars in place.
   * When dragging, the bars are "snappy" and snap to other AutoBar bars.
-   * Snapping is also done to some Blizzard frames.
+   * Snapping is also done to some Blizzard frames and other Mods.  You can snap to them but not drag them this way, so they are colored blue.
    * Eventually this snapping will extend to other bars and frames beyond AutoBar.
    * You can disable snapping by holding down the Shift key.
 ----
@@ -91,6 +91,10 @@
   * To unstick a Bar, simply drag it away from its parent.
 ----
 === Button movement ===
+|| *<My Button>/Bar Location* ||
+
+  * Move a Button to a particular Bar by clicking *<My Button>/Bar Location* and selecting the Bar you want it on.
+  * Remove a Button from a Bar by clicking *<My Button>/Bar Location* and selecting "None".
 || *!AutoBar/Move the Buttons* ||
 
   * Control click the AutoBar _icon_, or select *Move the Buttons* to make all your buttons moveable.
