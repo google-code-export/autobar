@@ -72,15 +72,15 @@ The basic answer is that any software explores a problem domain.  Software also 
  * Functional Dissonance
 To combat these maladies, the software is refactored from time to time to better explore current aspects of the problem domain and to enable exploration of new areas.
 
-Such is the case with the current rewrite of AutoBar.  The ailments in the old version are numerous and multiple.  It became old & set in its ways and must now make way for a younger vigorous clone with improved dna & super powers to meet new challenges.  At times this will make it seem more monster than superhero, but bear with it, the end result will be worth the growing pains.
+Such is the case with the current rewrite of !AutoBar.  The ailments in the old version are numerous and multiple.  It became old & set in its ways and must now make way for a younger vigorous clone with improved dna & super powers to meet new challenges.  At times this will make it seem more monster than superhero, but bear with it, the end result will be worth the growing pains.
 
 
 = What do I do if I want to go back to the old version? =
- * First I strongly urge you to post your difficulties in the forum, or issues list.  This is the only way AutoBar will change to accomodate your needs and tastes.
+ * First I strongly urge you to post your difficulties in the forum, or issues list.  This is the only way !AutoBar will change to accomodate your needs and tastes.
  * Simply download some old one from the downloads section.
  * Redo your settings
  * If you reassigned any key bindings you will have to fix that yourself.
 
 
-= The old AutoBar was so much better. =
+= The old !AutoBar was so much better. =
 I totally get this point of view.  It is exactly like how ancient savages lived in harmony with nature.  They didn't kill animals or each other unless it was absolutely necessary: like if the witchdoctor told you to, or if someone looked at you funny.  If only we could go back to such an idylic age when people easily lived into their 20's.  Nowadays you are lucky if you can get to 90.
