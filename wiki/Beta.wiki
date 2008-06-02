@@ -17,8 +17,8 @@ Using the Beta:
 
 Note that this is a beta, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
 
-= What is not working right now? =
 
+= What is not working right now? =
  * Preferences need improvement
   * ACE3 / Rock
   * Customization via Waterfall is barely functional & needs drag & drop rearranging + icons in the tree view at a minimum.
@@ -32,6 +32,7 @@ Note that this is a beta, a particular release may not be stable, you may need t
  * !LibStickyFrames-1.0
   * Fine movement controls for a selected frame (say temporary arrow keys + modifiers for 1 or 5 pixel or grid movement)
   * Grouped moving
+  * Sticky Parent selection even with multiple overlapping frames.
  * Plugin architecture for buttons so this can become more of a framework
  * Buttons
   * !AutoBarButtonClassPet: for hunters(break19: left click summon, right click revive)
@@ -48,31 +49,16 @@ Note that this is a beta, a particular release may not be stable, you may need t
 
 = What is still planned for the new version? =
  * Popup on shift.  There is just one more bug to iron out in the test state machine then this can be incorporated.
- * Shuffle: Items need to be shuffled as a bag location gets depleted during combat
- * Plugin architecture for buttons so this can become more of a framework
- * For custom categories allow direct selection of a PT3 set + an optional priority set (that takes precedence over the regular set for a particular item's value.  For example conjured food over regular)
  * Finish macro buttons.
   * For Blizzard macros, use name, not number to index them.
- * Buttons
-  * Finally do a proper mount button (a Macro Button) including form switching, automatic flying vs ground selection, etc.
-  * Trinket buttons
-  * Buttons need a drop setting that if checked allow items to be dragged right onto the button itself
-  * AutoBarButtonCharge / Sprint Button for druids, rogues, warriors
  * Combat Buttons.  (short duration buffs)
    * AutoBarButtonCooldownPotionCombat (Heroic Potion, Destruction Potion ...)
    * AutoBarButtonCooldownStoneCombat (Nightmare Seed, Flamecap, Fel Blossom, ...)
- * Finish LibStickyFrames: needs grouped dragging.
- * Trelis: disable/enable bar during move bars or buttons orphans it and other glitches.
- * Add Position for X & Y to Bar ui.  Location -> Position
- * Verify arena water precedence & tears + conjured only
- * Switch to GetItemIcon(itemId or itemName or itemLink or itemString) for category icons
  * Reset Button for built in Bars
  * Reset Button for built in Buttons
  * Reset Button for AutoBar
- * Resolve issues with class buttons being placed on account bars.
- * Implement upgrade to version 1: delete old data.
- * Clicking / channeling feedback for buttons
- * Customization via Waterfall is barely functional & needs drag & drop rearranging + icons in the tree view at a minimum.
+ * Verify arena water precedence & tears + conjured only
+ * Switch to GetItemIcon(itemId or itemName or itemLink or itemString) for category icons
 
 
 = Why make a new version? =
@@ -91,5 +77,5 @@ Such is the case with the current rewrite of AutoBar.  The ailments in the old v
 = What do I do if I want to go back to the old version? =
  * First I strongly urge you to post your difficulties in the forum, or issues list.  This is the only way AutoBar will change to accomodate your needs and tastes.
  * Simply download some old one from the downloads section.
- * Your settings will remain the same (assuming you do not delete your saved variables)
+ * Redo your settings
  * If you reassigned any key bindings you will have to fix that yourself.
