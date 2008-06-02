@@ -46,6 +46,7 @@
 ----
 === Custom Bars ===
 || *Bars/New* ||
+
   * You can create new custom Bars.
   * Add new Buttons to it with *Bars/<My Bar>/Buttons/New*
   * Add unplaced Buttons to it using *Bars/<My Bar>/Buttons/Add Button*
@@ -67,6 +68,7 @@
 || *Move the Bars* ||
 || *Shift-Click Minimap / Fubar Icon* ||
 || *kb or /lkb or /libkeybound* ||
+
   * Shift click the AutoBar _icon_, or select *Move the Bars* to make all your bars moveable and green (if normally shown) or red (if normally hidden).
   * Click-drag to move the bar.
   * Left click on the bar to hide (red) / show (green) the bar.
@@ -81,6 +83,7 @@
 || *Move the Bars* ||
 || *Shift-Click Minimap / Fubar Icon* ||
 || */kb or /lkb or /libkeybound* ||
+
   * Shift click the AutoBar _icon_, or select *Move the Bars* to make all your bars moveable and green (if normally shown) or red (if normally hidden).
   * A Bar can stick to another bar.  Move it close till it snaps together.  The side that is sticking will turn red.  If you let go at that point the Bar is stuck to the other Bar.
   * If you move the parent Bar your Bar is stuck to, your Bar will move with it.
@@ -89,6 +92,7 @@
 ----
 === Button movement ===
 || *!AutoBar/Move the Buttons* ||
+
   * Control click the AutoBar _icon_, or select *Move the Buttons* to make all your buttons moveable.
    * All active buttons will get a green outline
    * All inactive buttons will show up with a blue outline
@@ -97,9 +101,11 @@
   * Hover over the Button to see its name in your tooltip (if displayed).
   * Select *Move the Buttons* again to lock the buttons in place.
 || *Remove and Add Button* ||
+
   * Remove Buttons from other Bars using *<My Button>/Remove* to remove it.
   * Next use *Bars/<My Bar>/Buttons/Add Button* to add it.
 || *Bar/Shared Buttons* ||
+
   * You can also rearrange Buttons differently for specific characters.
   * By setting *Bars/<My Bar>/Shared Buttons* to "Class" or "None" you can have a custom button list for a particular character.
   * For instance, you can leave all your characters with the default settings, but for your Druids you can set *Bars/<My Bar>/Shared Buttons* to "Class" and then move all the Buttons into one Bar.  All your druids will then have a single Bar with all the Buttons on it.
@@ -109,6 +115,7 @@
 === Button Sharing ===
 || *Bars/<My Bar>/Buttons/<My Button>/Shared* ||
 || *Buttons/<My Button>/Shared* ||
+
   * The settings for each button can be set to share with Account, Class, or None.
   * By default most Buttons have Shared set to "Account": the same settings for all characters.
   * Let's say you want to disable the hearth button for just one of your characters:
@@ -118,6 +125,7 @@
 ----
 === Button disabling / enabling ===
 || *Bars/<My Bar>/Buttons/<the Button>/Enable* ||
+
   * Select *Enable* to have the Button be active.
   * Deselect *Enable* to stop the button from showing up on the bar.
 ----
@@ -125,6 +133,7 @@
 || *Bars/<My Bar>/Shared Buttons* ||
 || *Bars/<My Bar>/Shared Layout* ||
 || *Bars/<My Bar>/Shared Position* ||
+
   * By default Bars have their shared settings as account wide (global).
   * A Bar has 3 aspects it can independently share: Position, Layout, Buttons.
   * The setting can be to share with Account, Class, or None.
@@ -138,6 +147,7 @@
 || *Blizzard Options/Key Bindings* ||
 || *!AutoBar/Key Bindings* ||
 || *Alt-Click Minimap / Fubar Icon* ||
+
   * Regular named Buttons are bound through the Blizzard *Options/Key Bindings* interface
    * Note that during the beta process not all the Named Buttons will have bindings until they are stable and functional.
   * You can also use *_!AutoBar/Key Bindings* to get into Key Bindings mode.
@@ -151,6 +161,7 @@
 ----
 === Clicking !AutoBar Buttons from a Macro ===
 || */click <ButtonFrameName>* ||
+
   * To get the !ButtonFrameName, go into Key Bindings mode and hover over it.  It will show up in brackets after the Button name.
 
 For example, hovering over the Trinket 2 Button the tooltip shows "!AutoBarButtonTrinket2Frame"
@@ -164,6 +175,7 @@ So the macro would be
 || *!AutoBar/Skin the Buttons* ||
 || *Ctrl-Shift-Click Minimap / Fubar Icon* ||
 || */bf* ||
+
   * Skinning !AutoBar is done via the !ButtonFacade mod and Skin plugins for it.
   * Select *!ButtonFacade/!AutoBar/<my Bar>* and apply a skin to the Bar.
   * Select *!ButtonFacade/!AutoBar* to apply the same skin to all the Bars.
