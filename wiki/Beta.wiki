@@ -69,6 +69,7 @@ The basic answer is that any software explores a problem domain.  Software also 
  * Hack Plaque
  * Upgrade Resistance
  * API Collapse
+ * Functional Dissonance
 To combat these maladies, the software is refactored from time to time to better explore current aspects of the problem domain and to enable exploration of new areas.
 
 Such is the case with the current rewrite of AutoBar.  The ailments in the old version are numerous and multiple.  It became old & set in its ways and must now make way for a younger vigorous clone with improved dna & super powers to meet new challenges.  At times this will make it seem more monster than superhero, but bear with it, the end result will be worth the growing pains.
