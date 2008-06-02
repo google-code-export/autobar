@@ -22,6 +22,7 @@
 ----
 === Custom Categories ===
 || *Categories/New* ||
+
   * You can create new custom categories that are available to all your characters
   * Click on your category and name it
   * Open the tree to the items inside it & click *New* for however many items you need.
