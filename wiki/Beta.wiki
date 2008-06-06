@@ -21,8 +21,9 @@ Note that this is a beta, a particular release may not be stable, you may need t
 = What will slip till after release? =
  * Conditonal Bars / Buttons
   * Popup on shift.  There is just one more bug to iron out in the test state machine then this can be incorporated.
-  * Stance, form and conditional bars / buttons.
+  * Stance, form and macro conditional bars / buttons.
   * Boss based Buttons, Bars
+  * Modifier key support for buttons
  * Reset Button for built in Bars
  * Reset Button for built in Buttons
  * Reset Button for AutoBar
