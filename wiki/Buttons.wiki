@@ -18,6 +18,9 @@
  === Mount ===
    * Various regular, flying and Ahn'Qiraj mounts
    * Summoned mounts, and travel forms
+   * When you leave a flying zone it remembers the mount you used there and will switch to it when you get back to a flying zone.
+   * When you leave a no-fly zone it remembers the mount you used there and will switch to it when you go back to a no-fly zone.
+   * This requires you to have "Arrange on Use" checked for the Button
 
  === Bandages ===
    * Various Bandages, including BG specific ones.
@@ -52,6 +55,7 @@
  === Buff Weapon ===
    * Buff Weapon Main Hand
    * Buff Weapon Off Hand
+   * There are two separate buttons so you can hot key both if needed.
 
  === Fishing ===
    * Casting button is the default
@@ -64,6 +68,7 @@
    * Various quest items you need to click on to use.
    * Includes some permanent ones like Vargoth's Staff, kegs, fronds etc.
    * Daily quest items like booterang, bombs etc.
+   * Some Boss items added.
 
  === Crafting ===
    * Alchemy, Leatherworking, Cooking, etc.
