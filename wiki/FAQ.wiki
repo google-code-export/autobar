@@ -1,6 +1,10 @@
 #summary Frequently Asked Questions.
 #labels Featured
 
+=== How do I find errors / bugs in AutoBar ===
+ * See the [ErrorsBugs] page.
+
+
 === How do I Use AutoBar ===
  * See the [Usage] page.
 
