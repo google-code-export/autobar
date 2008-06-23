@@ -1,4 +1,4 @@
-#comment How to find Bugs / Errors.
+#summary How to find Bugs / Errors.
 
 === Actually Download the LATEST version: ===
   * Make sure you are not running disembeded. In your Wow Ace Updater preferences make sure the only thing checked on the left side of the preferences panel is "Default mode WITH externals".
