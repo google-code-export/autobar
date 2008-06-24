@@ -28,8 +28,8 @@ You need to enable the Shuffle attribute for a Button.  This lets it shuffle cer
 
 
 === How can I get my gigantic all in one Bar back? ===
- * Get into *!AutoBar/Move the Buttons* Mode.  Drag and drop all the Extras Buttons to your main bar.  Since both these bars are shared account wide this change happens for all characters.
- * Alternatively Use *Remove* on all the Extras Buttons, and then the Add Buttons popup to add them to the Basic Bar.
+ * Set *Bar Location* for each Extras Button to the Basic Bar, or *Remove* all the Extras Buttons, and then use the *Add Buttons* popup to add them to the Basic Bar.
+ * Alternatively use *!AutoBar/Move the Buttons* Mode.  Drag and drop all the Extras Buttons to your main bar.  Since both these bars are shared account wide this change happens for all characters.
  * Next you need to move the Class Buttons.  Set *Basic/Shared Buttons* to "Class" for the currently logged in character.  Now drag the class buttons over.  Since the Buttons are specific to that class, setting sharing to Class lets the bar remember the buttons differently for each class.
  * Repeat moving the Class Buttons for each different class you have.
  * If you have multiple characters of the same class that need individual button layouts then simply set *Shared Buttons* to "None" for one or more of them.
