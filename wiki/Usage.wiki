@@ -49,6 +49,7 @@
    * Select *Move the Buttons* mode.
    * Drag & drop items from your bags or spell book, etc. onto the button.
    * The item is added to the top of your Custom Category item list.
+  * If you check the *Drop* setting of your custom button, then you can drag & drop new items into it anytime.  It will even create a Custom Category for the Button if it does not already have one.
 ----
 === Custom Bars ===
 || *Bars/New* ||
