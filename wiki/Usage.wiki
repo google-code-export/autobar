@@ -97,7 +97,7 @@
   * When you are not dragging a Bar, some UI elements are colored blue.  These can be stuck to, but can not themselves be dragged around.  For example, you can stick a Bar to parts of the Chat dialog, but you cannot move the Chat dialog around and stick it to an AutoBar Bar.
   * To unstick a Bar, simply drag it away from its parent.
 ----
-=== Button movement ===
+=== Button movement, addition, deletion ===
 || *<My Button>/Bar Location* ||
 
   * Move a Button to a particular Bar by clicking *<My Button>/Bar Location* and selecting the Bar you want it on.
@@ -105,9 +105,10 @@
 || *!AutoBar/Move the Buttons* ||
 
   * Control click the AutoBar _icon_, or select *Move the Buttons* to make all your buttons moveable.
-   * All active buttons will get a green outline
-   * All inactive buttons will show up with a blue outline
-   * Other buttons will have a red outline
+   * All Bars get a purple background
+   * All active buttons get a green outline
+   * All inactive buttons show up with a blue outline
+   * Other buttons get a red outline
   * Click-drag to move the button.
   * Hover over the Button to see its name in your tooltip (if displayed).
   * Select *Move the Buttons* again to lock the buttons in place.
@@ -115,6 +116,11 @@
 
   * Remove Buttons from other Bars using *<My Button>/Remove* to remove it.
   * Next use *Bars/<My Bar>/Buttons/Add Button* to add it.
+|| *Delete Button* ||
+
+  * Delete Custom Buttons from a Bar using *<My Button>/Delete*.
+  * Delete is permanent and available for Custom Buttons.
+  * Delete is not available for built in Buttons.  You can only Remove built in Buttons.  This means you can always Add built in Buttons back later on.
 || *Bar/Shared Buttons* ||
 
   * You can also rearrange Buttons differently for specific characters.
