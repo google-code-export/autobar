@@ -196,6 +196,10 @@ function AutoBarTest:SimpleSpell(header)
 	button:SetAttribute("spell", "Rejuvenation")
 	header:SetAttribute("_adopt", button)
 
+	button:SetAttribute("checkselfcast", true)
+	button:SetAttribute("checkfocuscast", true)
+	SetOverrideBindingClick(button, false, "R", buttonName)
+
 	local icon = _G[buttonName.."Icon"]
 	icon:SetTexture(spellIconList["Rejuvenation"])
 	icon:Show()
@@ -235,6 +239,7 @@ function AutoBarTest:StateSpell()
 	RegisterStateDriver(button, "harm", stateSpellStates)	-- They could have been calculated individually based on the drivers change and querying the other state another way or saving its value in an attribute
 
 	header:SetAttribute("_adopt", button)					-- The button is not a natural child of the header, so we adopt it
+
 	SetOverrideBindingClick(button, false, "R", buttonName)
 
 	local icon = _G[buttonName.."Icon"]
@@ -474,4 +479,6 @@ f:SetScript("OnEvent",
 	end
 )
 f:RegisterEvent("VARIABLES_LOADED")
+
+
 }}}
