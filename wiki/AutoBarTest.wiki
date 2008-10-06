@@ -199,6 +199,7 @@ function AutoBarTest:SimpleSpell(header)
 	-- Holding down the selfcast / focuscast modifier keys will change the target to self / focus
 	button:SetAttribute("checkselfcast", true)
 	button:SetAttribute("checkfocuscast", true)
+
 	SetOverrideBindingClick(button, false, "R", buttonName)
 
 	local icon = _G[buttonName.."Icon"]
@@ -252,23 +253,23 @@ end
 
 
 
-function AutoBarTest:CreatePopupButton(buttonName, i, popupHandler)
+function AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHeader)
 	local popupButtonName = buttonName .. "Popup" .. i
-	local popupButton = CreateFrame("Button", popupButtonName, popupHandler, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerEnterLeaveTemplate")
+	local popupButton = CreateFrame("Button", popupButtonName, popupKeyHandler or popupHeader, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerEnterLeaveTemplate")
 	popupButton:ClearAllPoints()
 	popupButton:SetHeight(buttonSize)
 	popupButton:SetWidth(buttonSize)
 	popupButton:SetScale(UIParent:GetScale())
 	popupButton:SetAttribute("type", "item")
 
-	popupButton:SetFrameRef("popupHandler", popupHandler)
-	popupButton:SetAttribute("_onleave", [[ self:GetFrameRef("popupHandler"):Hide() ]])
-	popupButton:SetAttribute("_onenter", [[ self:GetFrameRef("popupHandler"):Show() ]])
+	popupButton:SetFrameRef("popupHeader", popupHeader)
+	popupButton:SetAttribute("_onleave", [[ self:GetFrameRef("popupHeader"):Hide() ]])
+	popupButton:SetAttribute("_onenter", [[ self:GetFrameRef("popupHeader"):Show() ]])
 
 	popupButton.icon = _G[popupButtonName .. "Icon"]
 
 	popupButton:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
-	popupButton:SetPoint("BOTTOM", popupHandler, "BOTTOM", 0, (buttonSize + buttonGap) * (i - 1) + buttonGap) -- ADDED
+	popupButton:SetPoint("BOTTOM", popupHeader, "BOTTOM", 0, (buttonSize + buttonGap) * (i - 1) + buttonGap) -- ADDED
 	return popupButton
 end
 
@@ -311,9 +312,9 @@ popupNaziHandler:SetAttribute("_onattributechanged", [[
 
 
 -- Popup on shift.  Set to nil to disable, or a different modifier function for ctrl or alt for example.  By default those are used for focus cast and self cast though.
-local popupOnShift = true
+local popupOnModifier = true
 
--- The basic idea is to have an intervening handler frame that is Shown / Hidden if popupOnShift is true / nil
+-- The basic idea is to have an intervening handler frame that is Shown / Hidden if popupOnModifier is true / nil
 local popupKeySnippet = [[
 	if (newstate == "1") then
 		self:Show()
@@ -325,34 +326,37 @@ local popupKeyStates = "[modifier:shift] 1; 0"
 -- Another aproach is to combine this all into one handler but it is a lot more code and complexity
 
 function AutoBarTest:CreatePopupButtons(buttonName, anchorButton)
-	local popupHandler = CreateFrame("Frame", buttonName .. "Handler2", nil, "SecureHandlerEnterLeaveTemplate")
+	local popupHeader = CreateFrame("Frame", buttonName .. "Handler2", nil, "SecureHandlerEnterLeaveTemplate")
 	local popupKeyHandler
-	popupHandler:SetAttribute("_onenter", [[self:Show()]])
-	popupHandler:SetAttribute("_onleave", [[self:Hide()]])
-	popupHandler:SetFrameStrata("DIALOG")
+	popupHeader:SetAttribute("_onenter", [[self:Show()]])
+	popupHeader:SetAttribute("_onleave", [[self:Hide()]])
+	popupHeader:SetFrameStrata("DIALOG")
 
 	-- Create the popupKeyHandler if required
-	if (popupOnShift) then
-		-- Note that it is made a child of popupHandler, and later becomes parent to the popup buttons
-		-- Hiding it will thus hide the popup buttons as well, even if popupHandler is shown
-		popupKeyHandler = CreateFrame("Frame", buttonName .. "HandlerPopupKey", popupHandler, "SecureHandlerStateTemplate")
+	if (popupOnModifier) then
+		-- Note that it is made a child of popupHeader, and later becomes parent to the popup buttons
+		-- Hiding it will thus hide the popup buttons as well, even if popupHeader is shown
+		popupKeyHandler = CreateFrame("Frame", buttonName .. "HandlerPopupKey", popupHeader, "SecureHandlerStateTemplate SecureHandlerEnterLeaveTemplate")
 		popupKeyHandler:SetAttribute("_onstate-modifier", popupKeySnippet)
-		popupKeyHandler:SetAllPoints(popupHandler)
+		popupKeyHandler:SetAllPoints(popupHeader)
 		RegisterStateDriver(popupKeyHandler, "modifier", popupKeyStates)
+
+		popupKeyHandler:SetAttribute("_onleave", [[ self:GetParent():Hide() ]])
+		popupKeyHandler:SetAttribute("_onenter", [[ self:GetParent():Show() ]])
 	end
 
 	-- Deal with rare irritating cases where Popups remain open incorrectly
-	popupHandler:SetFrameRef("popupNaziHandler", popupNaziHandler)
-	popupHandler:SetFrameRef("popupHandler", popupHandler)
-	popupHandler:SetFrameRef("anchorButton", anchorButton)
-	popupHandler:SetAttribute("_ontimer", popupNaziSnippet)
-	SecureHandlerWrapScript(popupHandler, "OnShow", popupHandler, [[
+	popupHeader:SetFrameRef("popupNaziHandler", popupNaziHandler)
+	popupHeader:SetFrameRef("popupHeader", popupHeader)
+	popupHeader:SetFrameRef("anchorButton", anchorButton)
+	popupHeader:SetAttribute("_ontimer", popupNaziSnippet)
+	SecureHandlerWrapScript(popupHeader, "OnShow", popupHeader, [[
 		popupNaziHandler = self:GetFrameRef("popupNaziHandler")
-		popupHandler = self:GetFrameRef("popupHandler")
-		popupNaziHandler:SetAttribute("openhandler", popupHandler)
+		popupHeader = self:GetFrameRef("popupHeader")
+		popupNaziHandler:SetAttribute("openhandler", popupHeader)
 		local queued = control:SetTimer(1, "hoverCheck", popupNaziSnippet)
 	]])
-	SecureHandlerWrapScript(popupHandler, "OnHide", popupHandler, [[
+	SecureHandlerWrapScript(popupHeader, "OnHide", popupHeader, [[
 		popupNaziHandler = self:GetFrameRef("popupNaziHandler")
 		popupNaziHandler:SetAttribute("openHandler", nil)
 	]])
@@ -360,7 +364,7 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton)
 	-- Populate the actual buttons to show
 	for i = 1, # items do
 		-- Use popupKeyHandler if it exists so shift key state can overide visibility
-		local button = AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler or popupHandler)
+		local button = AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHeader)
 		local itemID = items[i]
 		local itemName, itemIcon, itemCount = GetItemInfo(itemID), GetItemIcon(itemID), GetItemCount(itemID)
 		button.icon:SetTexture(itemIcon)
@@ -369,11 +373,11 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton)
 	end
 
 	-- Size the handler to fit a line of buttons and a buttonGap around and between them all
-	popupHandler:SetWidth(buttonSize + buttonGap * 2)
-	popupHandler:SetHeight((buttonSize + buttonGap) * # items + buttonGap)
-	popupHandler:Show()
+	popupHeader:SetWidth(buttonSize + buttonGap * 2)
+	popupHeader:SetHeight((buttonSize + buttonGap) * # items + buttonGap)
+	popupHeader:Show()
 
-	return popupHandler
+	return popupHeader
 end
 
 
@@ -389,14 +393,14 @@ function AutoBarTest:PopupButton(buttonName)
 	icon:SetTexture(spellIconList["Regrowth"])
 	icon:Show()
 
-	local popupHandler = AutoBarTest:CreatePopupButtons(buttonName, button)
-	button:SetFrameRef("popupHandler", popupHandler)
+	local popupHeader = AutoBarTest:CreatePopupButtons(buttonName, button)
+	button:SetFrameRef("popupHeader", popupHeader)
 	button:Execute([[
-		popupHandler = self:GetFrameRef("popupHandler")
-		popupHandler:ClearAllPoints()
-		popupHandler:SetPoint("BOTTOM", self, "TOP")
-		popupHandler:Raise()
-		popupHandler:Hide()
+		popupHeader = self:GetFrameRef("popupHeader")
+		popupHeader:ClearAllPoints()
+		popupHeader:SetPoint("BOTTOM", self, "TOP")
+		popupHeader:Raise()
+		popupHeader:Hide()
 	]])
 
 	-- Add Tooltip support
@@ -407,13 +411,13 @@ function AutoBarTest:PopupButton(buttonName)
 
 	SecureHandlerWrapScript(button, "OnEnter", buttonHandler, [[
 --		print("Button in")
-		popupHandler = self:GetFrameRef("popupHandler")
-		popupHandler:Show()
+		popupHeader = self:GetFrameRef("popupHeader")
+		popupHeader:Show()
 	]])
 	SecureHandlerWrapScript(button, "OnLeave", buttonHandler, [[
 --		print("Button out")
-		popupHandler = self:GetFrameRef("popupHandler")
-		popupHandler:Hide()
+		popupHeader = self:GetFrameRef("popupHeader")
+		popupHeader:Hide()
 	]])
 
 	return button
@@ -442,7 +446,7 @@ f:SetScript("OnEvent",
 			button:ClearAllPoints()
 			button:SetHeight(buttonSize)
 			button:SetWidth(buttonSize)
-			button:SetPoint("CENTER",-(index * 40),0)
+			button:SetPoint("RIGHT",-160-(index * 40),0)
 			button:Show()
 		end
 
@@ -472,7 +476,7 @@ f:SetScript("OnEvent",
 				button:SetScale(1)
 				button:SetHeight(buttonSize)
 				button:SetWidth(buttonSize)
-				button:SetPoint("CENTER", (buttonSize + buttonGap) * (h), (buttonSize + buttonGap) * v)
+				button:SetPoint("RIGHT", -160 + (buttonSize + buttonGap) * (h), (buttonSize + buttonGap) * v)
 				button:Show()
 			end
 		end
@@ -480,6 +484,4 @@ f:SetScript("OnEvent",
 	end
 )
 f:RegisterEvent("VARIABLES_LOADED")
-
-
 }}}
