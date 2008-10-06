@@ -462,7 +462,7 @@ f:SetScript("OnEvent",
 				-- In order to change aspects of a frame some form of ClearPoint needs to be called.  Here we clear it all and start from scratch.
 				button:ClearAllPoints()
 
-				-- Scale is relative to parent's scale.  So our effective scale in this case depends on the scale of UIParent and our scale.
+				-- Scale is relative to parent scale.  So our effective scale in this case depends on the scale of UIParent and our scale.
 				button:SetScale(1)
 				button:SetHeight(buttonSize)
 				button:SetWidth(buttonSize)
