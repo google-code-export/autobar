@@ -196,6 +196,7 @@ function AutoBarTest:SimpleSpell(header)
 	button:SetAttribute("spell", "Rejuvenation")
 	header:SetAttribute("_adopt", button)
 
+	-- Holding down the selfcast / focuscast modifier keys will change the target to self / focus
 	button:SetAttribute("checkselfcast", true)
 	button:SetAttribute("checkfocuscast", true)
 	SetOverrideBindingClick(button, false, "R", buttonName)
