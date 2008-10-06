@@ -2,7 +2,7 @@
 
 core.lua
 
-<pre>
+{{{
 --Name: AutoBarTest
 -- Just a test mod to model the underlying features of AutoBar
 
@@ -474,4 +474,4 @@ f:SetScript("OnEvent",
 	end
 )
 f:RegisterEvent("VARIABLES_LOADED")
-</pre>
+}}}
