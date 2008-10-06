@@ -1,0 +1,477 @@
+#Engine Test Code for wow 3.0 Wrath of the Lich King.
+
+core.lua
+
+<pre>
+--Name: AutoBarTest
+-- Just a test mod to model the underlying features of AutoBar
+
+-- A row of buttons is created, each exploring some particular action button type or a variant thereof
+
+-- It also creates a grid of 4 x 4 buttons each with a 4 button popup popping up to the top:
+-- The following features are desired:
+--  1) mouseover gives a standard tooltip
+--  2) mouseover pops up the button & the popup obscures any grid buttons above its base button
+--  3) popping up on buttons 5-16 allows you to move mouse up & select popup 1-4 despite buttons 1-4 & possibly 5-12 being in the way
+--  4) hovering over a button keeps its popup going, moving to another button (not obscured by a popup) pops up that one & drops the previous popup
+--  5) when set, only popup on shift key held down
+
+local _G = getfenv(0)
+
+-- In order to prevent collision with the functions and variables of other mods we either add them to our mod or make them local
+AutoBarTest = {}
+AutoBarTest.spellNameList = {}
+AutoBarTest.spellIconList = {}
+
+spellNameList = AutoBarTest.spellNameList
+spellIconList = AutoBarTest.spellIconList
+
+spellNameList["Rejuvenation"], _, spellIconList["Rejuvenation"] = GetSpellInfo(26982)
+spellNameList["Regrowth"], _, spellIconList["Regrowth"] = GetSpellInfo(26980)
+spellNameList["Moonfire"], _, spellIconList["Moonfire"] = GetSpellInfo(8921)
+spellNameList["Starfire"], _, spellIconList["Starfire"] = GetSpellInfo(2912)
+spellNameList["Wrath"], _, spellIconList["Wrath"] = GetSpellInfo(5176)
+spellNameList["Maul"], _, spellIconList["Maul"] = GetSpellInfo(6807)
+
+function AutoBarTest.Slash(arg)
+	ReloadUI()
+end
+
+SLASH_AUTOBARTEST1 = "/rl"
+SlashCmdList["AUTOBARTEST"] = AutoBarTest.Slash
+
+local buttonSize = 36
+local buttonGap = 4
+
+
+
+-- Creates a minimal button that uses the item by name
+-- This version heavily comments
+function AutoBarTest:ItemByName(header)
+	-- The buttonName names the frame and needs to be unique.  Prefixing it with your mod name is a good way to ensure this.
+	local buttonName = "AutoBarTestButtonItemByName"
+
+	local itemName = "Major Rejuvenation Potion"
+	local texture = GetItemIcon(itemName)
+--	print("AutoBarTestButtonItemByName " .. texture)
+
+	-- Create the button as a child of UIParent (the entire WoW window).  ActionButtonTemplate provides the icon we need to display our item.
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+
+	-- AnyUp lets the button fire when the button (or key bound to it if any, is released).
+	button:RegisterForClicks("AnyUp")
+
+	-- The ActionButton "type" attribute determines what it is:
+	-- "action", "pet", "spell", "item", "macro", "cancelaura", "stop", "target", "focus", "assist", "maintank", "mainassist", "click", "attribute"
+	button:SetAttribute("type", "item")
+
+	-- For type "item", the "item" attribute can be itemName, itemLink, or "bag slot"
+	button:SetAttribute("item", itemName)
+
+	-- Since our frame is a child of UIParent, we manually adopt it by the header
+	header:SetAttribute("_adopt", button)
+
+	-- Set the appropriate icon texture by looking up the associated ActionButtonTemplate icon which is our frame name with "Icon" appended
+	local icon = _G[buttonName.."Icon"]
+	icon:SetTexture(texture)
+	icon:Show()
+
+	-- Finally return the button, which still needs to be positioned, scaled, sized and shown so it can actually show up.
+	return button
+end
+
+
+
+-- OnLeave function.  Added to a button to allow calling it via control:CallMethod("HideTooltip")
+local function HideTooltip()
+	GameTooltip:Hide()
+end
+
+-- Common Tooltip code
+local function SetTooltip(button)
+	if (GetCVar("UberTooltips") == "1") then
+		GameTooltip_SetDefaultAnchor(GameTooltip, button)
+	else
+		GameTooltip:SetOwner(button, "ANCHOR_RIGHT")
+	end
+
+	button.UpdateTooltip = nil
+end
+
+
+
+-- OnEnter function.  Added to a button to allow calling it via control:CallMethod("SetTooltip")
+local function SetTooltipBagSlot(button)
+	SetTooltip(button)
+
+	local bagslot = button:GetAttribute("item")
+	local bag, slot = strmatch(bagslot, "^(%d+)%s+(%d+)$")
+	if (bag and slot and GameTooltip:SetBagItem(bag, slot)) then
+		button.UpdateTooltip = SetTooltipBagSlot
+	end
+end
+
+-- Creates a minimal button that uses the item in "<bag> <slot>"
+function AutoBarTest:ItemByBagSlot(header)
+	local bag, slot = 0, 1
+	local buttonName = "AutoBarTestButtonItemByBagSlot"
+	local itemLink = GetContainerItemLink(bag, slot)
+	local texture = GetItemIcon(itemLink)
+--	print("AutoBarTestButtonItemByBagSlot " .. texture)
+
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+	button:RegisterForClicks("AnyUp")
+	button:SetAttribute("type", "item")
+
+	-- To have the button use something from a specific bag and slot location we specify them as a string with some kind of non-numeric separator (space in this case)
+	button:SetAttribute("item", bag .. " " .. slot)
+
+	header:SetAttribute("_adopt", button)
+
+	-- Set the appropriate icon texture
+	local icon = _G[buttonName.."Icon"]
+	icon:SetTexture(texture)
+	icon:Show()
+
+	-- Set a key binding for the button
+	-- This allows the F-11 key to also click the button
+	SetOverrideBindingClick(button, false, "F11", buttonName)
+
+	-- Add Tooltip support
+	button.HideTooltip = HideTooltip
+	button.SetTooltip = SetTooltipBagSlot
+	SecureHandlerWrapScript(button, "OnEnter", button, [[ control:CallMethod("SetTooltip", self) ]])
+	SecureHandlerWrapScript(button, "OnLeave", button, [[ control:CallMethod("HideTooltip") ]])
+
+	return button
+end
+
+
+
+local function SetTooltipItemLink(button)
+	SetTooltip(button)
+
+	local itemLink = button:GetAttribute("item")
+	if (itemLink and GameTooltip:SetHyperlink(itemLink)) then
+		button.UpdateTooltip = SetTooltipItemLink
+	end
+end
+
+-- Creates a minimal button using an ItemLink
+-- Provides a Tooltip when hovering over the button
+function AutoBarTest:ItemByItemLink(header)
+	local buttonName = "AutoBarTestButtonItemByItemLink"
+	local itemLink = GetContainerItemLink(0, 1)
+	local texture = GetItemIcon(itemLink)
+
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate, SecureHandlerEnterLeaveTemplate")
+	button:RegisterForClicks("AnyUp")
+	button:SetAttribute("type", "item")
+	button:SetAttribute("item", itemLink)
+	header:SetAttribute("_adopt", button)
+
+	-- Set the appropriate icon texture
+	local icon = _G[buttonName.."Icon"]
+	icon:SetTexture(texture)
+	icon:Show()
+
+	-- Add Tooltip support
+	button.HideTooltip = HideTooltip
+	button.SetTooltip = SetTooltipItemLink
+	SecureHandlerWrapScript(button, "OnEnter", button, [[ control:CallMethod("SetTooltip", self) ]])
+	SecureHandlerWrapScript(button, "OnLeave", button, [[ control:CallMethod("HideTooltip") ]])
+
+	return button
+end
+
+
+
+-- Creates a minimal button that casts the spell specified in "spell"
+-- See the event handler below for the ClearAllPoints, SetHeight etc. calls needed to position and show the button
+function AutoBarTest:SimpleSpell(header)
+	local buttonName = "AutoBarTestButtonSimpleSpell"
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+	button:RegisterForClicks("AnyUp")
+	button:SetAttribute("type", "spell")
+	button:SetAttribute("spell", "Rejuvenation")
+	header:SetAttribute("_adopt", button)
+
+	local icon = _G[buttonName.."Icon"]
+	icon:SetTexture(spellIconList["Rejuvenation"])
+	icon:Show()
+	return button
+end
+
+
+
+local stateSpellSnippet = [[
+		newstate = tonumber(newstate)
+		if (newstate < 8) then
+			if (newstate == 3) then
+				self:SetAttribute("spell", "Claw")
+			elseif (newstate == 1) then
+				self:SetAttribute("spell", "Maul")
+			else
+				self:SetAttribute("spell", "Wrath")
+			end
+		else
+			self:SetAttribute("spell", "Regrowth")
+		end
+	]]
+local stateSpellStates = "[harm,stance:1] 1; [harm,stance:2] 2; [harm,stance:3] 3; [harm,stance:4] 4; [harm,stance:5] 5; [harm,stance:6] 6; [harm] 7; [help,stance:1] 8; [help,stance:2] 9; [help,stance:3] 10; [help,stance:4] 11; [help,stance:5] 12; [help,stance:6] 13; 14"
+
+-- A more complicated spell button that uses states to determine what spell to cast: help/harm, stance
+function AutoBarTest:StateSpell()
+	local buttonName = "AutoBarTestButtonStateSpell"
+	local header = CreateFrame("Frame", buttonName .. "Header", UIParent, "SecureHandlerBaseTemplate")
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerStateTemplate")
+	button:RegisterForClicks("AnyUp")
+	button:SetAttribute("type", "spell")
+
+	button:SetAttribute("_onstate-stance", stateSpellSnippet)
+	RegisterStateDriver(button, "stance", stateSpellStates)	-- The states are combined into the same string
+
+	button:SetAttribute("_onstate-harm", stateSpellSnippet) -- Regardless of the driver that fires, the states are identical so we use the same snippet to execute.
+	RegisterStateDriver(button, "harm", stateSpellStates)	-- They could have been calculated individually based on the drivers change and querying the other state another way or saving its value in an attribute
+
+	header:SetAttribute("_adopt", button)					-- The button is not a natural child of the header, so we adopt it
+	SetOverrideBindingClick(button, false, "R", buttonName)
+
+	local icon = _G[buttonName.."Icon"]
+	icon:SetTexture(spellIconList["Maul"])
+	icon:Show()
+
+	return button
+end
+
+
+
+function AutoBarTest:CreatePopupButton(buttonName, i, popupHandler)
+	local popupButtonName = buttonName .. "Popup" .. i
+	local popupButton = CreateFrame("Button", popupButtonName, popupHandler, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerEnterLeaveTemplate")
+	popupButton:ClearAllPoints()
+	popupButton:SetHeight(buttonSize)
+	popupButton:SetWidth(buttonSize)
+	popupButton:SetScale(UIParent:GetScale())
+	popupButton:SetAttribute("type", "item")
+
+	popupButton:SetFrameRef("popupHandler", popupHandler)
+	popupButton:SetAttribute("_onleave", [[ self:GetFrameRef("popupHandler"):Hide() ]])
+	popupButton:SetAttribute("_onenter", [[ self:GetFrameRef("popupHandler"):Show() ]])
+
+	popupButton.icon = _G[popupButtonName .. "Icon"]
+
+	popupButton:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
+	popupButton:SetPoint("BOTTOM", popupHandler, "BOTTOM", 0, (buttonSize + buttonGap) * (i - 1) + buttonGap) -- ADDED
+	return popupButton
+end
+
+
+local items = {6948, 30883, 14047, 14529}
+
+-- popupNazi makes sure we dont have multiple popups open.  Google "Soup Nazi" for how this is done
+-- There are two cases:
+
+--	1) Rapid movement or movement off the window breaks the Blizzard code.  We use a sensible timer to fix this - popupNaziSnippet
+local popupNaziSnippet = [[
+	local x, y = self:GetMousePosition()
+	if (x and y) then
+		local queued = control:SetTimer(1, "hoverCheck")
+	else
+		local anchorButton = self:GetFrameRef("anchorButton")
+		x, y = anchorButton:GetMousePosition()
+		if (x and y) then
+			local queued = control:SetTimer(1, "hoverCheck")
+		else
+			self:Hide()
+		end
+	end
+]]
+
+--	2) Track the popped open menu.  If we open a new one we sensibly close the old one - popupNaziHandler
+local popupNaziHandler = CreateFrame("Frame", "AutoBarTestPopupNaziHandler", nil, "SecureHandlerAttributeTemplate")
+popupNaziHandler:SetAttribute("_onattributechanged", [[
+	local openHandler = self:GetAttribute("openhandler")
+	if (name == "openhandler") then	-- Note the dumb use of lowercase attribute names as Blizzard chooses to lowercase them for some nutty reason
+		local openHandler = self:GetAttribute("openhandler")
+		local oldOpenHandler = self:GetAttribute("oldopenhandler")
+		if (oldOpenHandler and oldOpenHandler ~= openHandler) then
+--			print("hiding old one", oldOpenHandler, openHandler)
+			oldOpenHandler:Hide()
+		end
+		self:SetAttribute("oldopenhandler", openHandler)
+	end
+]])
+
+
+-- Popup on shift.  Set to nil to disable, or a different modifier function for ctrl or alt for example.  By default those are used for focus cast and self cast though.
+local popupOnShift = true
+
+-- The basic idea is to have an intervening handler frame that is Shown / Hidden if popupOnShift is true / nil
+local popupKeySnippet = [[
+	if (newstate == "1") then
+		self:Show()
+	else
+		self:Hide()
+	end
+	]]
+local popupKeyStates = "[modifier:shift] 1; 0"
+-- Another aproach is to combine this all into one handler but it is a lot more code and complexity
+
+function AutoBarTest:CreatePopupButtons(buttonName, anchorButton)
+	local popupHandler = CreateFrame("Frame", buttonName .. "Handler2", nil, "SecureHandlerEnterLeaveTemplate")
+	local popupKeyHandler
+	popupHandler:SetAttribute("_onenter", [[self:Show()]])
+	popupHandler:SetAttribute("_onleave", [[self:Hide()]])
+	popupHandler:SetFrameStrata("DIALOG")
+
+	-- Create the popupKeyHandler if required
+	if (popupOnShift) then
+		-- Note that it is made a child of popupHandler, and later becomes parent to the popup buttons
+		-- Hiding it will thus hide the popup buttons as well, even if popupHandler is shown
+		popupKeyHandler = CreateFrame("Frame", buttonName .. "HandlerPopupKey", popupHandler, "SecureHandlerStateTemplate")
+		popupKeyHandler:SetAttribute("_onstate-modifier", popupKeySnippet)
+		popupKeyHandler:SetAllPoints(popupHandler)
+		RegisterStateDriver(popupKeyHandler, "modifier", popupKeyStates)
+	end
+
+	-- Deal with rare irritating cases where Popups remain open incorrectly
+	popupHandler:SetFrameRef("popupNaziHandler", popupNaziHandler)
+	popupHandler:SetFrameRef("popupHandler", popupHandler)
+	popupHandler:SetFrameRef("anchorButton", anchorButton)
+	popupHandler:SetAttribute("_ontimer", popupNaziSnippet)
+	SecureHandlerWrapScript(popupHandler, "OnShow", popupHandler, [[
+		popupNaziHandler = self:GetFrameRef("popupNaziHandler")
+		popupHandler = self:GetFrameRef("popupHandler")
+		popupNaziHandler:SetAttribute("openhandler", popupHandler)
+		local queued = control:SetTimer(1, "hoverCheck", popupNaziSnippet)
+	]])
+	SecureHandlerWrapScript(popupHandler, "OnHide", popupHandler, [[
+		popupNaziHandler = self:GetFrameRef("popupNaziHandler")
+		popupNaziHandler:SetAttribute("openHandler", nil)
+	]])
+
+	-- Populate the actual buttons to show
+	for i = 1, # items do
+		-- Use popupKeyHandler if it exists so shift key state can overide visibility
+		local button = AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler or popupHandler)
+		local itemID = items[i]
+		local itemName, itemIcon, itemCount = GetItemInfo(itemID), GetItemIcon(itemID), GetItemCount(itemID)
+		button.icon:SetTexture(itemIcon)
+		button.icon:Show()
+		button:SetAttribute("item", "item:" .. itemID)
+	end
+
+	-- Size the handler to fit a line of buttons and a buttonGap around and between them all
+	popupHandler:SetWidth(buttonSize + buttonGap * 2)
+	popupHandler:SetHeight((buttonSize + buttonGap) * # items + buttonGap)
+	popupHandler:Show()
+
+	return popupHandler
+end
+
+
+function AutoBarTest:PopupButton(buttonName)
+	local buttonHandler = CreateFrame("Frame", buttonName .. "Handler1", UIParent, "SecureHandlerEnterLeaveTemplate")
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerEnterLeaveTemplate")
+--	buttonSize = button:GetWidth()
+	button:RegisterForClicks("AnyUp")
+	button:SetAttribute("type", "spell")
+	button:SetAttribute("spell", "Regrowth")
+	buttonHandler:SetAttribute("_adopt", button)
+	local icon = _G[buttonName.."Icon"]
+	icon:SetTexture(spellIconList["Regrowth"])
+	icon:Show()
+
+	local popupHandler = AutoBarTest:CreatePopupButtons(buttonName, button)
+	button:SetFrameRef("popupHandler", popupHandler)
+	button:Execute([[
+		popupHandler = self:GetFrameRef("popupHandler")
+		popupHandler:ClearAllPoints()
+		popupHandler:SetPoint("BOTTOM", self, "TOP")
+		popupHandler:Raise()
+		popupHandler:Hide()
+	]])
+
+	-- Add Tooltip support
+	button.HideTooltip = HideTooltip
+	button.SetTooltip = SetTooltipItemLink
+	SecureHandlerWrapScript(button, "OnEnter", button, [[ control:CallMethod("SetTooltip", self) ]])
+	SecureHandlerWrapScript(button, "OnLeave", button, [[ control:CallMethod("HideTooltip") ]])
+
+	SecureHandlerWrapScript(button, "OnEnter", buttonHandler, [[
+--		print("Button in")
+		popupHandler = self:GetFrameRef("popupHandler")
+		popupHandler:Show()
+	]])
+	SecureHandlerWrapScript(button, "OnLeave", buttonHandler, [[
+--		print("Button out")
+		popupHandler = self:GetFrameRef("popupHandler")
+		popupHandler:Hide()
+	]])
+
+	return button
+end
+
+
+
+-- f delays our creations till the VARIABLES_LOADED event.
+-- In a real mod a greater delay is required as this is sooner than some information is available
+-- For instance on login, some icons will be missing, but a /rl (ReloadUI) will let everything show up
+local f = CreateFrame("Frame")
+local buttonList = {}
+f:SetScript("OnEvent",
+	function(self, event, ...)
+		local header = CreateFrame("Frame", "ActionBarTestHeader", UIParent, "SecureHandlerBaseTemplate")
+		local button
+
+		buttonList[# buttonList + 1] = AutoBarTest:SimpleSpell(header)
+		buttonList[# buttonList + 1] = AutoBarTest:StateSpell()
+		buttonList[# buttonList + 1] = AutoBarTest:ItemByName(header)
+		buttonList[# buttonList + 1] = AutoBarTest:ItemByBagSlot(header)
+		buttonList[# buttonList + 1] = AutoBarTest:ItemByItemLink(header)
+		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopup1")
+
+		for index, button in ipairs(buttonList) do
+			button:ClearAllPoints()
+			button:SetHeight(buttonSize)
+			button:SetWidth(buttonSize)
+			button:SetPoint("CENTER",-(index * 40),0)
+			button:Show()
+		end
+
+		-- A simple grid mirroring the backpack.
+		local buttonIndex, button, buttonName
+		for v = 0, 3 do
+			for h = 1, 4 do
+				buttonIndex = v * 4 + h
+				buttonName = "AutoBarTestButtonGridPopup"..buttonIndex
+
+				button = AutoBarTest:PopupButton(buttonName)
+
+				local itemLink = GetContainerItemLink(0, buttonIndex)
+				local texture = GetItemIcon(itemLink)
+				button:SetAttribute("type", "item")
+				button:SetAttribute("item", itemLink)
+
+				local icon = _G[buttonName.."Icon"]
+				icon:SetTexture(texture)
+				icon:Show()
+--				AutoBarTest:SetupButton(button, buttonName, itemLink)
+
+				-- In order to change aspects of a frame some form of ClearPoint needs to be called.  Here we clear it all and start from scratch.
+				button:ClearAllPoints()
+
+				-- Scale is relative to parent's scale.  So our effective scale in this case depends on the scale of UIParent and our scale.
+				button:SetScale(1)
+				button:SetHeight(buttonSize)
+				button:SetWidth(buttonSize)
+				button:SetPoint("CENTER", (buttonSize + buttonGap) * (h), (buttonSize + buttonGap) * v)
+				button:Show()
+			end
+		end
+
+	end
+)
+f:RegisterEvent("VARIABLES_LOADED")
+</pre>
