@@ -99,6 +99,15 @@ local function SetTooltip(button)
 end
 
 
+-- Apply tooltipType to the Button
+local function ApplyTooltip(button, tooltipType)
+	button.SetTooltip = tooltipType
+	button.HideTooltip = HideTooltip
+	SecureHandlerWrapScript(button, "OnEnter", button, [[ control:CallMethod("SetTooltip", self) ]])
+	SecureHandlerWrapScript(button, "OnLeave", button, [[ control:CallMethod("HideTooltip") ]])
+end
+
+
 
 -- OnEnter function.  Added to a button to allow calling it via control:CallMethod("SetTooltip")
 local function SetTooltipBagSlot(button)
@@ -138,10 +147,7 @@ function AutoBarTest:ItemByBagSlot(header)
 	SetOverrideBindingClick(button, false, "F11", buttonName)
 
 	-- Add Tooltip support
-	button.HideTooltip = HideTooltip
-	button.SetTooltip = SetTooltipBagSlot
-	SecureHandlerWrapScript(button, "OnEnter", button, [[ control:CallMethod("SetTooltip", self) ]])
-	SecureHandlerWrapScript(button, "OnLeave", button, [[ control:CallMethod("HideTooltip") ]])
+	ApplyTooltip(button, SetTooltipBagSlot)
 
 	return button
 end
@@ -176,10 +182,7 @@ function AutoBarTest:ItemByItemLink(header)
 	icon:Show()
 
 	-- Add Tooltip support
-	button.HideTooltip = HideTooltip
-	button.SetTooltip = SetTooltipItemLink
-	SecureHandlerWrapScript(button, "OnEnter", button, [[ control:CallMethod("SetTooltip", self) ]])
-	SecureHandlerWrapScript(button, "OnLeave", button, [[ control:CallMethod("HideTooltip") ]])
+	ApplyTooltip(button, SetTooltipItemLink)
 
 	return button
 end
@@ -260,7 +263,6 @@ function AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHead
 	popupButton:SetHeight(buttonSize)
 	popupButton:SetWidth(buttonSize)
 	popupButton:SetScale(UIParent:GetScale())
-	popupButton:SetAttribute("type", "item")
 
 	popupButton:SetFrameRef("popupHeader", popupHeader)
 	popupButton:SetAttribute("_onleave", [[ self:GetFrameRef("popupHeader"):Hide() ]])
@@ -268,13 +270,10 @@ function AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHead
 
 	popupButton.icon = _G[popupButtonName .. "Icon"]
 
-	popupButton:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
 	popupButton:SetPoint("BOTTOM", popupHeader, "BOTTOM", 0, (buttonSize + buttonGap) * (i - 1) + buttonGap) -- ADDED
 	return popupButton
 end
 
-
-local items = {6948, 30883, 14047, 14529}
 
 -- popupNazi makes sure we dont have multiple popups open.  Google "Soup Nazi" for how this is done
 -- There are two cases:
@@ -312,7 +311,7 @@ popupNaziHandler:SetAttribute("_onattributechanged", [[
 
 
 -- Popup on shift.  Set to nil to disable, or a different modifier function for ctrl or alt for example.  By default those are used for focus cast and self cast though.
-local popupOnModifier = true
+local popupOnModifier --= true
 
 -- The basic idea is to have an intervening handler frame that is Shown / Hidden if popupOnModifier is true / nil
 local popupKeySnippet = [[
@@ -325,8 +324,8 @@ local popupKeySnippet = [[
 local popupKeyStates = "[modifier:shift] 1; 0"
 -- Another aproach is to combine this all into one handler but it is a lot more code and complexity
 
-function AutoBarTest:CreatePopupButtons(buttonName, anchorButton)
-	local popupHeader = CreateFrame("Frame", buttonName .. "Handler2", nil, "SecureHandlerEnterLeaveTemplate")
+function AutoBarTest:CreatePopupButtons(buttonName, anchorButton, popupTypeList)
+	local popupHeader = CreateFrame("Frame", buttonName .. "Handler2", nil, "SecureHandlerEnterLeaveTemplate SecureHandlerAttributeTemplate")
 	local popupKeyHandler
 	popupHeader:SetAttribute("_onenter", [[self:Show()]])
 	popupHeader:SetAttribute("_onleave", [[self:Hide()]])
@@ -340,7 +339,6 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton)
 		popupKeyHandler:SetAttribute("_onstate-modifier", popupKeySnippet)
 		popupKeyHandler:SetAllPoints(popupHeader)
 		RegisterStateDriver(popupKeyHandler, "modifier", popupKeyStates)
-
 		popupKeyHandler:SetAttribute("_onleave", [[ self:GetParent():Hide() ]])
 		popupKeyHandler:SetAttribute("_onenter", [[ self:GetParent():Show() ]])
 	end
@@ -354,7 +352,7 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton)
 		popupNaziHandler = self:GetFrameRef("popupNaziHandler")
 		popupHeader = self:GetFrameRef("popupHeader")
 		popupNaziHandler:SetAttribute("openhandler", popupHeader)
-		local queued = control:SetTimer(1, "hoverCheck", popupNaziSnippet)
+		local queued = control:SetTimer(1, "hoverCheck")
 	]])
 	SecureHandlerWrapScript(popupHeader, "OnHide", popupHeader, [[
 		popupNaziHandler = self:GetFrameRef("popupNaziHandler")
@@ -362,38 +360,77 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton)
 	]])
 
 	-- Populate the actual buttons to show
-	for i = 1, # items do
+	for i, info in ipairs(popupTypeList) do
 		-- Use popupKeyHandler if it exists so shift key state can overide visibility
 		local button = AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHeader)
-		local itemID = items[i]
-		local itemName, itemIcon, itemCount = GetItemInfo(itemID), GetItemIcon(itemID), GetItemCount(itemID)
-		button.icon:SetTexture(itemIcon)
-		button.icon:Show()
-		button:SetAttribute("item", "item:" .. itemID)
+		if (info.buttonType == "item") then
+			local itemID = info.item
+			local itemIcon = GetItemIcon(itemID) --itemCount = GetItemCount(itemID)
+			button.icon:SetTexture(itemIcon)
+			button.icon:Show()
+			button:SetAttribute("icon", itemIcon)
+			button:SetAttribute("type", "item")
+			button:SetAttribute("item", "item:" .. itemID)
+
+			SecureHandlerWrapScript(button, "OnClick", popupHeader, [[
+				local popupHeader = self:GetFrameRef("popupHeader")
+				local anchorButton = popupHeader:GetFrameRef("anchorButton")
+				anchorButton:SetAttribute("item", self:GetAttribute("item"))
+				anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
+			]])
+
+			-- Add Tooltip support
+			ApplyTooltip(button, SetTooltipItemLink)
+		elseif (info.buttonType == "spell") then
+			local spellName = info.spell
+			local icon = info.icon
+			button.icon:SetTexture(icon)
+			button.icon:Show()
+			button:SetAttribute("icon", icon)
+			button:SetAttribute("type", "spell")
+			button:SetAttribute("spell", spellName)
+
+			SecureHandlerWrapScript(button, "OnClick", popupHeader, [[
+				local popupHeader = self:GetFrameRef("popupHeader")
+				local anchorButton = popupHeader:GetFrameRef("anchorButton")
+				anchorButton:SetAttribute("spell", self:GetAttribute("spell"))
+				anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
+			]])
+		end
 	end
+
+	-- Shuffle them a bit for variety
+	popupTypeList[1], popupTypeList[2], popupTypeList[3], popupTypeList[4] = popupTypeList[2], popupTypeList[3], popupTypeList[4], popupTypeList[1]
 
 	-- Size the handler to fit a line of buttons and a buttonGap around and between them all
 	popupHeader:SetWidth(buttonSize + buttonGap * 2)
-	popupHeader:SetHeight((buttonSize + buttonGap) * # items + buttonGap)
+	popupHeader:SetHeight((buttonSize + buttonGap) * # popupTypeList + buttonGap)
 	popupHeader:Show()
 
 	return popupHeader
 end
 
 
-function AutoBarTest:PopupButton(buttonName)
-	local buttonHandler = CreateFrame("Frame", buttonName .. "Handler1", UIParent, "SecureHandlerEnterLeaveTemplate")
+
+-- Clicking on a popup changes the anchor button spell.  This updates the icon texture to match
+local function UpdateIcon(button, texture)
+	button.icon:SetTexture(texture)
+end
+
+-- Used to pop up the buttons based on the "popupHeader" FrameRef on the button
+local popupHandler = CreateFrame("Frame", "AutoBarTestPopupHandler", nil, "SecureHandlerEnterLeaveTemplate")
+
+function AutoBarTest:PopupButton(buttonName, popupTypeList)
 	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerEnterLeaveTemplate")
 --	buttonSize = button:GetWidth()
-	button:RegisterForClicks("AnyUp")
+	button:RegisterForClicks("Any")
 	button:SetAttribute("type", "spell")
 	button:SetAttribute("spell", "Regrowth")
-	buttonHandler:SetAttribute("_adopt", button)
-	local icon = _G[buttonName.."Icon"]
-	icon:SetTexture(spellIconList["Regrowth"])
-	icon:Show()
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(spellIconList["Regrowth"])
+	button.icon:Show()
 
-	local popupHeader = AutoBarTest:CreatePopupButtons(buttonName, button)
+	local popupHeader = AutoBarTest:CreatePopupButtons(buttonName, button, popupTypeList)
 	button:SetFrameRef("popupHeader", popupHeader)
 	button:Execute([[
 		popupHeader = self:GetFrameRef("popupHeader")
@@ -403,31 +440,94 @@ function AutoBarTest:PopupButton(buttonName)
 		popupHeader:Hide()
 	]])
 
-	-- Add Tooltip support
-	button.HideTooltip = HideTooltip
-	button.SetTooltip = SetTooltipItemLink
-	SecureHandlerWrapScript(button, "OnEnter", button, [[ control:CallMethod("SetTooltip", self) ]])
-	SecureHandlerWrapScript(button, "OnLeave", button, [[ control:CallMethod("HideTooltip") ]])
+	-- Icon Updating
+	button.UpdateIcon = UpdateIcon
+	SecureHandlerWrapScript(button, "OnAttributeChanged", button, [[
+		if (name == "icon") then
+			control:CallMethod("UpdateIcon", value)
+		end
+	]])
 
-	SecureHandlerWrapScript(button, "OnEnter", buttonHandler, [[
---		print("Button in")
+	-- Add Tooltip support
+	ApplyTooltip(button, SetTooltipItemLink)
+
+	-- Actually open popup when over a Button
+	SecureHandlerWrapScript(button, "OnEnter", popupHandler, [[
 		popupHeader = self:GetFrameRef("popupHeader")
 		popupHeader:Show()
 	]])
-	SecureHandlerWrapScript(button, "OnLeave", buttonHandler, [[
---		print("Button out")
+	SecureHandlerWrapScript(button, "OnLeave", popupHandler, [[
 		popupHeader = self:GetFrameRef("popupHeader")
 		popupHeader:Hide()
 	]])
+	popupHandler:SetAttribute("_adopt", button)
 
 	return button
 end
 
 
 
--- f delays our creations till the VARIABLES_LOADED event.
--- In a real mod a greater delay is required as this is sooner than some information is available
--- For instance on login, some icons will be missing, but a /rl (ReloadUI) will let everything show up
+-- Creates a minimal button that casts the spell specified in "spell"
+-- See the event handler below for the ClearAllPoints, SetHeight etc. calls needed to position and show the button
+function AutoBarTest:Companion(companionType)
+	local popupTypeList = {}
+	local count = GetNumCompanions(companionType)
+	local spellNameActive, spellName, iconActive, icon
+	local creatureID, creatureName, spellID, active
+	for index = 1, count, 1 do
+		creatureID, creatureName, spellID, icon, active = GetCompanionInfo(companionType, index)
+		spellName = GetSpellInfo(spellID)
+		popupTypeList[index] = {buttonType = "spell", spell = spellName, ["icon"] = icon}
+		if (active) then
+			spellNameActive, iconActive = spellName, icon
+		end
+	end
+
+	-- Create the anchor Button
+	local buttonName = "AutoBarTestButtonCompanion" .. companionType
+	local button = AutoBarTest:PopupButton(buttonName, popupTypeList)
+	button:RegisterForClicks("AnyUp")
+	button:SetAttribute("type", "spell")
+	button:SetAttribute("spell", spellNameActive or spellName)
+
+	SecureHandlerWrapScript(button, "OnLeave", popupHandler, [[
+		popupHeader = self:GetFrameRef("popupHeader")
+		popupHeader:Hide()
+	]])
+
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(iconActive or icon)
+	button.icon:Show()
+	return button
+end
+--[[
+Companions
+* Mounts and non-combat pets have been changed to be spell rather than item based. There are a number of new API methods to query and use them (See post #57 from slouken for more details)
+
+* NEW count = GetNumCompanions(type) -- Gets the number of a specific type of companion (type is "CRITTER" or "MOUNT")
+* NEW creatureID, creatureName, spellID, icon, active = GetCompanionInfo(type, index) -- Gets information abotu a specific companiion
+* NEW PickupCompanion(type, index) -- Load a companion onto the cursor for placement into an action bar
+* NEW CallCompanion(type, index) -- Summon a specific companion
+/dump GetNumCompanions("CRITTER")
+/dump GetCompanionInfo("CRITTER", 2)
+Also, the PlayerModel frame has a new method
+
+* NEW PlayerModel:SetCreature(creatureID) -- Show the model for the specified creature
+
+Finally, there's a new event COMPANION_UPDATE which has a single argument, type - If this is nil then the UI should update the current companion, if it's non il then it'll be "CRITTER" or "MOUNT" and indicates that the active companion of that type has changed.
+--]]
+
+
+
+local popupTypeList = {
+	{buttonType = "item", item = 6948, ["icon"] = (GetItemIcon(6948))},
+	{buttonType = "item", item = 30883, ["icon"] = (GetItemIcon(30883))},
+	{buttonType = "item", item = 14047, ["icon"] = (GetItemIcon(14047))},
+	{buttonType = "item", item = 14529, ["icon"] = (GetItemIcon(14529))},
+}
+
+-- f delays our creations till the PLAYER_ENTERING_WORLD event.
+-- Also /rl is mapped to ReloadUI
 local f = CreateFrame("Frame")
 local buttonList = {}
 f:SetScript("OnEvent",
@@ -440,7 +540,9 @@ f:SetScript("OnEvent",
 		buttonList[# buttonList + 1] = AutoBarTest:ItemByName(header)
 		buttonList[# buttonList + 1] = AutoBarTest:ItemByBagSlot(header)
 		buttonList[# buttonList + 1] = AutoBarTest:ItemByItemLink(header)
-		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopup1")
+		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopup1", popupTypeList)
+		buttonList[# buttonList + 1] = AutoBarTest:Companion("MOUNT")
+		buttonList[# buttonList + 1] = AutoBarTest:Companion("CRITTER")
 
 		for index, button in ipairs(buttonList) do
 			button:ClearAllPoints()
@@ -457,7 +559,7 @@ f:SetScript("OnEvent",
 				buttonIndex = v * 4 + h
 				buttonName = "AutoBarTestButtonGridPopup"..buttonIndex
 
-				button = AutoBarTest:PopupButton(buttonName)
+				button = AutoBarTest:PopupButton(buttonName, popupTypeList)
 
 				local itemLink = GetContainerItemLink(0, buttonIndex)
 				local texture = GetItemIcon(itemLink)
@@ -481,7 +583,9 @@ f:SetScript("OnEvent",
 			end
 		end
 
+		print("PLAYER_ENTERING_WORLD")
+		f:UnregisterEvent("PLAYER_ENTERING_WORLD")
 	end
 )
-f:RegisterEvent("VARIABLES_LOADED")
+f:RegisterEvent("PLAYER_ENTERING_WORLD")
 }}}
