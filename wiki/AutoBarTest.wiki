@@ -15,6 +15,7 @@ core.lua
 --  3) popping up on buttons 5-16 allows you to move mouse up & select popup 1-4 despite buttons 1-4 & possibly 5-12 being in the way
 --  4) hovering over a button keeps its popup going, moving to another button (not obscured by a popup) pops up that one & drops the previous popup
 --  5) when set, only popup on shift key held down
+--	6) selecting a popup makes the anchor button assume its type & icon etc.
 
 local _G = getfenv(0)
 
@@ -58,6 +59,11 @@ function AutoBarTest:ItemByName(header)
 	-- Create the button as a child of UIParent (the entire WoW window).  ActionButtonTemplate provides the icon we need to display our item.
 	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
 
+	-- Set the appropriate icon texture by looking up the associated ActionButtonTemplate icon which is our frame name with "Icon" appended
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(texture)
+	button.icon:Show()
+
 	-- AnyUp lets the button fire when the button (or key bound to it if any, is released).
 	button:RegisterForClicks("AnyUp")
 
@@ -70,11 +76,6 @@ function AutoBarTest:ItemByName(header)
 
 	-- Since our frame is a child of UIParent, we manually adopt it by the header
 	header:SetAttribute("_adopt", button)
-
-	-- Set the appropriate icon texture by looking up the associated ActionButtonTemplate icon which is our frame name with "Icon" appended
-	local icon = _G[buttonName.."Icon"]
-	icon:SetTexture(texture)
-	icon:Show()
 
 	-- Finally return the button, which still needs to be positioned, scaled, sized and shown so it can actually show up.
 	return button
@@ -108,7 +109,6 @@ local function ApplyTooltip(button, tooltipType)
 end
 
 
-
 -- OnEnter function.  Added to a button to allow calling it via control:CallMethod("SetTooltip")
 local function SetTooltipBagSlot(button)
 	SetTooltip(button)
@@ -129,7 +129,14 @@ function AutoBarTest:ItemByBagSlot(header)
 --	print("AutoBarTestButtonItemByBagSlot " .. texture)
 
 	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+
+	-- Set the appropriate icon texture
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(texture)
+	button.icon:Show()
+
 	button:RegisterForClicks("AnyUp")
+
 	button:SetAttribute("type", "item")
 
 	-- To have the button use something from a specific bag and slot location we specify them as a string with some kind of non-numeric separator (space in this case)
@@ -137,13 +144,8 @@ function AutoBarTest:ItemByBagSlot(header)
 
 	header:SetAttribute("_adopt", button)
 
-	-- Set the appropriate icon texture
-	local icon = _G[buttonName.."Icon"]
-	icon:SetTexture(texture)
-	icon:Show()
-
 	-- Set a key binding for the button
-	-- This allows the F-11 key to also click the button
+	-- This allows the F11 key to also click the button in this case
 	SetOverrideBindingClick(button, false, "F11", buttonName)
 
 	-- Add Tooltip support
@@ -171,15 +173,16 @@ function AutoBarTest:ItemByItemLink(header)
 	local texture = GetItemIcon(itemLink)
 
 	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate, SecureHandlerEnterLeaveTemplate")
+
+	-- Set the appropriate icon texture
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(texture)
+	button.icon:Show()
+
 	button:RegisterForClicks("AnyUp")
 	button:SetAttribute("type", "item")
 	button:SetAttribute("item", itemLink)
 	header:SetAttribute("_adopt", button)
-
-	-- Set the appropriate icon texture
-	local icon = _G[buttonName.."Icon"]
-	icon:SetTexture(texture)
-	icon:Show()
 
 	-- Add Tooltip support
 	ApplyTooltip(button, SetTooltipItemLink)
@@ -194,6 +197,11 @@ end
 function AutoBarTest:SimpleSpell(header)
 	local buttonName = "AutoBarTestButtonSimpleSpell"
 	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(spellIconList["Rejuvenation"])
+	button.icon:Show()
+
 	button:RegisterForClicks("AnyUp")
 	button:SetAttribute("type", "spell")
 	button:SetAttribute("spell", "Rejuvenation")
@@ -205,9 +213,6 @@ function AutoBarTest:SimpleSpell(header)
 
 	SetOverrideBindingClick(button, false, "R", buttonName)
 
-	local icon = _G[buttonName.."Icon"]
-	icon:SetTexture(spellIconList["Rejuvenation"])
-	icon:Show()
 	return button
 end
 
@@ -234,6 +239,11 @@ function AutoBarTest:StateSpell()
 	local buttonName = "AutoBarTestButtonStateSpell"
 	local header = CreateFrame("Frame", buttonName .. "Header", UIParent, "SecureHandlerBaseTemplate")
 	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerStateTemplate")
+
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(spellIconList["Maul"])
+	button.icon:Show()
+
 	button:RegisterForClicks("AnyUp")
 	button:SetAttribute("type", "spell")
 
@@ -246,12 +256,85 @@ function AutoBarTest:StateSpell()
 	header:SetAttribute("_adopt", button)					-- The button is not a natural child of the header, so we adopt it
 
 	SetOverrideBindingClick(button, false, "R", buttonName)
-
-	local icon = _G[buttonName.."Icon"]
-	icon:SetTexture(spellIconList["Maul"])
-	icon:Show()
-
 	return button
+end
+
+
+local function SetTooltipSpellIndex(button)
+	SetTooltip(button)
+
+	local spellIndex = button:GetAttribute("spellIndex")
+	local bookType = button:GetAttribute("bookType")
+	if (spellIndex and bookType) then
+print(spellIndex, bookType)
+		GameTooltip:SetSpell(spellIndex, bookType)
+		button.UpdateTooltip = SetTooltipSpellIndex
+	end
+end
+
+--[[
+/run GameTooltip:Show()
+/script GameTooltip:SetSpell("spell:26982")
+--]]
+
+-- Returns the spellbook index in the spell book bookType of the spell named spellName
+-- Returns spellId, spellRank for the highest ranked spell found
+local function GetSpellBookIndex(spellName, bookType)
+	local spell, spellRank
+	local foundId, foundRank
+
+	local i = 1
+	while true do
+		spell, spellRank = GetSpellName(i, bookType)
+		if not spell then
+			break
+		elseif (spellName == spell) then
+			foundId = i
+			foundRank = spellRank
+		end
+		i = i + 1
+	end
+	return foundId, foundRank
+end
+
+local buttonTooltipList = {
+	["itemLink"] = SetTooltipItemLink,
+	["bagSlot"] = SetTooltipBagSlot,
+	["spell"] = SetTooltipSpellIndex,
+}
+-- Apply buttonType, buttonSubType to the Button
+-- Various settings to make the button function and display correctly
+local function ApplyButtonType(button, buttonType, buttonSubType, icon, value)
+	button.icon:SetTexture(icon)
+	button.icon:Show()
+	button:SetAttribute("icon", icon)
+
+	if (buttonType == "item") then
+		button:SetAttribute("type", "item")
+		button:SetAttribute("item", value)
+		ApplyTooltip(button, buttonTooltipList[buttonSubType])
+	elseif (buttonType == "spell") then
+		button:SetAttribute("type", "spell")
+		button:SetAttribute("spell", value)
+
+		-- The GameTooltip code is archaic and needs the spellbook index, instead of the more straightforward spellId.  One day maybe...
+		local bookType = BOOKTYPE_SPELL
+		local spellIndex = GetSpellBookIndex(value, bookType)
+		if (not spellIndex) then
+			bookType = BOOKTYPE_PET
+			spellIndex = GetSpellBookIndex(value, bookType)
+		end
+		if (not spellIndex) then
+			bookType = INSCRIPTION
+			spellIndex = GetSpellBookIndex(value, bookType)
+		end
+print(value, BOOKTYPE_SPELL, spellIndex, buttonType)
+		if (spellIndex) then
+			button:SetAttribute("spellIndex", spellIndex)
+			button:SetAttribute("bookType", bookType)
+		end
+		ApplyTooltip(button, buttonTooltipList[buttonType])
+	end
 end
 
 
@@ -259,6 +342,9 @@ end
 function AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHeader)
 	local popupButtonName = buttonName .. "Popup" .. i
 	local popupButton = CreateFrame("Button", popupButtonName, popupKeyHandler or popupHeader, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerEnterLeaveTemplate")
+	popupButton.icon = _G[popupButtonName .. "Icon"]
+	popupButton.icon:Show()
+
 	popupButton:ClearAllPoints()
 	popupButton:SetHeight(buttonSize)
 	popupButton:SetWidth(buttonSize)
@@ -267,8 +353,6 @@ function AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHead
 	popupButton:SetFrameRef("popupHeader", popupHeader)
 	popupButton:SetAttribute("_onleave", [[ self:GetFrameRef("popupHeader"):Hide() ]])
 	popupButton:SetAttribute("_onenter", [[ self:GetFrameRef("popupHeader"):Show() ]])
-
-	popupButton.icon = _G[popupButtonName .. "Icon"]
 
 	popupButton:SetPoint("BOTTOM", popupHeader, "BOTTOM", 0, (buttonSize + buttonGap) * (i - 1) + buttonGap) -- ADDED
 	return popupButton
@@ -366,11 +450,8 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton, popupTypeList)
 		if (info.buttonType == "item") then
 			local itemID = info.item
 			local itemIcon = GetItemIcon(itemID) --itemCount = GetItemCount(itemID)
-			button.icon:SetTexture(itemIcon)
-			button.icon:Show()
-			button:SetAttribute("icon", itemIcon)
-			button:SetAttribute("type", "item")
-			button:SetAttribute("item", "item:" .. itemID)
+
+			ApplyButtonType(button, "item", "itemLink", itemIcon, itemID)
 
 			SecureHandlerWrapScript(button, "OnClick", popupHeader, [[
 				local popupHeader = self:GetFrameRef("popupHeader")
@@ -378,17 +459,11 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton, popupTypeList)
 				anchorButton:SetAttribute("item", self:GetAttribute("item"))
 				anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
 			]])
-
-			-- Add Tooltip support
-			ApplyTooltip(button, SetTooltipItemLink)
 		elseif (info.buttonType == "spell") then
 			local spellName = info.spell
 			local icon = info.icon
-			button.icon:SetTexture(icon)
-			button.icon:Show()
-			button:SetAttribute("icon", icon)
-			button:SetAttribute("type", "spell")
-			button:SetAttribute("spell", spellName)
+
+			ApplyButtonType(button, "spell", nil, icon, spellName)
 
 			SecureHandlerWrapScript(button, "OnClick", popupHeader, [[
 				local popupHeader = self:GetFrameRef("popupHeader")
@@ -400,7 +475,7 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton, popupTypeList)
 	end
 
 	-- Shuffle them a bit for variety
-	popupTypeList[1], popupTypeList[2], popupTypeList[3], popupTypeList[4] = popupTypeList[2], popupTypeList[3], popupTypeList[4], popupTypeList[1]
+--	popupTypeList[1], popupTypeList[2], popupTypeList[3], popupTypeList[4] = popupTypeList[2], popupTypeList[3], popupTypeList[4], popupTypeList[1]
 
 	-- Size the handler to fit a line of buttons and a buttonGap around and between them all
 	popupHeader:SetWidth(buttonSize + buttonGap * 2)
@@ -422,13 +497,9 @@ local popupHandler = CreateFrame("Frame", "AutoBarTestPopupHandler", nil, "Secur
 
 function AutoBarTest:PopupButton(buttonName, popupTypeList)
 	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerEnterLeaveTemplate")
---	buttonSize = button:GetWidth()
-	button:RegisterForClicks("Any")
-	button:SetAttribute("type", "spell")
-	button:SetAttribute("spell", "Regrowth")
 	button.icon = _G[buttonName.."Icon"]
-	button.icon:SetTexture(spellIconList["Regrowth"])
 	button.icon:Show()
+	button:RegisterForClicks("Any")
 
 	local popupHeader = AutoBarTest:CreatePopupButtons(buttonName, button, popupTypeList)
 	button:SetFrameRef("popupHeader", popupHeader)
@@ -467,7 +538,7 @@ end
 
 
 
--- Creates a minimal button that casts the spell specified in "spell"
+-- Creates a popup button with either "MOUNT" or "CRITTER"
 -- See the event handler below for the ClearAllPoints, SetHeight etc. calls needed to position and show the button
 function AutoBarTest:Companion(companionType)
 	local popupTypeList = {}
@@ -519,11 +590,20 @@ Finally, there's a new event COMPANION_UPDATE which has a single argument, type 
 
 
 
-local popupTypeList = {
-	{buttonType = "item", item = 6948, ["icon"] = (GetItemIcon(6948))},
-	{buttonType = "item", item = 30883, ["icon"] = (GetItemIcon(30883))},
-	{buttonType = "item", item = 14047, ["icon"] = (GetItemIcon(14047))},
-	{buttonType = "item", item = 14529, ["icon"] = (GetItemIcon(14529))},
+local popupTypeItemList = {
+	{buttonType = "item", item = "item:" .. 6948, ["icon"] = (GetItemIcon(6948))},
+	{buttonType = "item", item = "item:" .. 30883, ["icon"] = (GetItemIcon(30883))},
+	{buttonType = "item", item = "item:" .. 14047, ["icon"] = (GetItemIcon(14047))},
+	{buttonType = "item", item = "item:" .. 14529, ["icon"] = (GetItemIcon(14529))},
+}
+
+local popupTypeSpellList = {
+	{buttonType = "spell", spell = spellNameList["Rejuvenation"], ["icon"] = spellIconList["Rejuvenation"]},
+	{buttonType = "spell", spell = spellNameList["Regrowth"], ["icon"] = spellIconList["Regrowth"]},
+	{buttonType = "spell", spell = spellNameList["Moonfire"], ["icon"] = spellIconList["Moonfire"]},
+	{buttonType = "spell", spell = spellNameList["Starfire"], ["icon"] = spellIconList["Starfire"]},
+	{buttonType = "spell", spell = spellNameList["Wrath"], ["icon"] = spellIconList["Wrath"]},
+	{buttonType = "spell", spell = spellNameList["Maul"], ["icon"] = spellIconList["Maul"]},
 }
 
 -- f delays our creations till the PLAYER_ENTERING_WORLD event.
@@ -540,7 +620,10 @@ f:SetScript("OnEvent",
 		buttonList[# buttonList + 1] = AutoBarTest:ItemByName(header)
 		buttonList[# buttonList + 1] = AutoBarTest:ItemByBagSlot(header)
 		buttonList[# buttonList + 1] = AutoBarTest:ItemByItemLink(header)
-		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopup1", popupTypeList)
+
+		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopup1", popupTypeSpellList)
+		ApplyButtonType(buttonList[# buttonList], "spell", nil, spellIconList["Regrowth"], spellNameList["Regrowth"])
+
 		buttonList[# buttonList + 1] = AutoBarTest:Companion("MOUNT")
 		buttonList[# buttonList + 1] = AutoBarTest:Companion("CRITTER")
 
@@ -559,16 +642,13 @@ f:SetScript("OnEvent",
 				buttonIndex = v * 4 + h
 				buttonName = "AutoBarTestButtonGridPopup"..buttonIndex
 
-				button = AutoBarTest:PopupButton(buttonName, popupTypeList)
+				button = AutoBarTest:PopupButton(buttonName, popupTypeItemList)
+				button.icon = _G[buttonName.."Icon"]
 
 				local itemLink = GetContainerItemLink(0, buttonIndex)
 				local texture = GetItemIcon(itemLink)
-				button:SetAttribute("type", "item")
-				button:SetAttribute("item", itemLink)
+				ApplyButtonType(button, "item", "itemLink", texture, itemLink)
 
-				local icon = _G[buttonName.."Icon"]
-				icon:SetTexture(texture)
-				icon:Show()
 --				AutoBarTest:SetupButton(button, buttonName, itemLink)
 
 				-- In order to change aspects of a frame some form of ClearPoint needs to be called.  Here we clear it all and start from scratch.
