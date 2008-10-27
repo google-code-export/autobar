@@ -1,5 +1,7 @@
 #summary Engine Test Code for wow 3.0 Wrath of the Lich King.
 
+SVN: [http://www.wowace.com/projects/auto-bar-test/ AutoBarTest]
+
 core.lua
 
 {{{
