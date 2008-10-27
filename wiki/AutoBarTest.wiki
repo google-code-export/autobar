@@ -1,6 +1,6 @@
 #summary Engine Test Code for wow 3.0 Wrath of the Lich King.
 
-SVN: [http://www.wowace.com/projects/auto-bar-test/ AutoBarTest]
+Latest code on SVN: [http://www.wowace.com/projects/auto-bar-test/ AutoBarTest]
 
 core.lua
 
@@ -20,21 +20,38 @@ core.lua
 --	6) selecting a popup makes the anchor button assume its type & icon etc.
 
 local _G = getfenv(0)
+local _
 
 -- In order to prevent collision with the functions and variables of other mods we either add them to our mod or make them local
 AutoBarTest = {}
 AutoBarTest.spellNameList = {}
 AutoBarTest.spellIconList = {}
+AutoBarTest.spellLinkList = {}
 
-spellNameList = AutoBarTest.spellNameList
-spellIconList = AutoBarTest.spellIconList
+local spellNameList = AutoBarTest.spellNameList
+local spellIconList = AutoBarTest.spellIconList
+local spellLinkList = AutoBarTest.spellLinkList
 
-spellNameList["Rejuvenation"], _, spellIconList["Rejuvenation"] = GetSpellInfo(26982)
-spellNameList["Regrowth"], _, spellIconList["Regrowth"] = GetSpellInfo(26980)
-spellNameList["Moonfire"], _, spellIconList["Moonfire"] = GetSpellInfo(8921)
-spellNameList["Starfire"], _, spellIconList["Starfire"] = GetSpellInfo(2912)
-spellNameList["Wrath"], _, spellIconList["Wrath"] = GetSpellInfo(5176)
-spellNameList["Maul"], _, spellIconList["Maul"] = GetSpellInfo(6807)
+spellLinkList["Rejuvenation"], spellNameList["Rejuvenation"], _, spellIconList["Rejuvenation"] = "spell:26982", GetSpellInfo(26982)
+spellLinkList["Regrowth"], spellNameList["Regrowth"], _, spellIconList["Regrowth"] = "spell:26980", GetSpellInfo(26980)
+spellLinkList["Moonfire"], spellNameList["Moonfire"], _, spellIconList["Moonfire"] = "spell:8921", GetSpellInfo(8921)
+spellLinkList["Starfire"], spellNameList["Starfire"], _, spellIconList["Starfire"] = "spell:2912", GetSpellInfo(2912)
+spellLinkList["Wrath"], spellNameList["Wrath"], _, spellIconList["Wrath"] = "spell:5176", GetSpellInfo(5176)
+spellLinkList["Maul"], spellNameList["Maul"], _, spellIconList["Maul"] = "spell:6807", GetSpellInfo(6807)
+
+spellLinkList["Snake Trap"], spellNameList["Snake Trap"], _, spellIconList["Snake Trap"] = "spell:34600", GetSpellInfo(34600)
+spellLinkList["Explosive Trap"], spellNameList["Explosive Trap"], _, spellIconList["Explosive Trap"] = "spell:27025", GetSpellInfo(27025)
+spellLinkList["Frost Trap"], spellNameList["Frost Trap"], _, spellIconList["Frost Trap"] = "spell:13809", GetSpellInfo(13809)
+spellLinkList["Immolation Trap"], spellNameList["Immolation Trap"], _, spellIconList["Immolation Trap"] = "spell:27023", GetSpellInfo(27023)
+spellLinkList["Freezing Trap"], spellNameList["Freezing Trap"], _, spellIconList["Freezing Trap"] = "spell:14311", GetSpellInfo(14311)
+spellLinkList["Serpent Sting"], spellNameList["Serpent Sting"], _, spellIconList["Serpent Sting"] = "spell:27016", GetSpellInfo(27016)
+
+spellLinkList["Frost Armor"], spellNameList["Frost Armor"], _, spellIconList["Frost Armor"] = "spell:7301", GetSpellInfo(7301)
+spellLinkList["Ice Armor"], spellNameList["Ice Armor"], _, spellIconList["Ice Armor"] = "spell:27124", GetSpellInfo(27124)
+spellLinkList["Mage Armor"], spellNameList["Mage Armor"], _, spellIconList["Mage Armor"] = "spell:27125", GetSpellInfo(27125)
+spellLinkList["Molten Armor"], spellNameList["Molten Armor"], _, spellIconList["Molten Armor"] = "spell:30482", GetSpellInfo(30482)
+spellLinkList["Cone of Cold"], spellNameList["Cone of Cold"], _, spellIconList["Cone of Cold"] = "spell:120", GetSpellInfo(120)
+spellLinkList["Frostbolt"], spellNameList["Frostbolt"], _, spellIconList["Frostbolt"] = "spell:116", GetSpellInfo(116)
 
 function AutoBarTest.Slash(arg)
 	ReloadUI()
@@ -49,7 +66,7 @@ local buttonGap = 4
 
 
 -- Creates a minimal button that uses the item by name
--- This version heavily comments
+-- This version heavily commented
 function AutoBarTest:ItemByName(header)
 	-- The buttonName names the frame and needs to be unique.  Prefixing it with your mod name is a good way to ensure this.
 	local buttonName = "AutoBarTestButtonItemByName"
@@ -84,43 +101,132 @@ function AutoBarTest:ItemByName(header)
 end
 
 
-
--- OnLeave function.  Added to a button to allow calling it via control:CallMethod("HideTooltip")
-local function HideTooltip()
+-- OnLeave function.  Added to a button to allow calling it via control:CallMethod("TooltipHide")
+local function TooltipHide()
 	GameTooltip:Hide()
 end
 
--- Common Tooltip code
-local function SetTooltip(button)
+-- Generic Tooltip function
+local function TooltipShow(button)
 	if (GetCVar("UberTooltips") == "1") then
 		GameTooltip_SetDefaultAnchor(GameTooltip, button)
 	else
-		GameTooltip:SetOwner(button, "ANCHOR_RIGHT")
+		local x = button:GetRight()
+		if (x >= ( GetScreenWidth() / 2)) then
+			GameTooltip:SetOwner(button, "ANCHOR_LEFT")
+		else
+			GameTooltip:SetOwner(button, "ANCHOR_RIGHT")
+		end
 	end
 
 	button.UpdateTooltip = nil
+
+	local itemLink = button:GetAttribute("itemLink")
+	local buttonType = button:GetAttribute("type")
+	if (buttonType == "macro") then
+		-- There is no accesible GameTooltip function for macros so make one with its name and the macro text
+		local macroName = button:GetAttribute("macroName")
+		local macroBody = button:GetAttribute("macroBody")
+
+		if (macroName and macroBody) then
+			GameTooltip:AddLine(macroName, 0.2, 0.8, 0.8)
+			GameTooltip:AddLine(macroBody, 1, 1, 1, 1)
+			button.UpdateTooltip = TooltipShow
+			GameTooltip:Show()
+		end
+	elseif (itemLink) then
+		if (GameTooltip:SetHyperlink(itemLink)) then
+			button.UpdateTooltip = TooltipShow
+		end
+	elseif (buttonType == "item") then
+		-- There is no way to get charge information outside built in Blizzard functions for buttonType == "action"
+		-- The best we can do is link to a specific bag/slot so at least the tooltip can show this info
+		-- Sadly, the itemString for this is "[bag] [slot]" which is not a valid paramater for SetHyperlink
+		-- It is thus special cased here
+		local bagslot = button:GetAttribute("item")
+		if (bagslot) then
+			local bag, slot = strmatch(bagslot, "^(%d+)%s+(%d+)$")
+			if (bag and slot and GameTooltip:SetBagItem(bag, slot)) then
+				button.UpdateTooltip = TooltipShow
+			end
+		end
+	end
 end
+
 
 
 -- Apply tooltipType to the Button
-local function ApplyTooltip(button, tooltipType)
-	button.SetTooltip = tooltipType
-	button.HideTooltip = HideTooltip
-	SecureHandlerWrapScript(button, "OnEnter", button, [[ control:CallMethod("SetTooltip", self) ]])
-	SecureHandlerWrapScript(button, "OnLeave", button, [[ control:CallMethod("HideTooltip") ]])
+local function TooltipApply(button)
+	button.TooltipShow = TooltipShow
+	button.TooltipHide = TooltipHide
+	SecureHandlerWrapScript(button, "OnEnter", button, [[ control:CallMethod("TooltipShow", self) ]])
+	SecureHandlerWrapScript(button, "OnLeave", button, [[ control:CallMethod("TooltipHide") ]])
 end
 
 
--- OnEnter function.  Added to a button to allow calling it via control:CallMethod("SetTooltip")
-local function SetTooltipBagSlot(button)
-	SetTooltip(button)
 
-	local bagslot = button:GetAttribute("item")
-	local bag, slot = strmatch(bagslot, "^(%d+)%s+(%d+)$")
-	if (bag and slot and GameTooltip:SetBagItem(bag, slot)) then
-		button.UpdateTooltip = SetTooltipBagSlot
-	end
+-- Creates a minimal button that uses the macro by name
+-- Requires you to create a macro called "AutoBarTestMacro"
+function AutoBarTest:MacroByName(header)
+	-- The buttonName names the frame and needs to be unique.  Prefixing it with your mod name is a good way to ensure this.
+	local buttonName = "AutoBarTestButtonMacroByName"
+
+	local macroName = "AutoBarTestMacro"
+	local name, texture, body = GetMacroInfo(macroName)
+
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(texture)
+	button.icon:Show()
+
+	button:RegisterForClicks("AnyUp")
+
+	button:SetAttribute("type", "macro")
+	-- For type "macro", the "macro" attribute can be macroName or macroIndex
+	button:SetAttribute("macro", macroName)
+
+	header:SetAttribute("_adopt", button)
+
+	-- Add Tooltip support
+	button:SetAttribute("macroName", macroName)
+	button:SetAttribute("macroBody", body)
+	TooltipApply(button)
+
+	return button
 end
+
+
+function AutoBarTest:MacroCustom(header)
+	-- The buttonName names the frame and needs to be unique.  Prefixing it with your mod name is a good way to ensure this.
+	local buttonName = "AutoBarTestButtonMacroCustom"
+
+	local macroName = "AutoBarTestMacroCustom"
+	local body = "/cast [modifier:shift] Ice Barrier; [modifier:alt] Arcane Intellect; Frost Nova"
+
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture("Interface\\Icons\\INV_Misc_Gift_02")
+	button.icon:Show()
+
+	button:RegisterForClicks("AnyUp")
+
+	button:SetAttribute("type", "macro")
+	-- For type "macro", the "macro" attribute can be macroName or macroIndex
+	button:SetAttribute("macrotext", body)
+
+	header:SetAttribute("_adopt", button)
+
+	-- Add Tooltip support
+	button:SetAttribute("macroName", macroName)
+	button:SetAttribute("macroBody", body)
+	TooltipApply(button)
+
+	return button
+end
+
+
 
 -- Creates a minimal button that uses the item in "<bag> <slot>"
 function AutoBarTest:ItemByBagSlot(header)
@@ -143,6 +249,7 @@ function AutoBarTest:ItemByBagSlot(header)
 
 	-- To have the button use something from a specific bag and slot location we specify them as a string with some kind of non-numeric separator (space in this case)
 	button:SetAttribute("item", bag .. " " .. slot)
+	button:SetAttribute("itemLink", nil)
 
 	header:SetAttribute("_adopt", button)
 
@@ -151,21 +258,12 @@ function AutoBarTest:ItemByBagSlot(header)
 	SetOverrideBindingClick(button, false, "F11", buttonName)
 
 	-- Add Tooltip support
-	ApplyTooltip(button, SetTooltipBagSlot)
+	TooltipApply(button)
 
 	return button
 end
 
 
-
-local function SetTooltipItemLink(button)
-	SetTooltip(button)
-
-	local itemLink = button:GetAttribute("item")
-	if (itemLink and GameTooltip:SetHyperlink(itemLink)) then
-		button.UpdateTooltip = SetTooltipItemLink
-	end
-end
 
 -- Creates a minimal button using an ItemLink
 -- Provides a Tooltip when hovering over the button
@@ -184,14 +282,14 @@ function AutoBarTest:ItemByItemLink(header)
 	button:RegisterForClicks("AnyUp")
 	button:SetAttribute("type", "item")
 	button:SetAttribute("item", itemLink)
+	button:SetAttribute("itemLink", itemLink)
 	header:SetAttribute("_adopt", button)
 
 	-- Add Tooltip support
-	ApplyTooltip(button, SetTooltipItemLink)
+	TooltipApply(button)
 
 	return button
 end
-
 
 
 -- Creates a minimal button that casts the spell specified in "spell"
@@ -205,8 +303,12 @@ function AutoBarTest:SimpleSpell(header)
 	button.icon:Show()
 
 	button:RegisterForClicks("AnyUp")
-	button:SetAttribute("type", "spell")
-	button:SetAttribute("spell", "Rejuvenation")
+	button:SetAttribute("type1", "spell")
+	button:SetAttribute("spell1", "Rejuvenation")
+	button:SetAttribute("*type1", "spell")
+	button:SetAttribute("*spell1", "Rejuvenation")
+	button:SetAttribute("shift-type1", "spell")
+	button:SetAttribute("shift-spell1", "Regrowth")
 	header:SetAttribute("_adopt", button)
 
 	-- Holding down the selfcast / focuscast modifier keys will change the target to self / focus
@@ -262,81 +364,38 @@ function AutoBarTest:StateSpell()
 end
 
 
-local function SetTooltipSpellIndex(button)
-	SetTooltip(button)
 
-	local spellIndex = button:GetAttribute("spellIndex")
-	local bookType = button:GetAttribute("bookType")
-	if (spellIndex and bookType) then
-print(spellIndex, bookType)
-		GameTooltip:SetSpell(spellIndex, bookType)
-		button.UpdateTooltip = SetTooltipSpellIndex
-	end
-end
-
---[[
-/run GameTooltip:Show()
-/script GameTooltip:SetSpell("spell:26982")
---]]
-
--- Returns the spellbook index in the spell book bookType of the spell named spellName
--- Returns spellId, spellRank for the highest ranked spell found
-local function GetSpellBookIndex(spellName, bookType)
-	local spell, spellRank
-	local foundId, foundRank
-
-	local i = 1
-	while true do
-		spell, spellRank = GetSpellName(i, bookType)
-		if not spell then
-			break
-		elseif (spellName == spell) then
-			foundId = i
-			foundRank = spellRank
-		end
-		i = i + 1
-	end
-	return foundId, foundRank
-end
-
-local buttonTooltipList = {
-	["itemLink"] = SetTooltipItemLink,
-	["bagSlot"] = SetTooltipBagSlot,
-	["spell"] = SetTooltipSpellIndex,
-}
 -- Apply buttonType, buttonSubType to the Button
 -- Various settings to make the button function and display correctly
-local function ApplyButtonType(button, buttonType, buttonSubType, icon, value)
+local function ApplyButtonType(button, buttonType, buttonSubType, icon, itemLink, ...)
+	button:RegisterForClicks("AnyUp")
+
 	button.icon:SetTexture(icon)
 	button.icon:Show()
 	button:SetAttribute("icon", icon)
 
 	if (buttonType == "item") then
 		button:SetAttribute("type", "item")
-		button:SetAttribute("item", value)
-		ApplyTooltip(button, buttonTooltipList[buttonSubType])
+		button:SetAttribute("item", itemLink)
+		button:SetAttribute("itemLink", itemLink)
 	elseif (buttonType == "spell") then
+		local spellName = ...
 		button:SetAttribute("type", "spell")
-		button:SetAttribute("spell", value)
-
-		-- The GameTooltip code is archaic and needs the spellbook index, instead of the more straightforward spellId.  One day maybe...
-		local bookType = BOOKTYPE_SPELL
-		local spellIndex = GetSpellBookIndex(value, bookType)
-		if (not spellIndex) then
-			bookType = BOOKTYPE_PET
-			spellIndex = GetSpellBookIndex(value, bookType)
+		button:SetAttribute("itemLink", itemLink)
+		button:SetAttribute("spell", spellName)
+	elseif (buttonType == "macro") then
+		local macroName, macroBody = ...
+		button:SetAttribute("type", "macro")
+		button:SetAttribute("macro", itemLink)
+		button:SetAttribute("macroName", macroName)
+		button:SetAttribute("macroBody", macroBody)
+		if (itemLink) then
+			button:SetAttribute("macrotext", nil)
+		else
+			button:SetAttribute("macrotext", macroBody)
 		end
-		if (not spellIndex) then
-			bookType = INSCRIPTION
-			spellIndex = GetSpellBookIndex(value, bookType)
-		end
-print(value, BOOKTYPE_SPELL, spellIndex, buttonType)
-		if (spellIndex) then
-			button:SetAttribute("spellIndex", spellIndex)
-			button:SetAttribute("bookType", bookType)
-		end
-		ApplyTooltip(button, buttonTooltipList[buttonType])
 	end
+	TooltipApply(button)
 end
 
 
@@ -353,8 +412,8 @@ function AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHead
 	popupButton:SetScale(UIParent:GetScale())
 
 	popupButton:SetFrameRef("popupHeader", popupHeader)
-	popupButton:SetAttribute("_onleave", [[ self:GetFrameRef("popupHeader"):Hide() ]])
 	popupButton:SetAttribute("_onenter", [[ self:GetFrameRef("popupHeader"):Show() ]])
+	popupButton:SetAttribute("_onleave", [[ self:GetFrameRef("popupHeader"):Hide() ]])
 
 	popupButton:SetPoint("BOTTOM", popupHeader, "BOTTOM", 0, (buttonSize + buttonGap) * (i - 1) + buttonGap) -- ADDED
 	return popupButton
@@ -368,12 +427,12 @@ end
 local popupNaziSnippet = [[
 	local x, y = self:GetMousePosition()
 	if (x and y) then
-		local queued = control:SetTimer(1, "hoverCheck")
+		local queued = control:SetTimer(0.4, "hoverCheck")
 	else
 		local anchorButton = self:GetFrameRef("anchorButton")
 		x, y = anchorButton:GetMousePosition()
 		if (x and y) then
-			local queued = control:SetTimer(1, "hoverCheck")
+			local queued = control:SetTimer(0.4, "hoverCheck")
 		else
 			self:Hide()
 		end
@@ -383,15 +442,14 @@ local popupNaziSnippet = [[
 --	2) Track the popped open menu.  If we open a new one we sensibly close the old one - popupNaziHandler
 local popupNaziHandler = CreateFrame("Frame", "AutoBarTestPopupNaziHandler", nil, "SecureHandlerAttributeTemplate")
 popupNaziHandler:SetAttribute("_onattributechanged", [[
-	local openHandler = self:GetAttribute("openhandler")
-	if (name == "openhandler") then	-- Note the dumb use of lowercase attribute names as Blizzard chooses to lowercase them for some nutty reason
-		local openHandler = self:GetAttribute("openhandler")
-		local oldOpenHandler = self:GetAttribute("oldopenhandler")
+	if (name == "openhandler") then	-- Note the use of lowercased attribute names.  Probably a bug that leaves them lowercased.
+		local openHandler = self:GetAttribute("openHandler")
+		local oldOpenHandler = self:GetAttribute("oldOpenHandler")
 		if (oldOpenHandler and oldOpenHandler ~= openHandler) then
 --			print("hiding old one", oldOpenHandler, openHandler)
 			oldOpenHandler:Hide()
 		end
-		self:SetAttribute("oldopenhandler", openHandler)
+		self:SetAttribute("oldOpenHandler", openHandler)
 	end
 ]])
 
@@ -400,15 +458,44 @@ popupNaziHandler:SetAttribute("_onattributechanged", [[
 local popupOnModifier --= true
 
 -- The basic idea is to have an intervening handler frame that is Shown / Hidden if popupOnModifier is true / nil
-local popupKeySnippet = [[
+local snippetPopupKey = [[
 	if (newstate == "1") then
 		self:Show()
 	else
 		self:Hide()
 	end
-	]]
+]]
 local popupKeyStates = "[modifier:shift] 1; 0"
 -- Another aproach is to combine this all into one handler but it is a lot more code and complexity
+
+-- Clone the popup into the anchorButton
+local snippetOnClick = [[
+	local popupHeader = self:GetFrameRef("popupHeader")
+	local anchorButton = popupHeader:GetFrameRef("anchorButton")
+
+	-- This allows the Tooltip Handlers to be moved and settings updated
+	anchorButton:SetAttribute("sourcebutton", self)
+
+	-- Move the attributes that make the button work
+	anchorButton:SetAttribute("itemLink", self:GetAttribute("itemLink"))
+	local itemType = self:GetAttribute("type")
+	if (itemType == "item") then
+		anchorButton:SetAttribute("type", "item")
+		anchorButton:SetAttribute("item", self:GetAttribute("item"))
+		anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
+	elseif (itemType == "spell") then
+		anchorButton:SetAttribute("type", "spell")
+		anchorButton:SetAttribute("spell", self:GetAttribute("spell"))
+		anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
+	elseif (itemType == "macro") then
+		anchorButton:SetAttribute("type", "macro")
+		anchorButton:SetAttribute("macro", self:GetAttribute("macro"))
+		anchorButton:SetAttribute("macrotext", self:GetAttribute("macrotext"))
+		anchorButton:SetAttribute("macroName", self:GetAttribute("macroName"))
+		anchorButton:SetAttribute("macroBody", self:GetAttribute("macroBody"))
+		anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
+	end
+]]
 
 function AutoBarTest:CreatePopupButtons(buttonName, anchorButton, popupTypeList)
 	local popupHeader = CreateFrame("Frame", buttonName .. "Handler2", nil, "SecureHandlerEnterLeaveTemplate SecureHandlerAttributeTemplate")
@@ -422,11 +509,11 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton, popupTypeList)
 		-- Note that it is made a child of popupHeader, and later becomes parent to the popup buttons
 		-- Hiding it will thus hide the popup buttons as well, even if popupHeader is shown
 		popupKeyHandler = CreateFrame("Frame", buttonName .. "HandlerPopupKey", popupHeader, "SecureHandlerStateTemplate SecureHandlerEnterLeaveTemplate")
-		popupKeyHandler:SetAttribute("_onstate-modifier", popupKeySnippet)
+		popupKeyHandler:SetAttribute("_onstate-modifier", snippetPopupKey)
 		popupKeyHandler:SetAllPoints(popupHeader)
 		RegisterStateDriver(popupKeyHandler, "modifier", popupKeyStates)
-		popupKeyHandler:SetAttribute("_onleave", [[ self:GetParent():Hide() ]])
 		popupKeyHandler:SetAttribute("_onenter", [[ self:GetParent():Show() ]])
+		popupKeyHandler:SetAttribute("_onleave", [[ self:GetParent():Hide() ]])
 	end
 
 	-- Deal with rare irritating cases where Popups remain open incorrectly
@@ -437,8 +524,8 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton, popupTypeList)
 	SecureHandlerWrapScript(popupHeader, "OnShow", popupHeader, [[
 		popupNaziHandler = self:GetFrameRef("popupNaziHandler")
 		popupHeader = self:GetFrameRef("popupHeader")
-		popupNaziHandler:SetAttribute("openhandler", popupHeader)
-		local queued = control:SetTimer(1, "hoverCheck")
+		popupNaziHandler:SetAttribute("openHandler", popupHeader)
+		local queued = control:SetTimer(0.4, "hoverCheck")
 	]])
 	SecureHandlerWrapScript(popupHeader, "OnHide", popupHeader, [[
 		popupNaziHandler = self:GetFrameRef("popupNaziHandler")
@@ -450,34 +537,26 @@ function AutoBarTest:CreatePopupButtons(buttonName, anchorButton, popupTypeList)
 		-- Use popupKeyHandler if it exists so shift key state can overide visibility
 		local button = AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHeader)
 		if (info.buttonType == "item") then
-			local itemID = info.item
-			local itemIcon = GetItemIcon(itemID) --itemCount = GetItemCount(itemID)
+			local itemLink = info.itemLink
+			local itemIcon = GetItemIcon(itemLink) --itemCount = GetItemCount(itemLink)
 
-			ApplyButtonType(button, "item", "itemLink", itemIcon, itemID)
-
-			SecureHandlerWrapScript(button, "OnClick", popupHeader, [[
-				local popupHeader = self:GetFrameRef("popupHeader")
-				local anchorButton = popupHeader:GetFrameRef("anchorButton")
-				anchorButton:SetAttribute("item", self:GetAttribute("item"))
-				anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
-			]])
-		elseif (info.buttonType == "spell") then
-			local spellName = info.spell
+			ApplyButtonType(button, "item", "itemLink", itemIcon, itemLink)
+		elseif (info.buttonType == "macro") then
+			local macroName = info.macroName
+			local macroBody = info.macroBody
+			local itemLink = info.itemLink
 			local icon = info.icon
 
-			ApplyButtonType(button, "spell", nil, icon, spellName)
+			ApplyButtonType(button, "macro", nil, icon, itemLink, macroName, macroBody)
+		elseif (info.buttonType == "spell") then
+			local spellName = info.spell
+			local itemLink = info.itemLink
+			local icon = info.icon
 
-			SecureHandlerWrapScript(button, "OnClick", popupHeader, [[
-				local popupHeader = self:GetFrameRef("popupHeader")
-				local anchorButton = popupHeader:GetFrameRef("anchorButton")
-				anchorButton:SetAttribute("spell", self:GetAttribute("spell"))
-				anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
-			]])
+			ApplyButtonType(button, "spell", nil, icon, itemLink, spellName)
 		end
+		SecureHandlerWrapScript(button, "OnClick", popupHeader, snippetOnClick)
 	end
-
-	-- Shuffle them a bit for variety
---	popupTypeList[1], popupTypeList[2], popupTypeList[3], popupTypeList[4] = popupTypeList[2], popupTypeList[3], popupTypeList[4], popupTypeList[1]
 
 	-- Size the handler to fit a line of buttons and a buttonGap around and between them all
 	popupHeader:SetWidth(buttonSize + buttonGap * 2)
@@ -497,11 +576,17 @@ end
 -- Used to pop up the buttons based on the "popupHeader" FrameRef on the button
 local popupHandler = CreateFrame("Frame", "AutoBarTestPopupHandler", nil, "SecureHandlerEnterLeaveTemplate")
 
-function AutoBarTest:PopupButton(buttonName, popupTypeList)
-	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerEnterLeaveTemplate")
+-- Update the anchorButton icon after a click on a popup
+local snippetOnAttributeChanged = [[
+	if (name == "icon") then
+		control:CallMethod("UpdateIcon", value)
+	end
+]]
+
+function AutoBarTest:PopupButton(buttonName, popupTypeList, templates)
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerBaseTemplate " .. (templates or ""))
 	button.icon = _G[buttonName.."Icon"]
 	button.icon:Show()
-	button:RegisterForClicks("Any")
 
 	local popupHeader = AutoBarTest:CreatePopupButtons(buttonName, button, popupTypeList)
 	button:SetFrameRef("popupHeader", popupHeader)
@@ -513,16 +598,9 @@ function AutoBarTest:PopupButton(buttonName, popupTypeList)
 		popupHeader:Hide()
 	]])
 
-	-- Icon Updating
-	button.UpdateIcon = UpdateIcon
-	SecureHandlerWrapScript(button, "OnAttributeChanged", button, [[
-		if (name == "icon") then
-			control:CallMethod("UpdateIcon", value)
-		end
-	]])
-
-	-- Add Tooltip support
-	ApplyTooltip(button, SetTooltipItemLink)
+	-- Trigger Updating on the Anchor Button
+	button.UpdateIcon = UpdateIcon	-- Update Icon
+	SecureHandlerWrapScript(button, "OnAttributeChanged", button, snippetOnAttributeChanged)
 
 	-- Actually open popup when over a Button
 	SecureHandlerWrapScript(button, "OnEnter", popupHandler, [[
@@ -535,6 +613,24 @@ function AutoBarTest:PopupButton(buttonName, popupTypeList)
 	]])
 	popupHandler:SetAttribute("_adopt", button)
 
+	-- Dragging and dropping
+	SecureHandlerWrapScript(button, "OnDragStart", popupHandler, [[
+		return "clear"
+	]])
+	button:SetAttribute("_onreceivedrag", [[
+		if (kind == "item") then
+			local itemLink = ...
+			print(kind, "itemID", value, "itemLink", itemLink)
+		elseif (kind == "spell") then
+			local bookType = ...
+			print(kind, "spellId", value, "bookType", bookType)
+		elseif (kind == "macro") then
+			print(kind, "macro index", value)
+		end
+
+		return "clear"
+	]])
+
 	return button
 end
 
@@ -545,32 +641,31 @@ end
 function AutoBarTest:Companion(companionType)
 	local popupTypeList = {}
 	local count = GetNumCompanions(companionType)
-	local spellNameActive, spellName, iconActive, icon
+	local activeIndex = count
+	local spellName, icon
 	local creatureID, creatureName, spellID, active
 	for index = 1, count, 1 do
 		creatureID, creatureName, spellID, icon, active = GetCompanionInfo(companionType, index)
 		spellName = GetSpellInfo(spellID)
-		popupTypeList[index] = {buttonType = "spell", spell = spellName, ["icon"] = icon}
+		popupTypeList[index] = {buttonType = "spell", spell = spellName, ["icon"] = icon, itemLink = "spell:"..spellID}
 		if (active) then
-			spellNameActive, iconActive = spellName, icon
+			activeIndex = index
 		end
 	end
 
 	-- Create the anchor Button
 	local buttonName = "AutoBarTestButtonCompanion" .. companionType
-	local button = AutoBarTest:PopupButton(buttonName, popupTypeList)
-	button:RegisterForClicks("AnyUp")
-	button:SetAttribute("type", "spell")
-	button:SetAttribute("spell", spellNameActive or spellName)
+	local button = AutoBarTest:PopupButton(buttonName, popupTypeList, "SecureHandlerDragTemplate")
+	local popupType = popupTypeList[activeIndex]
+	if (popupType) then
+		ApplyButtonType(button, "spell", nil, popupType.icon, popupType.itemLink, popupType.spell)
+	else
+		TooltipApply(button)	-- no companions
+	end
 
-	SecureHandlerWrapScript(button, "OnLeave", popupHandler, [[
-		popupHeader = self:GetFrameRef("popupHeader")
-		popupHeader:Hide()
-	]])
+	button:RegisterForDrag("LeftButton", "RightButton")
+	button:SetAttribute("companionType", companionType)
 
-	button.icon = _G[buttonName.."Icon"]
-	button.icon:SetTexture(iconActive or icon)
-	button.icon:Show()
 	return button
 end
 --[[
@@ -593,20 +688,72 @@ Finally, there's a new event COMPANION_UPDATE which has a single argument, type 
 
 
 local popupTypeItemList = {
-	{buttonType = "item", item = "item:" .. 6948, ["icon"] = (GetItemIcon(6948))},
-	{buttonType = "item", item = "item:" .. 30883, ["icon"] = (GetItemIcon(30883))},
-	{buttonType = "item", item = "item:" .. 14047, ["icon"] = (GetItemIcon(14047))},
-	{buttonType = "item", item = "item:" .. 14529, ["icon"] = (GetItemIcon(14529))},
+	{buttonType = "item", itemLink = "item:" .. 6948, ["icon"] = (GetItemIcon(6948))},
+	{buttonType = "item", itemLink = "item:" .. 30883, ["icon"] = (GetItemIcon(30883))},
+	{buttonType = "item", itemLink = "item:" .. 14047, ["icon"] = (GetItemIcon(14047))},
+	{buttonType = "item", itemLink = "item:" .. 14529, ["icon"] = (GetItemIcon(14529))},
 }
-
-local popupTypeSpellList = {
-	{buttonType = "spell", spell = spellNameList["Rejuvenation"], ["icon"] = spellIconList["Rejuvenation"]},
-	{buttonType = "spell", spell = spellNameList["Regrowth"], ["icon"] = spellIconList["Regrowth"]},
-	{buttonType = "spell", spell = spellNameList["Moonfire"], ["icon"] = spellIconList["Moonfire"]},
-	{buttonType = "spell", spell = spellNameList["Starfire"], ["icon"] = spellIconList["Starfire"]},
-	{buttonType = "spell", spell = spellNameList["Wrath"], ["icon"] = spellIconList["Wrath"]},
-	{buttonType = "spell", spell = spellNameList["Maul"], ["icon"] = spellIconList["Maul"]},
-}
+local popupTypeSpellList
+local _, CLASS = UnitClass("player")
+if (CLASS == "DRUID") then
+	popupTypeSpellList = {
+		{buttonType = "spell", itemLink = spellLinkList["Rejuvenation"], spell = spellNameList["Rejuvenation"], ["icon"] = spellIconList["Rejuvenation"]},
+		{buttonType = "spell", itemLink = spellLinkList["Regrowth"], spell = spellNameList["Regrowth"], ["icon"] = spellIconList["Regrowth"]},
+		{buttonType = "spell", itemLink = spellLinkList["Moonfire"], spell = spellNameList["Moonfire"], ["icon"] = spellIconList["Moonfire"]},
+		{buttonType = "spell", itemLink = spellLinkList["Starfire"], spell = spellNameList["Starfire"], ["icon"] = spellIconList["Starfire"]},
+		{buttonType = "spell", itemLink = spellLinkList["Wrath"], spell = spellNameList["Wrath"], ["icon"] = spellIconList["Wrath"]},
+		{buttonType = "spell", itemLink = spellLinkList["Maul"], spell = spellNameList["Maul"], ["icon"] = spellIconList["Maul"]},
+	}
+elseif (CLASS == "HUNTER") then
+	popupTypeSpellList = {
+		{buttonType = "spell", itemLink = spellLinkList["Snake Trap"], spell = spellNameList["Snake Trap"], ["icon"] = spellIconList["Snake Trap"]},
+		{buttonType = "spell", itemLink = spellLinkList["Explosive Trap"], spell = spellNameList["Explosive Trap"], ["icon"] = spellIconList["Explosive Trap"]},
+		{buttonType = "spell", itemLink = spellLinkList["Frost Trap"], spell = spellNameList["Frost Trap"], ["icon"] = spellIconList["Frost Trap"]},
+		{buttonType = "spell", itemLink = spellLinkList["Immolation Trap"], spell = spellNameList["Immolation Trap"], ["icon"] = spellIconList["Immolation Trap"]},
+		{buttonType = "spell", itemLink = spellLinkList["Freezing Trap"], spell = spellNameList["Freezing Trap"], ["icon"] = spellIconList["Freezing Trap"]},
+		{buttonType = "spell", itemLink = spellLinkList["Serpent Sting"], spell = spellNameList["Serpent Sting"], ["icon"] = spellIconList["Serpent Sting"]},
+	}
+else
+	popupTypeSpellList = {
+		{buttonType = "spell", itemLink = spellLinkList["Frost Armor"], spell = spellNameList["Frost Armor"], ["icon"] = spellIconList["Frost Armor"]},
+		{buttonType = "spell", itemLink = spellLinkList["Ice Armor"], spell = spellNameList["Ice Armor"], ["icon"] = spellIconList["Ice Armor"]},
+		{buttonType = "spell", itemLink = spellLinkList["Cone of Cold"], spell = spellNameList["Cone of Cold"], ["icon"] = spellIconList["Cone of Cold"]},
+		{buttonType = "spell", itemLink = spellLinkList["Frostbolt"], spell = spellNameList["Frostbolt"], ["icon"] = spellIconList["Frostbolt"]},
+		{buttonType = "spell", itemLink = spellLinkList["Molten Armor"], spell = spellNameList["Molten Armor"], ["icon"] = spellIconList["Molten Armor"]},
+		{buttonType = "spell", itemLink = spellLinkList["Mage Armor"], spell = spellNameList["Mage Armor"], ["icon"] = spellIconList["Mage Armor"]},
+	}
+end
+local popupTypeMacroList
+local function populateMacrolist()
+	local name, iconTexture, body
+	popupTypeMacroList = {
+		{buttonType = "macro", macroName = "Say Something", macroBody = "/s Something!", ["icon"] = "Interface\\Icons\\INV_Misc_Gift_05" },
+	}
+	name, iconTexture, body = GetMacroInfo(1)
+	if (name) then
+		popupTypeMacroList[# popupTypeMacroList + 1] = {buttonType = "macro", macroName = name, itemLink = 1, macroBody = body, ["icon"] = iconTexture}
+	else
+		print("missing macro at index: 1")
+	end
+	name, iconTexture, body = GetMacroInfo("AutoBarTestMacro")
+	if (name) then
+		popupTypeMacroList[# popupTypeMacroList + 1] = {buttonType = "macro", macroName = name, itemLink = "AutoBarTestMacro", macroBody = body, ["icon"] = iconTexture}
+	else
+		print("missing macro named: AutoBarTestMacro")
+	end
+	return popupTypeMacroList
+end
+local popupTypeMixedList
+local function populateMixedlist()
+	popupTypeMixedList = {
+		popupTypeItemList[1],
+		popupTypeSpellList[2],
+		popupTypeSpellList[4],
+		popupTypeMacroList[1],
+		popupTypeMacroList[2],
+	}
+	return popupTypeMixedList
+end
 
 -- f delays our creations till the PLAYER_ENTERING_WORLD event.
 -- Also /rl is mapped to ReloadUI
@@ -615,16 +762,22 @@ local buttonList = {}
 f:SetScript("OnEvent",
 	function(self, event, ...)
 		local header = CreateFrame("Frame", "ActionBarTestHeader", UIParent, "SecureHandlerBaseTemplate")
-		local button
-
 		buttonList[# buttonList + 1] = AutoBarTest:SimpleSpell(header)
 		buttonList[# buttonList + 1] = AutoBarTest:StateSpell()
 		buttonList[# buttonList + 1] = AutoBarTest:ItemByName(header)
 		buttonList[# buttonList + 1] = AutoBarTest:ItemByBagSlot(header)
 		buttonList[# buttonList + 1] = AutoBarTest:ItemByItemLink(header)
+		buttonList[# buttonList + 1] = AutoBarTest:MacroByName(header)
+		buttonList[# buttonList + 1] = AutoBarTest:MacroCustom(header)
 
-		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopup1", popupTypeSpellList)
-		ApplyButtonType(buttonList[# buttonList], "spell", nil, spellIconList["Regrowth"], spellNameList["Regrowth"])
+		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopupSpells", popupTypeSpellList)
+		ApplyButtonType(buttonList[# buttonList], "spell", nil, popupTypeSpellList[2].icon, popupTypeSpellList[2].itemLink, popupTypeSpellList[2].spell)
+
+		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopupMacros", populateMacrolist())
+		ApplyButtonType(buttonList[# buttonList], "macro", nil, "Interface\\Icons\\INV_Misc_Gift_04", 1, "Macro Popup", "/s Click a popup button to change me!")
+
+		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopupMixed", populateMixedlist())
+		ApplyButtonType(buttonList[# buttonList], "macro", nil, "Interface\\Icons\\INV_Misc_Gift_03", 1, "Mixed Types Popup", "/s Click a popup button to change me!")
 
 		buttonList[# buttonList + 1] = AutoBarTest:Companion("MOUNT")
 		buttonList[# buttonList + 1] = AutoBarTest:Companion("CRITTER")
@@ -633,7 +786,7 @@ f:SetScript("OnEvent",
 			button:ClearAllPoints()
 			button:SetHeight(buttonSize)
 			button:SetWidth(buttonSize)
-			button:SetPoint("RIGHT",-160-(index * 40),0)
+			button:SetPoint("RIGHT",-240-(index * 40),0)
 			button:Show()
 		end
 
@@ -660,7 +813,7 @@ f:SetScript("OnEvent",
 				button:SetScale(1)
 				button:SetHeight(buttonSize)
 				button:SetWidth(buttonSize)
-				button:SetPoint("RIGHT", -160 + (buttonSize + buttonGap) * (h), (buttonSize + buttonGap) * v)
+				button:SetPoint("RIGHT", -240 + (buttonSize + buttonGap) * (h), (buttonSize + buttonGap) * v)
 				button:Show()
 			end
 		end
