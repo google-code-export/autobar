@@ -1,15 +1,18 @@
 #summary How to use and customize AutoBar for your characters.  This documentation refers to the Beta.  All other versions are no longer supported.
 #labels Featured
 
-= What is in the new version? =
+= What is new in the Wrath of the Lich King version? =
  * This is a rewrite of the core !AutoBar engine for WOTLK.
  * The clunky config system will get revamped soon as well.
- * The Secure Handler stuff for the popups is rewritten and much simpler than the old one.
  * Popups can now *Arrange on Use in combat* as well at the cost of having the anchor *Button duplicated* in the popup.
+ * The Secure Handler stuff for the popups is rewritten and much simpler than the old one.
+ * You can drag and drop items / spells / macros directly to a Custom Button with the "Drop" setting checked.
+
+= Highlights =
  * Sharing of settings can be done per Button and per the Layout / Position / Buttons of bars.
- * There are more buttons available, some with overlapping functionality. This is intentional.  Pick the ones you want and disable any buttons you do not want.
+ * There are many buttons available, some with overlapping functionality. This is intentional.  Pick the ones you want and disable any buttons you do not want.
  * Built in Buttons are named and keybindings are directly to that Button, so if you move the Button around your keybinding still works.
- * Your Custom Buttons can now have Custom Categories containing a mixture of items, spells and macros.
+ * Your Custom Buttons can have Custom Categories containing a mixture of items, spells and macros.
  * [http://www.wowace.com/wiki/CommonUI Common UI] elements are used:
    * [http://www.wowace.com/wiki/ButtonFacade ButtonFacade] replaces cyCircled for skinning
    * [http://www.wowace.com/wiki/LibKeyBound-1.0 LibKeyBound-1.0] adds an easy Key Bindings Mode
