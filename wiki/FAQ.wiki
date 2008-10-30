@@ -15,7 +15,7 @@
 
 
 === Why can AutoBar no longer shuffle items during combat? ===
-You need to enable the Shuffle attribute for a Button.  This lets it shuffle certain items during combat.
+~~You need to enable the Shuffle attribute for a Button.  This lets it shuffle certain items during combat~~.
 
 
 === Arrange on use cause a duplicate Button in the Popup! ===
