@@ -18,8 +18,12 @@
 You need to enable the Shuffle attribute for a Button.  This lets it shuffle certain items during combat.
 
 
-=== Arrange on use is not working for me during combat! ===
+=== Arrange on use cause a duplicate Button in the Popup! ===
  True that.
+
+
+=== I have a duplicate Button in the Popup! ===
+ Turn off Arrange on Use.  It needs to have that extra button there.
 
 
 === How do I skin AutoBar / my cyCircled does not work? ===
@@ -59,9 +63,21 @@ You need to enable the Shuffle attribute for a Button.  This lets it shuffle cer
 
 === Files Required for !AutoBar to work ===
 Inside "World of Warcraft\Interface\!AddOns\!AutoBar":
-  # embeds.xml
+  # !AutoBar.toc
+  # !AutoBarButton.lua
+  # !AutoBarCategory.lua
+  # !AutoBarClassBar.lua
+  # !AutoBarClassBasicButton.lua
+  # !AutoBarClassButton.lua
+  # !AutoBarClassPopupButton.lua
   # !AutoBarConsole-1.0.lua
+  # !AutoBarDB.lua
+  # !AutoBarFuBar.lua
+  # !AutoBarOptions.lua
+  # !AutoBarSearch.lua
+  # Bindings.xml
   # Core.lua
+  # embeds.xml
   # Locale-enUS.lua
   # Locale-koKR.lua
   # Locale-zhCN.lua
@@ -69,15 +85,6 @@ Inside "World of Warcraft\Interface\!AddOns\!AutoBar":
   # Locale-deDE.lua
   # Locale-frFR.lua
   # Locale-esES.lua
-  # !AutoBarDB.lua
-  # !AutoBarOptions.lua
-  # !AutoBarSearch.lua
-  # !AutoBarClassBar.lua
-  # !AutoBarClassButton.lua
-  # !AutoBarClassPopupButton.lua
-  # !AutoBarButton.lua
-  # !AutoBarCategory.lua
-  # !AutoBarFuBar.lua
 
 Inside "World of Warcraft\Interface\!AddOns\!AutoBar\libs":
 
