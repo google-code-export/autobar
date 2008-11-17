@@ -9,6 +9,31 @@
  * See the [Usage] page.
 
 
+=== I cannot make my own pet / mount buttons ===
+ * No, a Blizzard bug prevents this.
+
+
+=== How do I report a missing item? ===
+ * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 List of Reported Missing Items]
+ * Please use something specific like: "Reins of the Black War Tiger 29471" or "Farkle Berry Juice 47:14000"
+ * The 29471 & 47 are the !ItemId for each item.
+  * Get it from Loot Link as the "!BaseId" in the tooltip.
+  * Look it up on [http://www.wowhead.com] or [http://www.allakhazam.com] by searching by name & then looking at the items URL. The !ItemId is at the end.
+ * For foods & whatnot an aditional value after the colon gives how much it heals etc.
+ * If Farkle Berry Juice was real and a buff food then also include what it buffs:
+  * Farkle Berry Juice  47:14000   strength 30, dexterity 60, attack speed 90
+ * Is there no end to the wondrous Farkle Berry Juice? It is also a combo food, so list its mana gain as well:
+  * Farkle Berry Juice  47:14000 47:17000 mana strength 30, dexterity 60, attack speed 90
+
+ I do not have the time to go search the entire game for missing items, nor do all items need to be added. If you miss it, give me the specific info I need to add it.
+
+
+=== How do I add items that are not in any existing categories? ===
+ * See the [Usage] section.
+ * See the "How do I report a missing item?" FAQ to get the item into the items database.
+ * If you are an Ace author or have SVN access you can add the item to [http://www.wowace.com/wiki/PeriodicTable-3.0 PeriodicTable-3.1].
+
+
 === How can I get the easy & classic AutoBar back? ===
  * Simply disable all but the Basic Bar
  * Remove all buttons on it that you do not like.
@@ -38,27 +63,6 @@
  * Repeat moving the Class Buttons for each different class you have.
  * If you have multiple characters of the same class that need individual button layouts then simply set *Shared Buttons* to "None" for one or more of them.
  * Note that with enough different classes eventually all Buttons will not fit on a single Bar.
-
-
-=== How do I report a missing item? ===
- * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 List of Reported Missing Items]
- * Please use something specific like: "Reins of the Black War Tiger 29471" or "Farkle Berry Juice 47:14000"
- * The 29471 & 47 are the !ItemId for each item.
-  * Get it from Loot Link as the "!BaseId" in the tooltip.
-  * Look it up on [http://www.wowhead.com] or [http://www.allakhazam.com] by searching by name & then looking at the items URL. The !ItemId is at the end.
- * For foods & whatnot an aditional value after the colon gives how much it heals etc.
- * If Farkle Berry Juice was real and a buff food then also include what it buffs:
-  * Farkle Berry Juice  47:14000   strength 30, dexterity 60, attack speed 90
- * Is there no end to the wondrous Farkle Berry Juice? It is also a combo food, so list its mana gain as well:
-  * Farkle Berry Juice  47:14000 47:17000 mana strength 30, dexterity 60, attack speed 90
-
- I do not have the time to go search the entire game for missing items, nor do all items need to be added. If you miss it, give me the specific info I need to add it.
-
-
-=== How do I add items that are not in any existing categories? ===
- * See the [Usage] section.
- * See the "How do I report a missing item?" FAQ to get the item into the items database.
- * If you are an Ace author or have SVN access you can add the item to [http://www.wowace.com/wiki/PeriodicTable-3.0 PeriodicTable-3.1].
 
 
 === Files Required for !AutoBar to work ===
