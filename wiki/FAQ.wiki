@@ -13,7 +13,7 @@
  * No, a Blizzard bug prevents this.
 
 
-=== How do I report a missing item? ===
+= How do I report a missing item? =
  * [http://code.google.com/p/autobar/issues/list?q=label%3AMissingItem&can=1 List of Reported Missing Items]
  * Please use something specific like: "Reins of the Black War Tiger 29471" or "Farkle Berry Juice 47:14000"
  * The 29471 & 47 are the !ItemId for each item.
