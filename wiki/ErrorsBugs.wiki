@@ -7,7 +7,7 @@
   * Completely quit Wow and restart.  Did the bug go away?
 === Narrow it Down: ===
   * Download and install [http://www.wowace.com/projects/buggrabber/ Buggrabber] and [http://www.wowace.com/projects/bugsack/ BugSack].
-  * Use the BugSack UI (fubar icon or /bugsack) to turn off *Throttle at excessive amount* then log out.
+  * Use the !BugSack UI ([http://github.com/tekkub/libdatabroker-1-1/wikis/addons-using-ldb Data Broker] icon or /bugsack) to turn off *Throttle at excessive amount* then log out.
   * Disable all other mods except AutoBar, Buggrabber and BugSack. Log in.  If you still get the error then it may be an AutoBar bug.
   * Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
 === What error is causing it: ===
@@ -24,3 +24,5 @@
   * Quit completely from WoW, then delete:
   * World of Warcraft\WTF\Account\<YOUR ACCOUNT NAME>\!SavedVariables\!AutoBar.lua and !AutoBar.bak.
   * Restart WoW.
+
+NOTE: Resetting the saved variables file should almost never be necessary.  Even as the developer I have done this less than 5 times in the many years I have worked on this.  So be sure to save the file and restore it if it has nothing to do with your issue.
