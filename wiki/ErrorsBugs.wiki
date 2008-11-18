@@ -2,11 +2,11 @@
 
 === Actually Download the LATEST version: ===
   * Make sure you are not running disembeded. In your Wow Ace Updater preferences make sure the only thing checked on the left side of the preferences panel is "Default mode WITH externals".
-  * The latest developer build is on [http://files.wowace.com].  Please make sure your bug has not been fixed in the developer build before logging a bug.
+  * The latest developer build is on [http://www.wowace.com/projects/auto-bar/ WoWAce].  Please make sure your bug has not been fixed in the developer build before logging a bug.
   * Once you think you have downloaded !AutoBar, see *Files Required for !AutoBar to work* below and make sure you actually did download !AutoBar
   * Completely quit Wow and restart.  Did the bug go away?
 === Narrow it Down: ===
-  * Download and install !Buggrabber and !BugSack from [http://files.wowace.com].
+  * Download and install [http://www.wowace.com/projects/buggrabber/ Buggrabber] and [http://www.wowace.com/projects/bugsack/ BugSack].
   * Use the BugSack UI (fubar icon or /bugsack) to turn off *Throttle at excessive amount* then log out.
   * Disable all other mods except AutoBar, Buggrabber and BugSack. Log in.  If you still get the error then it may be an AutoBar bug.
   * Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
