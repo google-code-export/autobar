@@ -8,11 +8,11 @@
 === Narrow it Down: ===
   * Download and install [http://www.wowace.com/projects/buggrabber/ Buggrabber] and [http://www.wowace.com/projects/bugsack/ BugSack].
   * Use the !BugSack UI ([http://github.com/tekkub/libdatabroker-1-1/wikis/addons-using-ldb Data Broker] icon or /bugsack) to turn off *Throttle at excessive amount* then log out.
-  * Disable all other mods except AutoBar, Buggrabber and BugSack. Log in.  If you still get the error then it may be an AutoBar bug.
+  * Disable all other mods except AutoBar, !BugGrabber and !BugSack. Log in.  If you still get the error then it may be an AutoBar bug.
   * Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
 === What error is causing it: ===
   * Another potential source of bugs are script errors, especially during startup.
-  * Buggrabber records all bugs and lets you list them using the BugSack UI.
+  * Buggrabber records all bugs and lets you list them using the !BugSack UI.
   * Ideally there should be no errors.  !BugSack gives you a very nice UI for the !Buggrabber errors as well as options for bug tracking, and the ability to copy and paste errors.
   * Startup errors in a particular mod probably mean it is not going to work correctly.
   * Please only report the first bug.  The first one usually leads to a cascade of meaningless bugs that may or may not even be real.
