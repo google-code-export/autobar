@@ -1,7 +1,7 @@
 #summary How to find Bugs / Errors.
 
 === Actually Download the LATEST version: ===
-  * Make sure you are not running disembeded. In your Wow Ace Updater preferences make sure the only thing checked on the left side of the preferences panel is "Default mode WITH externals".
+  * Make sure you are not running disembeded.
   * The latest developer build is on [http://www.wowace.com/projects/auto-bar/ WoWAce].  Please make sure your bug has not been fixed in the developer build before logging a bug.
   * Once you think you have downloaded !AutoBar, see *Files Required for !AutoBar to work* below and make sure you actually did download !AutoBar
   * Completely quit Wow and restart.  Did the bug go away?
