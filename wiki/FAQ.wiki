@@ -18,7 +18,7 @@
  * Please use something specific like: "Reins of the Black War Tiger 29471" or "Farkle Berry Juice 47:14000"
  * The 29471 & 47 are the !ItemId for each item.
   * Get it from Loot Link as the "!BaseId" in the tooltip.
-  * Look it up on [http://www.wowhead.com] or [http://www.allakhazam.com] by searching by name & then looking at the items URL. The !ItemId is at the end.
+  * Look it up on [http://www.wowhead.com] by searching by name & then looking at the items URL. The !ItemId is at the end.
  * For foods & whatnot an aditional value after the colon gives how much it heals etc.
  * If Farkle Berry Juice was real and a buff food then also include what it buffs:
   * Farkle Berry Juice  47:14000   strength 30, dexterity 60, attack speed 90
