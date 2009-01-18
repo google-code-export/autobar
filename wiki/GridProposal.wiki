@@ -1,8 +1,8 @@
-#summary One-sentence summary of this page.
-
-Proposal for wrangling frame around a bit.
+#summary Proposal for wrangling frame around a bit.
 
 {{{
+Proposal for wrangling frame around a bit.
+
 --
 -- Design
 --
@@ -22,7 +22,8 @@ Proposal for wrangling frame around a bit.
 -- Implementation
 --
 
-*The current code that has a hard link between the indicator and its implementation is rearranged.  For example:
+*The current code that has a hard link between the indicator and its implementation is rearranged (possibly in phases, see below).  For example:
+
 
 
 local GridIndicatorIcon = AceOO.Class("AceEvent-2.0", "AceDebug-2.0")
@@ -105,8 +106,9 @@ function GridFrame:UpdateIndicators(frame)
 end
 
 
+
 *There can be an intermediate state between the current code and the future code where the indicator types are implemented, and the current code just dispatches to it.
-*This can be done without any of the current mods changing.
+*This can be done without any of the current mods changing (unless they update to dispatch as well instead of duplicating the base code as is mostly the case at the moment).
 *The final phase then is to ditch the current set of Indicator plugins in favour of the official ones + whatever extension ones are required.
 
 For Example GridStatusLifebloom would split to provide:
