@@ -139,7 +139,7 @@ An add button creates a new indicator (starting with none) and places it in a se
 A popup list can move an indicator to one of these locations (swapping with the current occupant if any).
 We can name the locations:
 
-GridFrame.indicatorList = {
+GridFrame.locationList= {
 	cornerTopLeft = {relIndicator = nil, point = "TOPLEFT", relPoint = "TOPLEFT", x = 2, y = 2, name = L["Top Left Corner"]},
 	cornerTopRight = {relIndicator = nil, point = "TOPRIGHT", relPoint = "TOPRIGHT", x = -2, y = 2, name = L["Top Right Corner"]},
 	...
