@@ -1,0 +1,824 @@
+Latest code on SVN: [AutoBarTest](http://www.wowace.com/projects/auto-bar-test/)
+
+core.lua
+
+```
+--Name: AutoBarTest
+-- Just a test mod to model the underlying features of AutoBar
+
+-- A row of buttons is created, each exploring some particular action button type or a variant thereof
+
+-- It also creates a grid of 4 x 4 buttons each with a 4 button popup popping up to the top:
+-- The following features are desired:
+--  1) mouseover gives a standard tooltip
+--  2) mouseover pops up the button & the popup obscures any grid buttons above its base button
+--  3) popping up on buttons 5-16 allows you to move mouse up & select popup 1-4 despite buttons 1-4 & possibly 5-12 being in the way
+--  4) hovering over a button keeps its popup going, moving to another button (not obscured by a popup) pops up that one & drops the previous popup
+--  5) when set, only popup on shift key held down
+--	6) selecting a popup makes the anchor button assume its type & icon etc.
+
+local _G = getfenv(0)
+local _
+
+-- In order to prevent collision with the functions and variables of other mods we either add them to our mod or make them local
+AutoBarTest = {}
+AutoBarTest.spellNameList = {}
+AutoBarTest.spellIconList = {}
+AutoBarTest.spellLinkList = {}
+
+local spellNameList = AutoBarTest.spellNameList
+local spellIconList = AutoBarTest.spellIconList
+local spellLinkList = AutoBarTest.spellLinkList
+
+spellLinkList["Rejuvenation"], spellNameList["Rejuvenation"], _, spellIconList["Rejuvenation"] = "spell:26982", GetSpellInfo(26982)
+spellLinkList["Regrowth"], spellNameList["Regrowth"], _, spellIconList["Regrowth"] = "spell:26980", GetSpellInfo(26980)
+spellLinkList["Moonfire"], spellNameList["Moonfire"], _, spellIconList["Moonfire"] = "spell:8921", GetSpellInfo(8921)
+spellLinkList["Starfire"], spellNameList["Starfire"], _, spellIconList["Starfire"] = "spell:2912", GetSpellInfo(2912)
+spellLinkList["Wrath"], spellNameList["Wrath"], _, spellIconList["Wrath"] = "spell:5176", GetSpellInfo(5176)
+spellLinkList["Maul"], spellNameList["Maul"], _, spellIconList["Maul"] = "spell:6807", GetSpellInfo(6807)
+
+spellLinkList["Snake Trap"], spellNameList["Snake Trap"], _, spellIconList["Snake Trap"] = "spell:34600", GetSpellInfo(34600)
+spellLinkList["Explosive Trap"], spellNameList["Explosive Trap"], _, spellIconList["Explosive Trap"] = "spell:27025", GetSpellInfo(27025)
+spellLinkList["Frost Trap"], spellNameList["Frost Trap"], _, spellIconList["Frost Trap"] = "spell:13809", GetSpellInfo(13809)
+spellLinkList["Immolation Trap"], spellNameList["Immolation Trap"], _, spellIconList["Immolation Trap"] = "spell:27023", GetSpellInfo(27023)
+spellLinkList["Freezing Trap"], spellNameList["Freezing Trap"], _, spellIconList["Freezing Trap"] = "spell:14311", GetSpellInfo(14311)
+spellLinkList["Serpent Sting"], spellNameList["Serpent Sting"], _, spellIconList["Serpent Sting"] = "spell:27016", GetSpellInfo(27016)
+
+spellLinkList["Frost Armor"], spellNameList["Frost Armor"], _, spellIconList["Frost Armor"] = "spell:7301", GetSpellInfo(7301)
+spellLinkList["Ice Armor"], spellNameList["Ice Armor"], _, spellIconList["Ice Armor"] = "spell:27124", GetSpellInfo(27124)
+spellLinkList["Mage Armor"], spellNameList["Mage Armor"], _, spellIconList["Mage Armor"] = "spell:27125", GetSpellInfo(27125)
+spellLinkList["Molten Armor"], spellNameList["Molten Armor"], _, spellIconList["Molten Armor"] = "spell:30482", GetSpellInfo(30482)
+spellLinkList["Cone of Cold"], spellNameList["Cone of Cold"], _, spellIconList["Cone of Cold"] = "spell:120", GetSpellInfo(120)
+spellLinkList["Frostbolt"], spellNameList["Frostbolt"], _, spellIconList["Frostbolt"] = "spell:116", GetSpellInfo(116)
+
+function AutoBarTest.Slash(arg)
+	ReloadUI()
+end
+
+SLASH_AUTOBARTEST1 = "/rl"
+SlashCmdList["AUTOBARTEST"] = AutoBarTest.Slash
+
+local buttonSize = 36
+local buttonGap = 4
+
+
+
+-- Creates a minimal button that uses the item by name
+-- This version heavily commented
+function AutoBarTest:ItemByName(header)
+	-- The buttonName names the frame and needs to be unique.  Prefixing it with your mod name is a good way to ensure this.
+	local buttonName = "AutoBarTestButtonItemByName"
+
+	local itemName = "Major Rejuvenation Potion"
+	local texture = GetItemIcon(itemName)
+--	print("AutoBarTestButtonItemByName " .. texture)
+
+	-- Create the button as a child of UIParent (the entire WoW window).  ActionButtonTemplate provides the icon we need to display our item.
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+
+	-- Set the appropriate icon texture by looking up the associated ActionButtonTemplate icon which is our frame name with "Icon" appended
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(texture)
+	button.icon:Show()
+
+	-- AnyUp lets the button fire when the button (or key bound to it if any, is released).
+	button:RegisterForClicks("AnyUp")
+
+	-- The ActionButton "type" attribute determines what it is:
+	-- "action", "pet", "spell", "item", "macro", "cancelaura", "stop", "target", "focus", "assist", "maintank", "mainassist", "click", "attribute"
+	button:SetAttribute("type", "item")
+
+	-- For type "item", the "item" attribute can be itemName, itemLink, or "bag slot"
+	button:SetAttribute("item", itemName)
+
+	-- Since our frame is a child of UIParent, we manually adopt it by the header
+	header:SetAttribute("_adopt", button)
+
+	-- Finally return the button, which still needs to be positioned, scaled, sized and shown so it can actually show up.
+	return button
+end
+
+
+-- OnLeave function.  Added to a button to allow calling it via control:CallMethod("TooltipHide")
+local function TooltipHide()
+	GameTooltip:Hide()
+end
+
+-- Generic Tooltip function
+local function TooltipShow(button)
+	if (GetCVar("UberTooltips") == "1") then
+		GameTooltip_SetDefaultAnchor(GameTooltip, button)
+	else
+		local x = button:GetRight()
+		if (x >= ( GetScreenWidth() / 2)) then
+			GameTooltip:SetOwner(button, "ANCHOR_LEFT")
+		else
+			GameTooltip:SetOwner(button, "ANCHOR_RIGHT")
+		end
+	end
+
+	button.UpdateTooltip = nil
+
+	local itemLink = button:GetAttribute("itemLink")
+	local buttonType = button:GetAttribute("type")
+	if (buttonType == "macro") then
+		-- There is no accesible GameTooltip function for macros so make one with its name and the macro text
+		local macroName = button:GetAttribute("macroName")
+		local macroBody = button:GetAttribute("macroBody")
+
+		if (macroName and macroBody) then
+			GameTooltip:AddLine(macroName, 0.2, 0.8, 0.8)
+			GameTooltip:AddLine(macroBody, 1, 1, 1, 1)
+			button.UpdateTooltip = TooltipShow
+			GameTooltip:Show()
+		end
+	elseif (itemLink) then
+		if (GameTooltip:SetHyperlink(itemLink)) then
+			button.UpdateTooltip = TooltipShow
+		end
+	elseif (buttonType == "item") then
+		-- There is no way to get charge information outside built in Blizzard functions for buttonType == "action"
+		-- The best we can do is link to a specific bag/slot so at least the tooltip can show this info
+		-- Sadly, the itemString for this is "[bag] [slot]" which is not a valid paramater for SetHyperlink
+		-- It is thus special cased here
+		local bagslot = button:GetAttribute("item")
+		if (bagslot) then
+			local bag, slot = strmatch(bagslot, "^(%d+)%s+(%d+)$")
+			if (bag and slot and GameTooltip:SetBagItem(bag, slot)) then
+				button.UpdateTooltip = TooltipShow
+			end
+		end
+	end
+end
+
+
+
+-- Apply tooltipType to the Button
+local function TooltipApply(button)
+	button.TooltipShow = TooltipShow
+	button.TooltipHide = TooltipHide
+	SecureHandlerWrapScript(button, "OnEnter", button, [[ control:CallMethod("TooltipShow", self) ]])
+	SecureHandlerWrapScript(button, "OnLeave", button, [[ control:CallMethod("TooltipHide") ]])
+end
+
+
+
+-- Creates a minimal button that uses the macro by name
+-- Requires you to create a macro called "AutoBarTestMacro"
+function AutoBarTest:MacroByName(header)
+	-- The buttonName names the frame and needs to be unique.  Prefixing it with your mod name is a good way to ensure this.
+	local buttonName = "AutoBarTestButtonMacroByName"
+
+	local macroName = "AutoBarTestMacro"
+	local name, texture, body = GetMacroInfo(macroName)
+
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(texture)
+	button.icon:Show()
+
+	button:RegisterForClicks("AnyUp")
+
+	button:SetAttribute("type", "macro")
+	-- For type "macro", the "macro" attribute can be macroName or macroIndex
+	button:SetAttribute("macro", macroName)
+
+	header:SetAttribute("_adopt", button)
+
+	-- Add Tooltip support
+	button:SetAttribute("macroName", macroName)
+	button:SetAttribute("macroBody", body)
+	TooltipApply(button)
+
+	return button
+end
+
+
+function AutoBarTest:MacroCustom(header)
+	-- The buttonName names the frame and needs to be unique.  Prefixing it with your mod name is a good way to ensure this.
+	local buttonName = "AutoBarTestButtonMacroCustom"
+
+	local macroName = "AutoBarTestMacroCustom"
+	local body = "/cast [modifier:shift] Ice Barrier; [modifier:alt] Arcane Intellect; Frost Nova"
+
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture("Interface\\Icons\\INV_Misc_Gift_02")
+	button.icon:Show()
+
+	button:RegisterForClicks("AnyUp")
+
+	button:SetAttribute("type", "macro")
+	-- For type "macro", the "macro" attribute can be macroName or macroIndex
+	button:SetAttribute("macrotext", body)
+
+	header:SetAttribute("_adopt", button)
+
+	-- Add Tooltip support
+	button:SetAttribute("macroName", macroName)
+	button:SetAttribute("macroBody", body)
+	TooltipApply(button)
+
+	return button
+end
+
+
+
+-- Creates a minimal button that uses the item in "<bag> <slot>"
+function AutoBarTest:ItemByBagSlot(header)
+	local bag, slot = 0, 1
+	local buttonName = "AutoBarTestButtonItemByBagSlot"
+	local itemLink = GetContainerItemLink(bag, slot)
+	local texture = GetItemIcon(itemLink)
+--	print("AutoBarTestButtonItemByBagSlot " .. texture)
+
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+
+	-- Set the appropriate icon texture
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(texture)
+	button.icon:Show()
+
+	button:RegisterForClicks("AnyUp")
+
+	button:SetAttribute("type", "item")
+
+	-- To have the button use something from a specific bag and slot location we specify them as a string with some kind of non-numeric separator (space in this case)
+	button:SetAttribute("item", bag .. " " .. slot)
+	button:SetAttribute("itemLink", nil)
+
+	header:SetAttribute("_adopt", button)
+
+	-- Set a key binding for the button
+	-- This allows the F11 key to also click the button in this case
+	SetOverrideBindingClick(button, false, "F11", buttonName)
+
+	-- Add Tooltip support
+	TooltipApply(button)
+
+	return button
+end
+
+
+
+-- Creates a minimal button using an ItemLink
+-- Provides a Tooltip when hovering over the button
+function AutoBarTest:ItemByItemLink(header)
+	local buttonName = "AutoBarTestButtonItemByItemLink"
+	local itemLink = GetContainerItemLink(0, 1)
+	local texture = GetItemIcon(itemLink)
+
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate, SecureHandlerEnterLeaveTemplate")
+
+	-- Set the appropriate icon texture
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(texture)
+	button.icon:Show()
+
+	button:RegisterForClicks("AnyUp")
+	button:SetAttribute("type", "item")
+	button:SetAttribute("item", itemLink)
+	button:SetAttribute("itemLink", itemLink)
+	header:SetAttribute("_adopt", button)
+
+	-- Add Tooltip support
+	TooltipApply(button)
+
+	return button
+end
+
+
+-- Creates a minimal button that casts the spell specified in "spell"
+-- See the event handler below for the ClearAllPoints, SetHeight etc. calls needed to position and show the button
+function AutoBarTest:SimpleSpell(header)
+	local buttonName = "AutoBarTestButtonSimpleSpell"
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate")
+
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(spellIconList["Rejuvenation"])
+	button.icon:Show()
+
+	button:RegisterForClicks("AnyUp")
+	button:SetAttribute("type1", "spell")
+	button:SetAttribute("spell1", "Rejuvenation")
+	button:SetAttribute("*type1", "spell")
+	button:SetAttribute("*spell1", "Rejuvenation")
+	button:SetAttribute("shift-type1", "spell")
+	button:SetAttribute("shift-spell1", "Regrowth")
+	header:SetAttribute("_adopt", button)
+
+	-- Holding down the selfcast / focuscast modifier keys will change the target to self / focus
+	button:SetAttribute("checkselfcast", true)
+	button:SetAttribute("checkfocuscast", true)
+
+	SetOverrideBindingClick(button, false, "R", buttonName)
+
+	return button
+end
+
+
+
+local stateSpellSnippet = [[
+		newstate = tonumber(newstate)
+		if (newstate < 8) then
+			if (newstate == 3) then
+				self:SetAttribute("spell", "Claw")
+			elseif (newstate == 1) then
+				self:SetAttribute("spell", "Maul")
+			else
+				self:SetAttribute("spell", "Wrath")
+			end
+		else
+			self:SetAttribute("spell", "Regrowth")
+		end
+	]]
+local stateSpellStates = "[harm,stance:1] 1; [harm,stance:2] 2; [harm,stance:3] 3; [harm,stance:4] 4; [harm,stance:5] 5; [harm,stance:6] 6; [harm] 7; [help,stance:1] 8; [help,stance:2] 9; [help,stance:3] 10; [help,stance:4] 11; [help,stance:5] 12; [help,stance:6] 13; 14"
+
+-- A more complicated spell button that uses states to determine what spell to cast: help/harm, stance
+function AutoBarTest:StateSpell()
+	local buttonName = "AutoBarTestButtonStateSpell"
+	local header = CreateFrame("Frame", buttonName .. "Header", UIParent, "SecureHandlerBaseTemplate")
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerStateTemplate")
+
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:SetTexture(spellIconList["Maul"])
+	button.icon:Show()
+
+	button:RegisterForClicks("AnyUp")
+	button:SetAttribute("type", "spell")
+
+	button:SetAttribute("_onstate-stance", stateSpellSnippet)
+	RegisterStateDriver(button, "stance", stateSpellStates)	-- The states are combined into the same string
+
+	button:SetAttribute("_onstate-harm", stateSpellSnippet) -- Regardless of the driver that fires, the states are identical so we use the same snippet to execute.
+	RegisterStateDriver(button, "harm", stateSpellStates)	-- They could have been calculated individually based on the drivers change and querying the other state another way or saving its value in an attribute
+
+	header:SetAttribute("_adopt", button)					-- The button is not a natural child of the header, so we adopt it
+
+	SetOverrideBindingClick(button, false, "R", buttonName)
+	return button
+end
+
+
+
+-- Apply buttonType, buttonSubType to the Button
+-- Various settings to make the button function and display correctly
+local function ApplyButtonType(button, buttonType, buttonSubType, icon, itemLink, ...)
+	button:RegisterForClicks("AnyUp")
+
+	button.icon:SetTexture(icon)
+	button.icon:Show()
+	button:SetAttribute("icon", icon)
+
+	if (buttonType == "item") then
+		button:SetAttribute("type", "item")
+		button:SetAttribute("item", itemLink)
+		button:SetAttribute("itemLink", itemLink)
+	elseif (buttonType == "spell") then
+		local spellName = ...
+		button:SetAttribute("type", "spell")
+		button:SetAttribute("itemLink", itemLink)
+		button:SetAttribute("spell", spellName)
+	elseif (buttonType == "macro") then
+		local macroName, macroBody = ...
+		button:SetAttribute("type", "macro")
+		button:SetAttribute("macro", itemLink)
+		button:SetAttribute("macroName", macroName)
+		button:SetAttribute("macroBody", macroBody)
+		if (itemLink) then
+			button:SetAttribute("macrotext", nil)
+		else
+			button:SetAttribute("macrotext", macroBody)
+		end
+	end
+	TooltipApply(button)
+end
+
+
+
+function AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHeader)
+	local popupButtonName = buttonName .. "Popup" .. i
+	local popupButton = CreateFrame("Button", popupButtonName, popupKeyHandler or popupHeader, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerEnterLeaveTemplate")
+	popupButton.icon = _G[popupButtonName .. "Icon"]
+	popupButton.icon:Show()
+
+	popupButton:ClearAllPoints()
+	popupButton:SetHeight(buttonSize)
+	popupButton:SetWidth(buttonSize)
+	popupButton:SetScale(UIParent:GetScale())
+
+	popupButton:SetFrameRef("popupHeader", popupHeader)
+	popupButton:SetAttribute("_onenter", [[ self:GetFrameRef("popupHeader"):Show() ]])
+	popupButton:SetAttribute("_onleave", [[ self:GetFrameRef("popupHeader"):Hide() ]])
+
+	popupButton:SetPoint("BOTTOM", popupHeader, "BOTTOM", 0, (buttonSize + buttonGap) * (i - 1) + buttonGap) -- ADDED
+	return popupButton
+end
+
+
+-- popupNazi makes sure we dont have multiple popups open.  Google "Soup Nazi" for how this is done
+-- There are two cases:
+
+--	1) Rapid movement or movement off the window breaks the Blizzard code.  We use a sensible timer to fix this - popupNaziSnippet
+local popupNaziSnippet = [[
+	local x, y = self:GetMousePosition()
+	if (x and y) then
+		local queued = control:SetTimer(0.4, "hoverCheck")
+	else
+		local anchorButton = self:GetFrameRef("anchorButton")
+		x, y = anchorButton:GetMousePosition()
+		if (x and y) then
+			local queued = control:SetTimer(0.4, "hoverCheck")
+		else
+			self:Hide()
+		end
+	end
+]]
+
+--	2) Track the popped open menu.  If we open a new one we sensibly close the old one - popupNaziHandler
+local popupNaziHandler = CreateFrame("Frame", "AutoBarTestPopupNaziHandler", nil, "SecureHandlerAttributeTemplate")
+popupNaziHandler:SetAttribute("_onattributechanged", [[
+	if (name == "openhandler") then	-- Note the use of lowercased attribute names.  Probably a bug that leaves them lowercased.
+		local openHandler = self:GetAttribute("openHandler")
+		local oldOpenHandler = self:GetAttribute("oldOpenHandler")
+		if (oldOpenHandler and oldOpenHandler ~= openHandler) then
+--			print("hiding old one", oldOpenHandler, openHandler)
+			oldOpenHandler:Hide()
+		end
+		self:SetAttribute("oldOpenHandler", openHandler)
+	end
+]])
+
+
+-- Popup on shift.  Set to nil to disable, or a different modifier function for ctrl or alt for example.  By default those are used for focus cast and self cast though.
+local popupOnModifier --= true
+
+-- The basic idea is to have an intervening handler frame that is Shown / Hidden if popupOnModifier is true / nil
+local snippetPopupKey = [[
+	if (newstate == "1") then
+		self:Show()
+	else
+		self:Hide()
+	end
+]]
+local popupKeyStates = "[modifier:shift] 1; 0"
+-- Another aproach is to combine this all into one handler but it is a lot more code and complexity
+
+-- Clone the popup into the anchorButton
+local snippetOnClick = [[
+	local popupHeader = self:GetFrameRef("popupHeader")
+	local anchorButton = popupHeader:GetFrameRef("anchorButton")
+
+	-- This allows the Tooltip Handlers to be moved and settings updated
+	anchorButton:SetAttribute("sourcebutton", self)
+
+	-- Move the attributes that make the button work
+	anchorButton:SetAttribute("itemLink", self:GetAttribute("itemLink"))
+	local itemType = self:GetAttribute("type")
+	if (itemType == "item") then
+		anchorButton:SetAttribute("type", "item")
+		anchorButton:SetAttribute("item", self:GetAttribute("item"))
+		anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
+	elseif (itemType == "spell") then
+		anchorButton:SetAttribute("type", "spell")
+		anchorButton:SetAttribute("spell", self:GetAttribute("spell"))
+		anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
+	elseif (itemType == "macro") then
+		anchorButton:SetAttribute("type", "macro")
+		anchorButton:SetAttribute("macro", self:GetAttribute("macro"))
+		anchorButton:SetAttribute("macrotext", self:GetAttribute("macrotext"))
+		anchorButton:SetAttribute("macroName", self:GetAttribute("macroName"))
+		anchorButton:SetAttribute("macroBody", self:GetAttribute("macroBody"))
+		anchorButton:SetAttribute("icon", self:GetAttribute("icon"))
+	end
+]]
+
+function AutoBarTest:CreatePopupButtons(buttonName, anchorButton, popupTypeList)
+	local popupHeader = CreateFrame("Frame", buttonName .. "Handler2", nil, "SecureHandlerEnterLeaveTemplate SecureHandlerAttributeTemplate")
+	local popupKeyHandler
+	popupHeader:SetAttribute("_onenter", [[self:Show()]])
+	popupHeader:SetAttribute("_onleave", [[self:Hide()]])
+	popupHeader:SetFrameStrata("DIALOG")
+
+	-- Create the popupKeyHandler if required
+	if (popupOnModifier) then
+		-- Note that it is made a child of popupHeader, and later becomes parent to the popup buttons
+		-- Hiding it will thus hide the popup buttons as well, even if popupHeader is shown
+		popupKeyHandler = CreateFrame("Frame", buttonName .. "HandlerPopupKey", popupHeader, "SecureHandlerStateTemplate SecureHandlerEnterLeaveTemplate")
+		popupKeyHandler:SetAttribute("_onstate-modifier", snippetPopupKey)
+		popupKeyHandler:SetAllPoints(popupHeader)
+		RegisterStateDriver(popupKeyHandler, "modifier", popupKeyStates)
+		popupKeyHandler:SetAttribute("_onenter", [[ self:GetParent():Show() ]])
+		popupKeyHandler:SetAttribute("_onleave", [[ self:GetParent():Hide() ]])
+	end
+
+	-- Deal with rare irritating cases where Popups remain open incorrectly
+	popupHeader:SetFrameRef("popupNaziHandler", popupNaziHandler)
+	popupHeader:SetFrameRef("popupHeader", popupHeader)
+	popupHeader:SetFrameRef("anchorButton", anchorButton)
+	popupHeader:SetAttribute("_ontimer", popupNaziSnippet)
+	SecureHandlerWrapScript(popupHeader, "OnShow", popupHeader, [[
+		popupNaziHandler = self:GetFrameRef("popupNaziHandler")
+		popupHeader = self:GetFrameRef("popupHeader")
+		popupNaziHandler:SetAttribute("openHandler", popupHeader)
+		local queued = control:SetTimer(0.4, "hoverCheck")
+	]])
+	SecureHandlerWrapScript(popupHeader, "OnHide", popupHeader, [[
+		popupNaziHandler = self:GetFrameRef("popupNaziHandler")
+		popupNaziHandler:SetAttribute("openHandler", nil)
+	]])
+
+	-- Populate the actual buttons to show
+	for i, info in ipairs(popupTypeList) do
+		-- Use popupKeyHandler if it exists so shift key state can overide visibility
+		local button = AutoBarTest:CreatePopupButton(buttonName, i, popupKeyHandler, popupHeader)
+		if (info.buttonType == "item") then
+			local itemLink = info.itemLink
+			local itemIcon = GetItemIcon(itemLink) --itemCount = GetItemCount(itemLink)
+
+			ApplyButtonType(button, "item", "itemLink", itemIcon, itemLink)
+		elseif (info.buttonType == "macro") then
+			local macroName = info.macroName
+			local macroBody = info.macroBody
+			local itemLink = info.itemLink
+			local icon = info.icon
+
+			ApplyButtonType(button, "macro", nil, icon, itemLink, macroName, macroBody)
+		elseif (info.buttonType == "spell") then
+			local spellName = info.spell
+			local itemLink = info.itemLink
+			local icon = info.icon
+
+			ApplyButtonType(button, "spell", nil, icon, itemLink, spellName)
+		end
+		SecureHandlerWrapScript(button, "OnClick", popupHeader, snippetOnClick)
+	end
+
+	-- Size the handler to fit a line of buttons and a buttonGap around and between them all
+	popupHeader:SetWidth(buttonSize + buttonGap * 2)
+	popupHeader:SetHeight((buttonSize + buttonGap) * # popupTypeList + buttonGap)
+	popupHeader:Show()
+
+	return popupHeader
+end
+
+
+
+-- Clicking on a popup changes the anchor button spell.  This updates the icon texture to match
+local function UpdateIcon(button, texture)
+	button.icon:SetTexture(texture)
+end
+
+-- Used to pop up the buttons based on the "popupHeader" FrameRef on the button
+local popupHandler = CreateFrame("Frame", "AutoBarTestPopupHandler", nil, "SecureHandlerEnterLeaveTemplate")
+
+-- Update the anchorButton icon after a click on a popup
+local snippetOnAttributeChanged = [[
+	if (name == "icon") then
+		control:CallMethod("UpdateIcon", value)
+	end
+]]
+
+function AutoBarTest:PopupButton(buttonName, popupTypeList, templates)
+	local button = CreateFrame("Button", buttonName, UIParent, "ActionButtonTemplate SecureActionButtonTemplate SecureHandlerBaseTemplate " .. (templates or ""))
+	button.icon = _G[buttonName.."Icon"]
+	button.icon:Show()
+
+	local popupHeader = AutoBarTest:CreatePopupButtons(buttonName, button, popupTypeList)
+	button:SetFrameRef("popupHeader", popupHeader)
+	button:Execute([[
+		popupHeader = self:GetFrameRef("popupHeader")
+		popupHeader:ClearAllPoints()
+		popupHeader:SetPoint("BOTTOM", self, "TOP")
+		popupHeader:Raise()
+		popupHeader:Hide()
+	]])
+
+	-- Trigger Updating on the Anchor Button
+	button.UpdateIcon = UpdateIcon	-- Update Icon
+	SecureHandlerWrapScript(button, "OnAttributeChanged", button, snippetOnAttributeChanged)
+
+	-- Actually open popup when over a Button
+	SecureHandlerWrapScript(button, "OnEnter", popupHandler, [[
+		popupHeader = self:GetFrameRef("popupHeader")
+		popupHeader:Show()
+	]])
+	SecureHandlerWrapScript(button, "OnLeave", popupHandler, [[
+		popupHeader = self:GetFrameRef("popupHeader")
+		popupHeader:Hide()
+	]])
+	popupHandler:SetAttribute("_adopt", button)
+
+	-- Dragging and dropping
+	SecureHandlerWrapScript(button, "OnDragStart", popupHandler, [[
+		return "clear"
+	]])
+	button:SetAttribute("_onreceivedrag", [[
+		if (kind == "item") then
+			local itemLink = ...
+			print(kind, "itemID", value, "itemLink", itemLink)
+		elseif (kind == "spell") then
+			local bookType = ...
+			print(kind, "spellId", value, "bookType", bookType)
+		elseif (kind == "macro") then
+			print(kind, "macro index", value)
+		end
+
+		return "clear"
+	]])
+
+	return button
+end
+
+
+
+-- Creates a popup button with either "MOUNT" or "CRITTER"
+-- See the event handler below for the ClearAllPoints, SetHeight etc. calls needed to position and show the button
+function AutoBarTest:Companion(companionType)
+	local popupTypeList = {}
+	local count = GetNumCompanions(companionType)
+	local activeIndex = count
+	local spellName, icon
+	local creatureID, creatureName, spellID, active
+	for index = 1, count, 1 do
+		creatureID, creatureName, spellID, icon, active = GetCompanionInfo(companionType, index)
+		spellName = GetSpellInfo(spellID)
+		popupTypeList[index] = {buttonType = "spell", spell = spellName, ["icon"] = icon, itemLink = "spell:"..spellID}
+		if (active) then
+			activeIndex = index
+		end
+	end
+
+	-- Create the anchor Button
+	local buttonName = "AutoBarTestButtonCompanion" .. companionType
+	local button = AutoBarTest:PopupButton(buttonName, popupTypeList, "SecureHandlerDragTemplate")
+	local popupType = popupTypeList[activeIndex]
+	if (popupType) then
+		ApplyButtonType(button, "spell", nil, popupType.icon, popupType.itemLink, popupType.spell)
+	else
+		TooltipApply(button)	-- no companions
+	end
+
+	button:RegisterForDrag("LeftButton", "RightButton")
+	button:SetAttribute("companionType", companionType)
+
+	return button
+end
+--[[
+Companions
+* Mounts and non-combat pets have been changed to be spell rather than item based. There are a number of new API methods to query and use them (See post #57 from slouken for more details)
+
+* NEW count = GetNumCompanions(type) -- Gets the number of a specific type of companion (type is "CRITTER" or "MOUNT")
+* NEW creatureID, creatureName, spellID, icon, active = GetCompanionInfo(type, index) -- Gets information abotu a specific companiion
+* NEW PickupCompanion(type, index) -- Load a companion onto the cursor for placement into an action bar
+* NEW CallCompanion(type, index) -- Summon a specific companion
+/dump GetNumCompanions("CRITTER")
+/dump GetCompanionInfo("CRITTER", 2)
+Also, the PlayerModel frame has a new method
+
+* NEW PlayerModel:SetCreature(creatureID) -- Show the model for the specified creature
+
+Finally, there's a new event COMPANION_UPDATE which has a single argument, type - If this is nil then the UI should update the current companion, if it's non il then it'll be "CRITTER" or "MOUNT" and indicates that the active companion of that type has changed.
+--]]
+
+
+
+local popupTypeItemList = {
+	{buttonType = "item", itemLink = "item:" .. 6948, ["icon"] = (GetItemIcon(6948))},
+	{buttonType = "item", itemLink = "item:" .. 30883, ["icon"] = (GetItemIcon(30883))},
+	{buttonType = "item", itemLink = "item:" .. 14047, ["icon"] = (GetItemIcon(14047))},
+	{buttonType = "item", itemLink = "item:" .. 14529, ["icon"] = (GetItemIcon(14529))},
+}
+local popupTypeSpellList
+local _, CLASS = UnitClass("player")
+if (CLASS == "DRUID") then
+	popupTypeSpellList = {
+		{buttonType = "spell", itemLink = spellLinkList["Rejuvenation"], spell = spellNameList["Rejuvenation"], ["icon"] = spellIconList["Rejuvenation"]},
+		{buttonType = "spell", itemLink = spellLinkList["Regrowth"], spell = spellNameList["Regrowth"], ["icon"] = spellIconList["Regrowth"]},
+		{buttonType = "spell", itemLink = spellLinkList["Moonfire"], spell = spellNameList["Moonfire"], ["icon"] = spellIconList["Moonfire"]},
+		{buttonType = "spell", itemLink = spellLinkList["Starfire"], spell = spellNameList["Starfire"], ["icon"] = spellIconList["Starfire"]},
+		{buttonType = "spell", itemLink = spellLinkList["Wrath"], spell = spellNameList["Wrath"], ["icon"] = spellIconList["Wrath"]},
+		{buttonType = "spell", itemLink = spellLinkList["Maul"], spell = spellNameList["Maul"], ["icon"] = spellIconList["Maul"]},
+	}
+elseif (CLASS == "HUNTER") then
+	popupTypeSpellList = {
+		{buttonType = "spell", itemLink = spellLinkList["Snake Trap"], spell = spellNameList["Snake Trap"], ["icon"] = spellIconList["Snake Trap"]},
+		{buttonType = "spell", itemLink = spellLinkList["Explosive Trap"], spell = spellNameList["Explosive Trap"], ["icon"] = spellIconList["Explosive Trap"]},
+		{buttonType = "spell", itemLink = spellLinkList["Frost Trap"], spell = spellNameList["Frost Trap"], ["icon"] = spellIconList["Frost Trap"]},
+		{buttonType = "spell", itemLink = spellLinkList["Immolation Trap"], spell = spellNameList["Immolation Trap"], ["icon"] = spellIconList["Immolation Trap"]},
+		{buttonType = "spell", itemLink = spellLinkList["Freezing Trap"], spell = spellNameList["Freezing Trap"], ["icon"] = spellIconList["Freezing Trap"]},
+		{buttonType = "spell", itemLink = spellLinkList["Serpent Sting"], spell = spellNameList["Serpent Sting"], ["icon"] = spellIconList["Serpent Sting"]},
+	}
+else
+	popupTypeSpellList = {
+		{buttonType = "spell", itemLink = spellLinkList["Frost Armor"], spell = spellNameList["Frost Armor"], ["icon"] = spellIconList["Frost Armor"]},
+		{buttonType = "spell", itemLink = spellLinkList["Ice Armor"], spell = spellNameList["Ice Armor"], ["icon"] = spellIconList["Ice Armor"]},
+		{buttonType = "spell", itemLink = spellLinkList["Cone of Cold"], spell = spellNameList["Cone of Cold"], ["icon"] = spellIconList["Cone of Cold"]},
+		{buttonType = "spell", itemLink = spellLinkList["Frostbolt"], spell = spellNameList["Frostbolt"], ["icon"] = spellIconList["Frostbolt"]},
+		{buttonType = "spell", itemLink = spellLinkList["Molten Armor"], spell = spellNameList["Molten Armor"], ["icon"] = spellIconList["Molten Armor"]},
+		{buttonType = "spell", itemLink = spellLinkList["Mage Armor"], spell = spellNameList["Mage Armor"], ["icon"] = spellIconList["Mage Armor"]},
+	}
+end
+local popupTypeMacroList
+local function populateMacrolist()
+	local name, iconTexture, body
+	popupTypeMacroList = {
+		{buttonType = "macro", macroName = "Say Something", macroBody = "/s Something!", ["icon"] = "Interface\\Icons\\INV_Misc_Gift_05" },
+	}
+	name, iconTexture, body = GetMacroInfo(1)
+	if (name) then
+		popupTypeMacroList[# popupTypeMacroList + 1] = {buttonType = "macro", macroName = name, itemLink = 1, macroBody = body, ["icon"] = iconTexture}
+	else
+		print("missing macro at index: 1")
+	end
+	name, iconTexture, body = GetMacroInfo("AutoBarTestMacro")
+	if (name) then
+		popupTypeMacroList[# popupTypeMacroList + 1] = {buttonType = "macro", macroName = name, itemLink = "AutoBarTestMacro", macroBody = body, ["icon"] = iconTexture}
+	else
+		print("missing macro named: AutoBarTestMacro")
+	end
+	return popupTypeMacroList
+end
+local popupTypeMixedList
+local function populateMixedlist()
+	popupTypeMixedList = {
+		popupTypeItemList[1],
+		popupTypeSpellList[2],
+		popupTypeSpellList[4],
+		popupTypeMacroList[1],
+		popupTypeMacroList[2],
+	}
+	return popupTypeMixedList
+end
+
+-- f delays our creations till the PLAYER_ENTERING_WORLD event.
+-- Also /rl is mapped to ReloadUI
+local f = CreateFrame("Frame")
+local buttonList = {}
+f:SetScript("OnEvent",
+	function(self, event, ...)
+		local header = CreateFrame("Frame", "ActionBarTestHeader", UIParent, "SecureHandlerBaseTemplate")
+		buttonList[# buttonList + 1] = AutoBarTest:SimpleSpell(header)
+		buttonList[# buttonList + 1] = AutoBarTest:StateSpell()
+		buttonList[# buttonList + 1] = AutoBarTest:ItemByName(header)
+		buttonList[# buttonList + 1] = AutoBarTest:ItemByBagSlot(header)
+		buttonList[# buttonList + 1] = AutoBarTest:ItemByItemLink(header)
+		buttonList[# buttonList + 1] = AutoBarTest:MacroByName(header)
+		buttonList[# buttonList + 1] = AutoBarTest:MacroCustom(header)
+
+		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopupSpells", popupTypeSpellList)
+		ApplyButtonType(buttonList[# buttonList], "spell", nil, popupTypeSpellList[2].icon, popupTypeSpellList[2].itemLink, popupTypeSpellList[2].spell)
+
+		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopupMacros", populateMacrolist())
+		ApplyButtonType(buttonList[# buttonList], "macro", nil, "Interface\\Icons\\INV_Misc_Gift_04", 1, "Macro Popup", "/s Click a popup button to change me!")
+
+		buttonList[# buttonList + 1] = AutoBarTest:PopupButton("AutoBarTestPopupMixed", populateMixedlist())
+		ApplyButtonType(buttonList[# buttonList], "macro", nil, "Interface\\Icons\\INV_Misc_Gift_03", 1, "Mixed Types Popup", "/s Click a popup button to change me!")
+
+		buttonList[# buttonList + 1] = AutoBarTest:Companion("MOUNT")
+		buttonList[# buttonList + 1] = AutoBarTest:Companion("CRITTER")
+
+		for index, button in ipairs(buttonList) do
+			button:ClearAllPoints()
+			button:SetHeight(buttonSize)
+			button:SetWidth(buttonSize)
+			button:SetPoint("RIGHT",-240-(index * 40),0)
+			button:Show()
+		end
+
+		-- A simple grid mirroring the backpack.
+		local buttonIndex, button, buttonName
+		for v = 0, 3 do
+			for h = 1, 4 do
+				buttonIndex = v * 4 + h
+				buttonName = "AutoBarTestButtonGridPopup"..buttonIndex
+
+				button = AutoBarTest:PopupButton(buttonName, popupTypeItemList)
+				button.icon = _G[buttonName.."Icon"]
+
+				local itemLink = GetContainerItemLink(0, buttonIndex)
+				local texture = GetItemIcon(itemLink)
+				ApplyButtonType(button, "item", "itemLink", texture, itemLink)
+
+--				AutoBarTest:SetupButton(button, buttonName, itemLink)
+
+				-- In order to change aspects of a frame some form of ClearPoint needs to be called.  Here we clear it all and start from scratch.
+				button:ClearAllPoints()
+
+				-- Scale is relative to parent scale.  So our effective scale in this case depends on the scale of UIParent and our scale.
+				button:SetScale(1)
+				button:SetHeight(buttonSize)
+				button:SetWidth(buttonSize)
+				button:SetPoint("RIGHT", -240 + (buttonSize + buttonGap) * (h), (buttonSize + buttonGap) * v)
+				button:Show()
+			end
+		end
+
+		print("PLAYER_ENTERING_WORLD")
+		f:UnregisterEvent("PLAYER_ENTERING_WORLD")
+	end
+)
+f:RegisterEvent("PLAYER_ENTERING_WORLD")
+```

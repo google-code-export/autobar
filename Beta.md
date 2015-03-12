@@ -1,0 +1,91 @@
+# There is a beta? #
+
+Download:
+http://files.wowace.com/cat-action-bars.html
+
+Bug reports & issues:
+http://code.google.com/p/autobar/issues/list
+
+Discussion:
+http://www.wowace.com/forums/index.php?topic=9138.0
+
+Using the Beta:
+[Usage](Usage.md)
+
+Note that this is a beta, a particular release may not be stable, you may need to reset your options from time to time & lose customizations you have made.  All options and features may not be working yet.
+
+
+# What will slip till after release? #
+  * Conditonal Bars / Buttons
+    * Popup on shift.  There is just one more bug to iron out in the test state machine then this can be incorporated.
+    * Stance, form and macro conditional bars / buttons.
+    * Boss based Buttons, Bars
+    * Modifier key support for buttons
+  * Reset Button for built in Bars
+  * Reset Button for built in Buttons
+  * Reset Button for AutoBar
+  * Preferences need improvement
+    * ACE3 / Rock
+    * Customization via Waterfall is barely functional & needs drag & drop rearranging + icons in the tree view at a minimum.
+    * Rock: implement the link type so Rock can be used for config.
+      * Rock: stringControl -> linkControl
+  * Documentation Plugin.  Basically http://code.google.com/p/autobar/wiki/Usage, cleaned up and localized.
+
+
+# What is not working right now? #
+  * Drag & Drop
+    * Items need to be draggable onto the category in the tree part of the config.
+    * Items dragged onto a custom button automatically create a custom category if it does not have one & drop into it
+    * Buttons need a drop setting that if enabled allow items to be dragged right onto the button itself
+    * Categories in a button & items inside a category need to be draggable to rearrange them
+  * LibStickyFrames-2.0
+    * Fine movement controls for a selected frame (say temporary arrow keys + modifiers for 1 or 5 pixel or grid movement)
+    * Grouped moving
+    * Sticky Parent selection even with multiple overlapping frames.
+  * Plugin architecture for buttons so this can become more of a framework
+  * Buttons
+    * AutoBarButtonClassPet: for hunters(break19: left click summon, right click revive)
+    * AutoBarButtonBuffSpell would need multiple keybinds (3+ ?)
+    * !AutoBarButtonER: castsequence reset = 600, Last Stand, category x, category y, button n, etc.  ER - Emergency Response.  NS heals for healers, Iceblock for mages, --> Shieldwall, Bubble for pallies
+    * AutoBarButtonFishing: Keeps track of swapped gear, equips them on combat or some kind of ctrl-click or something.  First clicks equips fishing gear then pole then applies best lure when its missing.  Then casts a line.
+    * Note Petfood needs an ug to be a rightclick hunter eats & left click pet eats.
+  * Categories:
+    * Allow GetItemInfo type / subType specification for a category
+    * Allow direct selection of a [LibPeriodicTable-3.1](http://www.wowace.com/wiki/LibPeriodicTable-3.1) set
+    * Optional priority set (that takes precedence over the regular set for a particular item's value.  For example conjured food over regular)
+    * Split out ItemList as a translation / grouping / priority layer on top of PT3.
+
+
+# What is still planned for the new version? #
+  * Finish macro buttons.
+    * For Blizzard macros, use name, not number to index them.
+  * Combat Buttons.  (short duration buffs)
+    * AutoBarButtonCooldownPotionCombat (Heroic Potion, Destruction Potion ...)
+    * AutoBarButtonCooldownStoneCombat (Nightmare Seed, Flamecap, Fel Blossom, ...)
+  * Verify arena water precedence & tears + conjured only
+  * Switch to GetItemIcon(itemId or itemName or itemLink or itemString) for category icons
+
+
+# Why make a new version? #
+The basic answer is that any software explores a problem domain.  Software also acts like it is alive while growing through the domain.  So given enough time, hacks & features, various software ailments start to develop:
+  * Algorithm Necrosis
+  * Data Rot
+  * Bit Decay
+  * Hack Plaque
+  * Upgrade Resistance
+  * API Collapse
+  * Functional Dissonance
+To combat these maladies, the software is refactored from time to time to better explore current aspects of the problem domain and to enable exploration of new areas.
+
+Such is the case with the current rewrite of AutoBar.  The ailments in the old version are numerous and multiple.  It became old & set in its ways and must now make way for a younger vigorous clone with improved dna & super powers to meet new challenges.  At times this will make it seem more monster than superhero, but bear with it, the end result will be worth the growing pains.
+
+
+# What do I do if I want to go back to the old version? #
+  * First I strongly urge you to post your difficulties in the forum, or issues list.  This is the only way AutoBar will change to accomodate your needs and tastes.
+  * Simply download some old one from the downloads section.
+  * Redo your settings
+  * If you reassigned any key bindings you will have to fix that yourself.
+
+
+# The old AutoBar was so much better. #
+I totally get this point of view.  It is exactly like how ancient savages lived in harmony with nature.  They didn't kill animals or each other unless it was absolutely necessary: like if the witchdoctor told you to, or if someone looked at you funny.  If only we could go back to such an idylic age when people easily lived into their 20's.  Nowadays you are lucky if you can get to 90.

@@ -1,0 +1,249 @@
+# What is new in the Wrath of the Lich King version? #
+  * This is a rewrite of the core AutoBar engine for WOTLK.
+  * The clunky config system will get revamped soon as well.
+  * Popups can now **Arrange on Use in combat** as well at the cost of having the anchor **Button duplicated** in the popup.
+  * The Secure Handler stuff for the popups is rewritten and much simpler than the old one.
+  * You can drag and drop items / spells / macros directly to a Custom Button with the "Drop" setting checked.
+
+# Highlights #
+  * Sharing of settings can be done per Button and per the Layout / Position / Buttons of bars.
+  * There are many buttons available, some with overlapping functionality. This is intentional.  Pick the ones you want and disable any buttons you do not want.
+  * Built in Buttons are named and keybindings are directly to that Button, so if you move the Button around your keybinding still works.
+  * Your Custom Buttons can have Custom Categories containing a mixture of items, spells and macros.
+  * [Common UI](http://www.wowace.com/wiki/CommonUI) elements are used:
+    * [ButtonFacade](http://www.wowace.com/wiki/ButtonFacade) replaces cyCircled for skinning
+    * [LibKeyBound-1.0](http://www.wowace.com/wiki/LibKeyBound-1.0) adds an easy Key Bindings Mode
+    * [LibStickyFrames-2.0](http://www.wowace.com/wiki/LibStickyFrames-2.0) is used to Move Bars and stick them to other Bars or UI Frames
+    * [FadeOut](http://www.wowace.com/wiki/FadeOut) - full featured FadeOut support.
+
+
+---
+
+### Preferences ###
+  * All Preferences are configurable via Waterfall in a tree style view
+  * This replaces the old preferences, and you no longer need the separate `AutoBarConfig` mod.  It does no harm to have it but you do not need it and can safely delete it.
+  * There are a few ways to bring up and edit the preferences:
+    * Double click on the AutoBar [FuBar](http://files.wowace.com/cat-interface-enhancements.html) icon or minimap icon to bring up the GUI config
+    * [FuBar](http://files.wowace.com/cat-interface-enhancements.html) or the minimap has an AutoBar button which you can right click for a drop down menu.  Select the AutoBar option on this to bring up the GUI
+    * Type **/atb** or **/autobar** to bring up the config as a text based console interface
+    * Type **/atb config** or **/autobar config** to bring up the config as a GUI
+    * Bind a key to the AutoBar Configuration Interface using the **Blizzard Options/Key Bindings** panel.
+    * When you are in **Move the Bars** mode you can right click a Bar to bring up a dropdown config for the Bar.
+
+---
+
+### Custom Categories ###
+| **Categories/New** |
+|:-------------------|
+
+  * You can create new custom categories that are available to all your characters
+  * Click on your category and name it
+  * Open the tree to the items inside it & click **New** for however many items you need.
+  * Click on each item.  This reveals a dragLink icon (empty one looks like a gift box) and a delete button for it.
+  * Drag a **spell**, **item** or **macro** onto the dragLink icon.  You can drag from inventory, bags, action bars, your spellbook, or the Macro UI.
+  * You can click on the Delete button to get rid of an item.
+  * To add your own Macro click **New Macro**.  Name the macro and type in the Macro Text. Note that such custom Macros are in addition to the 18 that Blizzard allows.
+
+---
+
+### Custom Buttons ###
+| **Bars/<My Bar>/Buttons/New** |
+|:------------------------------|
+| **Buttons/New** |
+
+  * You can create new custom Buttons.
+  * Add one or more regular categories or custom categories you created yourself to the button with **<My Button>/Categories/Add**
+  * A default category with Hearthstone shows up.  Click its Popup & select your Custom Category or a another category instead.
+  * Enable or Disable your custom button just like a regular button.
+  * If you added 1 or more custom categories to your custom button, then you can easily drag & drop new items into it:
+    * Select **Move the Buttons** mode.
+    * Drag & drop items from your bags or spell book, etc. onto the button.
+    * The item is added to the top of your Custom Category item list.
+  * If you check the **Drop** setting of your custom button, then you can drag & drop new items into it anytime.  It will even create a Custom Category for the Button if it does not already have one.
+
+---
+
+### Custom Bars ###
+| **Bars/New** |
+|:-------------|
+
+  * You can create new custom Bars.
+  * Add new Buttons to it with **Bars/<My Bar>/Buttons/New**
+  * Add unplaced Buttons to it using **Bars/<My Bar>/Buttons/Add Button**
+  * Move Buttons from other Bars to it using **Move the Buttons** mode.
+  * Move Buttons from other Bars to it by first using **<My Button>/Remove** to remove it from the other Bar, then using **Bars/<My Bar>/Buttons/Add Button** to add it.
+#### Example: Create a Trinket Bar ####
+  * Create a new Custom Bar and name it "Trinket Bar"
+  * Follow the directions below for moving Buttons to move both the **Trinket 1** and **Trinket 2** Buttons to it
+  * Adjust the size of it to be 1 x 2 columns or 1 x 2 rows
+  * Use the Bar movement directions below to move the bar where you want it.
+  * NOTE: While you can make your own Trinket 1 button using a custom Button with a custom Category of Trinkets, you can NOT make a **Trinket 2** button that way.
+
+---
+
+### Empty "spacer" Button ###
+  * Create a custom button and move it to the spot you want.
+  * Delete its category
+  * Select "Always Show"
+
+---
+
+### Bar Positioning ###
+| **Move the Bars** |
+|:------------------|
+| **Shift-Click Minimap / Fubar Icon** |
+| **kb or /lkb or /libkeybound** |
+
+  * Shift click the AutoBar _icon_, or select **Move the Bars** to make all your bars moveable and green (if normally shown) or red (if normally hidden).
+  * Click-drag to move the bar.
+  * Left click on the bar to hide (red) / show (green) the bar.
+  * Right click the bar to bring up a config drop down for that bar.
+  * Select **Move the Bars** again to lock the bars in place.
+  * When dragging, the bars are "snappy" and snap to other AutoBar bars.
+    * Snapping is also done to some Blizzard frames and other Mods.  You can snap to them but not drag them this way, so they are colored blue.
+    * Eventually this snapping will extend to other bars and frames beyond AutoBar.
+    * You can disable snapping by holding down the Shift key.
+
+---
+
+### Bar Sticking ###
+| **Move the Bars** |
+|:------------------|
+| **Shift-Click Minimap / Fubar Icon** |
+| **/kb or /lkb or /libkeybound** |
+
+  * Shift click the AutoBar _icon_, or select **Move the Bars** to make all your bars moveable and green (if normally shown) or red (if normally hidden).
+  * A Bar can stick to another bar.  Move it close till it snaps together.  The side that is sticking will turn red.  If you let go at that point the Bar is stuck to the other Bar.
+  * If you move the parent Bar your Bar is stuck to, your Bar will move with it.
+  * When you are not dragging a Bar, some UI elements are colored blue.  These can be stuck to, but can not themselves be dragged around.  For example, you can stick a Bar to parts of the Chat dialog, but you cannot move the Chat dialog around and stick it to an AutoBar Bar.
+  * To unstick a Bar, simply drag it away from its parent.
+
+---
+
+### Button movement, addition, deletion ###
+| **<My Button>/Bar Location** |
+|:-----------------------------|
+
+  * Move a Button to a particular Bar by clicking **<My Button>/Bar Location** and selecting the Bar you want it on.
+  * Remove a Button from a Bar by clicking **<My Button>/Bar Location** and selecting "None".
+| **AutoBar/Move the Buttons** |
+|:-----------------------------|
+
+  * Control click the AutoBar _icon_, or select **Move the Buttons** to make all your buttons moveable.
+    * All Bars get a purple background
+    * All active buttons get a green outline
+    * All inactive buttons show up with a blue outline
+    * Other buttons get a red outline
+  * Click-drag to move the button.
+  * Hover over the Button to see its name in your tooltip (if displayed).
+  * Select **Move the Buttons** again to lock the buttons in place.
+| **Remove and Add Button** |
+|:--------------------------|
+
+  * Remove Buttons from other Bars using **<My Button>/Remove** to remove it.
+  * Next use **Bars/<My Bar>/Buttons/Add Button** to add it.
+| **Delete Button** |
+|:------------------|
+
+  * Delete Custom Buttons from a Bar using **<My Button>/Delete**.
+  * Delete is permanent and available for Custom Buttons.
+  * Delete is not available for built in Buttons.  You can only Remove built in Buttons.  This means you can always Add built in Buttons back later on.
+| **Bar/Shared Buttons** |
+|:-----------------------|
+
+  * You can also rearrange Buttons differently for specific characters.
+  * By setting **Bars/<My Bar>/Shared Buttons** to "Class" or "None" you can have a custom button list for a particular character.
+  * For instance, you can leave all your characters with the default settings, but for your Druids you can set **Bars/<My Bar>/Shared Buttons** to "Class" and then move all the Buttons into one Bar.  All your druids will then have a single Bar with all the Buttons on it.
+  * You can take it a step further and treat your Feral druid differently by setting its Shared Buttons to "None" and then adding all your custom macro buttons for powershifting, shift potion drinking etc. to the Bar.
+
+
+---
+
+### Button Sharing ###
+| **Bars/<My Bar>/Buttons/<My Button>/Shared** |
+|:---------------------------------------------|
+| **Buttons/<My Button>/Shared** |
+
+  * The settings for each button can be set to share with Account, Class, or None.
+  * By default most Buttons have Shared set to "Account": the same settings for all characters.
+  * Let's say you want to disable the hearth button for just one of your characters:
+    * Set Shared for that character to either "Class" or "None".
+    * Disable it for that character.
+    * It will be disabled and not show up for that character, but still be enabled for all other characters.
+
+---
+
+### Button disabling / enabling ###
+| **Bars/<My Bar>/Buttons/<the Button>/Enable** |
+|:----------------------------------------------|
+
+  * Select **Enable** to have the Button be active.
+  * Deselect **Enable** to stop the button from showing up on the bar.
+
+---
+
+### Bar Sharing Settings ###
+| **Bars/<My Bar>/Shared Buttons** |
+|:---------------------------------|
+| **Bars/<My Bar>/Shared Layout** |
+| **Bars/<My Bar>/Shared Position** |
+
+  * By default Bars have their shared settings as account wide (global).
+  * A Bar has 3 aspects it can independently share: Position, Layout, Buttons.
+  * The setting can be to share with Account, Class, or None.
+  * In most cases you can leave these as Account, which is the default setting.
+  * Example
+    1. You like identical Layouts across all characters, so you keep Shared Layout to be Account.
+    1. Your Priest needs room for raid frames so its Shared Position is set to Class.  Moving the Bar around on your Priest will thus only affect other Priests you have on your account.  The Position for your Mage remains unchanged and is still shared with other characters that have Shared Position set to Account.
+    1. Your Mage is a frost Mage because you like to pwn noobs in arena.  You want to add all your frost spells to the Basic Bar.  So for Shared Buttons you set it to None on your Mage.  Changes to the Buttons for that bar are thus only for your Mage and will affect no other character, including your little sister's Mage who is all fire specced for raiding anyway.
+
+---
+
+### Key Bindings ###
+| **Blizzard Options/Key Bindings** |
+|:----------------------------------|
+| **AutoBar/Key Bindings** |
+| **Alt-Click Minimap / Fubar Icon** |
+
+  * Regular named Buttons are bound through the Blizzard **Options/Key Bindings** interface
+    * Note that during the beta process not all the Named Buttons will have bindings until they are stable and functional.
+  * You can also use _**AutoBar/Key Bindings** to get into Key Bindings mode.
+    * All bars get a teal color in this mode.
+    * Simply hover over a button and press the key(s) you want bound to it.
+  * You may also use a mod like [Clique](http://www.wowinterface.com/downloads/fileinfo.php?s=&id=5108) or [Click2Cast](http://files.wowace.com/cat-interface-enhancements.html)
+  * Frame Names
+    * You can see the frame name for a button by going into Key Bindings mode and hovering over it.  The frame name is in brackets after the Button name in the tooltip.
+    * For your Custom Button the frame name is `AutoBarCustomButton<MyCustomButtonName>Frame`.  So if you named your button `Chocolate` then you would bind to `AutoBarCustomButtonChocolateFrame`
+    * Named Button frame names are `<ButtonName>Frame`.  So to bind to `AutoBarButtonBuffWeapon2` you would use `AutoBarButtonBuffWeapon2Frame`.  A full list is in Locale-enUS.lua under "Button Names"
+
+---
+
+### Clicking AutoBar Buttons from a Macro ###_| **/click**
+
+&lt;ButtonFrameName&gt;
+
+|
+|:-------------------------------------|
+
+  * To get the ButtonFrameName, go into Key Bindings mode and hover over it.  It will show up in brackets after the Button name.
+
+For example, hovering over the Trinket 2 Button the tooltip shows "AutoBarButtonTrinket2Frame"
+
+So the macro would be
+```
+/click AutoBarButtonTrinket2Frame
+```
+
+---
+
+### Skinning ###
+| **AutoBar/Skin the Buttons** |
+|:-----------------------------|
+| **Ctrl-Shift-Click Minimap / Fubar Icon** |
+| **/bf** |
+
+  * Skinning AutoBar is done via the ButtonFacade mod and Skin plugins for it.
+  * Select **ButtonFacade/AutoBar/<my Bar>** and apply a skin to the Bar.
+  * Select **ButtonFacade/AutoBar** to apply the same skin to all the Bars.
+  * Download ButtonFacade from [files.wowace.com](http://files.wowace.com/)
+  * You can also use the [Wow Ace Updater](http://www.wowace.com/wiki/WowAceUpdater) to install and keep ButtonFacade as well as AutoBar and all your Ace mods up to date.

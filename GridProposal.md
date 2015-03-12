@@ -1,0 +1,154 @@
+
+```
+Proposal for wrangling frame around a bit.
+
+--
+-- Design
+--
+
+*Formally create indicator types by splitting the current indicator code between the indicator (size, location, etc.) and the indicatorType (icon with border, stackText, cooldown, etc.).
+*For instance: text, icon, square, bar, cooldown etc. as types.
+*A particular indicator instance then has a name (same as now) and a type associated with it.
+*The type of the indicator can be changed.  For instance from text to icon.
+*The location, size, etc. can be changed as well
+*Specific extra information that a particular type requires stays in the db but gets cleaned up on load (allowing for undo etc.)
+*A particular type can be overriden with a different implementation and this is automatically applied to all indicators of that type.
+*The current Status code & messaging remains the same
+
+
+
+--
+-- Implementation
+--
+
+*The current code that has a hard link between the indicator and its implementation is rearranged (possibly in phases, see below).  For example:
+
+
+
+local GridIndicatorIcon = AceOO.Class("AceEvent-2.0", "AceDebug-2.0")
+...
+function GridIndicatorIcon.prototype:SetIconSize(frame, indicator, size, borderSize)
+	GridIndicatorIcon.super.prototype.SetIconSize(self)
+...
+	local indicatorIcon = frame[indicator]
+	if (indicatorIcon) then
+		local indicatorBG = indicatorIcon.indicatorBG
+		local backdrop = indicatorBG:GetBackdrop()
+
+		backdrop.edgeSize = borderSize
+		backdrop.insets.left = borderSize
+		backdrop.insets.right = borderSize
+		backdrop.insets.top = borderSize
+		backdrop.insets.bottom = borderSize
+...
+		indicatorIcon:SetWidth(size)
+		indicatorIcon:SetHeight(size)
+	end
+end
+
+-- Individual Indicator types register themselves into this list with their formal name and implementation during initialization
+-- Built in implementations are registered first
+-- An override simply replaces these with its own class.  (last override arbitrarily wins in the case of conflicting ones)
+-- New types can be added as well
+GridFrame.indicatorTypeImplementationList = {
+	text = GridIndicatorText,
+	icon = GridIndicatorIcon,
+	square = GridIndicatorText, ...
+}
+
+-- Individually created indicators are mapped to their currently selected type amongst other things
+-- This part is saved in the db
+GridFrame.indicatorList = {
+	text1 = "text",
+	text2 = "text",
+	icon1 = "icon",
+	fred = "square", ...
+}
+
+...
+
+-- A mapping from indicator name to current implementation (indicatorList --> indicatorTypeImplementationList)
+-- Populated after init
+local dispatchList = {
+	text1 = GridIndicatorText,
+	text2 = GridIndicatorText,
+	icon1 = GridIndicatorIcon,
+	fred = GridIndicatorSquare, ...
+}
+
+function GridFrame:UpdateIndicators(frame)
+	local indicator, status, indicatorType
+	local unitid = frame.unit or frame.frame and frame.frame.GetAttribute and frame.frame:GetAttribute("unit")
+	if not unitid then return end
+
+	-- self.statusmap[indicator][status]
+	for indicator in pairs(self.db.profile.statusmap) do
+		status = self:StatusForIndicator(unitid, indicator)
+		indicatorType = dispatchList[indicator]
+		if status then
+			-- self:Debug("Showing status", status.text, "for", name, "on", indicator)
+
+			indicatorType:SetIndicator(frame, indicator,
+							   status.color,
+							   status.text,
+							   status.value,
+							   status.maxValue,
+							   status.texture,
+							   status.start,
+							   status.duration,
+							   status.stack)
+		else
+			-- self:Debug("Clearing indicator", indicator, "for", name)
+			indicatorType:ClearIndicator(frame, indicator)
+		end
+	end
+end
+
+
+
+*There can be an intermediate state between the current code and the future code where the indicator types are implemented, and the current code just dispatches to it.
+*This can be done without any of the current mods changing (unless they update to dispatch as well instead of duplicating the base code as is mostly the case at the moment).
+*The final phase then is to ditch the current set of Indicator plugins in favour of the official ones + whatever extension ones are required.
+
+For Example GridStatusLifebloom would split to provide:
+1) An enhanced text indicator type that shows stack color and duration cooldown as a xx.x digital countdown.
+The update call will be on the actual indicator, not the status, thus basically operating on the cached duration.
+2) A new cooldown indicator type that translates a set of duration intervals to specified colors.
+Again, it handles the update callbacks as needed.  The status just kicks off the process.
+3) An enhanced square or a new square type that shows stacks by color.
+
+I think the regular lifebloom aura would be able to drive these correctly.
+
+
+
+--
+-- Configuration
+--
+
+*The major change to configuration is that a particular indicator has a type that can be changed from a popup list.
+*Some can not be changed (border, health bar, etc.) as they are essentially unique
+*Text, square, bar and icon indicators can morph into each other
+*Individual indicators can be moved around relative to each other and the frame itself.
+*There should probably be default size, color etc values for a particular type, and then individual indicators can override that.
+*This kind of tri-state stuff is built into Ace3Config so it may make sense to upgrade that at the same time.  It lacks dropdown support atm though.
+*It can be hard coded for the current config as well.
+
+This kind of config can be arbitrarily complex.  I think a first stab would be something like this:
+An add button creates a new indicator (starting with none) and places it in a series of "well known" locations.
+A popup list can move an indicator to one of these locations (swapping with the current occupant if any).
+We can name the locations:
+
+GridFrame.locationList= {
+	cornerTopLeft = {relIndicator = nil, point = "TOPLEFT", relPoint = "TOPLEFT", x = 2, y = 2, name = L["Top Left Corner"]},
+	cornerTopRight = {relIndicator = nil, point = "TOPRIGHT", relPoint = "TOPRIGHT", x = -2, y = 2, name = L["Top Right Corner"]},
+	...
+	fredSpot = {relIndicator = "cornerTopLeft", point = "TOPLEFT", relPoint = "TOPLEFT", x = -2, y = 2, name = L["Top Right Corner"]},
+}
+
+*The location either directly specifies location in terms of frame + offests etc. or relative to another location.
+*There could be a padding setting to govern distance between relative indicators.
+*The actual code would position indicators according to the frame though as I believe chains of relative positioning has a big performance penalty.
+
+*It would be possible given a gui to be able to drag and drop indicators (via sticky dragging to these well known locations or just arbitrarily).
+*There could be an interface to edit the locations / add new ones.
+```

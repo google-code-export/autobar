@@ -1,0 +1,26 @@
+### Actually Download the LATEST version: ###
+  * Make sure you are not running disembeded.
+  * The latest developer build is on [WoWAce](http://www.wowace.com/projects/auto-bar/).  Please make sure your bug has not been fixed in the developer build before logging a bug.
+  * Once you think you have downloaded AutoBar, see **Files Required for AutoBar to work** below and make sure you actually did download AutoBar
+  * Completely quit Wow and restart.  Did the bug go away?
+### Narrow it Down: ###
+  * Download and install [Buggrabber](http://www.wowace.com/projects/buggrabber/) and [BugSack](http://www.wowace.com/projects/bugsack/).
+  * Use the BugSack UI ([Data Broker](http://github.com/tekkub/libdatabroker-1-1/wikis/addons-using-ldb) icon or /bugsack) to turn off **Throttle at excessive amount** then log out.
+  * Disable all other mods except AutoBar, BugGrabber and BugSack. Log in.  If you still get the error then it may be an AutoBar bug.
+  * Otherwise keep adding half of the disabled mods back etc. & narrow down which one is causing an error for you.
+### What error is causing it: ###
+  * Another potential source of bugs are script errors, especially during startup.
+  * Buggrabber records all bugs and lets you list them using the BugSack UI.
+  * Ideally there should be no errors.  BugSack gives you a very nice UI for the !Buggrabber errors as well as options for bug tracking, and the ability to copy and paste errors.
+  * Startup errors in a particular mod probably mean it is not going to work correctly.
+  * Please only report the first bug.  The first one usually leads to a cascade of meaningless bugs that may or may not even be real.
+  * Please state what version you are running when reporting a bug, it saves a lot of time and confusion.
+  * If you download off of wowace you need to report the SVN revision number (r#####) as well as the official AutoBar version number.  You can find both in the title of the AutoBar options window.
+### Reset the Saved Variable File: ###
+  * AutoBar is constantly changing.  Mistakes can happen.  Perhaps the Saved Variable File is corrupted.
+  * You can save this file first if you dont want to lose your settings.  If it does not fix your issue then just quit Wow, restore the file & relog.
+  * Quit completely from WoW, then delete:
+  * World of Warcraft\WTF\Account\<YOUR ACCOUNT NAME>\SavedVariables\AutoBar.lua and AutoBar.bak.
+  * Restart WoW.
+
+NOTE: Resetting the saved variables file should almost never be necessary.  Even as the developer I have done this less than 5 times in the many years I have worked on this.  So be sure to save the file and restore it if it has nothing to do with your issue.

@@ -1,0 +1,25 @@
+WARNING: This page contains strong language and may not be suitable for viewing by all users.
+
+# Who is Disembedding suitable for? #
+DISEMBEDDING IS ONLY FOR PROGRAMMERS.  If you are not a programmer then you lack the skill to use it.  That is the bottom line.  If you cannot go into the code to fix whatever went wrong because you run disembeded then you should not be running disembedded.
+
+# What are the advantages of running my mods disembedded? #
+  * You save a couple of seconds of load time IF everything went well.
+  * If you are looking at memory issues it gives you a slightly better idea of what is going on.
+
+That is it.  That is the sum total of what you accomplish.  After loading Wow, there is absolutely no difference whatsoever between disembedded and embedded mods performance wise. None.
+
+# What are the hideous drawbacks of running disembedded? #
+  * Disembedding is bad, ... M'Kay.
+  * All those libs that used to be inside your mods are now loaded like addons and your list of "Addons" becomes huge.
+  * Disembedded libs contain more files than their embeded versions and sometimes actually contain code embedded libs do not.  Extra code is a big deal because that is stuff sitting around wasting your time and your computers time.
+  * Your startup time increases significantly if toc files do not find what they are looking for because thats how blizzard coded it.  Perhaps your updater runs around and rewrites toc files for you.  Perhaps this will never go hideously wrong for you.  Perhaps.
+  * Complete and utter noobs run disembeded because they read or heard somewhere that it is kool.  Then they run into errors and do not have any clue how to fix it so they post all over the place and waste everyones time.
+  * Mods will break simply because your libraries are now scattered all over and can be out of date, incompatible, missing or any number of other things that can go wrong.  This breaking has nothing to do with the mod though, it works perfectly fine embedded.  The only thing that went wrong is user error.
+  * Every time an included lib changes, is added or removed, some ignorant disembedded user will have an issue and come post on the forums wasting peoples time.  Every Time.  It does not matter if the checkin is flawless or not.  Phantom errors will get reported.  This is beyond outrageous.
+  * Letting you run embedded is catering to some silly fetish you have that is not based in reality.  The support cost of your fetish dwarfs the couple of seconds you may have saved on startup or a few extra k on your hard drive.  Look around.  You can buy terrabyte drives now.  Hard drive space is just not an issue.  My entire addon folder with a ton of mods is 100MB.  This is a tiny tiny fraction of just one of the hard drives in my computer.
+
+# I am convinced.  How do I get the real mod? #
+  * Follow the FAQ direction to Actually Download the LATEST version.
+  * Never look back.
+  * Or follow Seerah's [Directions](http://www.wowace.com/forums/index.php?topic=8542.0)
